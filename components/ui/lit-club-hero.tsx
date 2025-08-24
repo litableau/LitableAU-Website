@@ -170,10 +170,13 @@ export function LitClubHero() {
             />
             
             {/* Bottom text overlay on image */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/60 via-[#8B7355]/30 to-[#8B7355]/20 rounded-2xl" />
-            <div className="absolute bottom-4 left-4 right-4 text-[#F5F5DC] text-center z-20">
-              <p className="text-lg font-medium font-serif">Discover the power of words</p>
-              <p className="text-sm opacity-90 font-serif">Join our community of writers, poets, and literature enthusiasts</p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-[#F5F5DC] text-center z-20">
+              <p className="text-3xl md:text-4xl font-bold font-serif leading-tight">
+                Discover the power of words
+              </p>
+              <p className="mt-4 text-lg md:text-2xl opacity-90 font-serif max-w-2xl">
+                Join our community of writers, poets, and literature enthusiasts
+              </p>
             </div>
           </div>
         </ContainerScroll>

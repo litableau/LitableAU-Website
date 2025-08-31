@@ -12,7 +12,7 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <BookOpen className="h-8 w-8 text-[#8B7355]" />
-            <span className="text-2xl font-bold text-[#8B7355] font-elegant">LITABLE</span>
+            <span className="text-2xl font-bold text-[#8B7355] font-elegant">LIT CLUB</span>
           </div>
 
           {/* Desktop Navigation */}

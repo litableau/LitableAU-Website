@@ -79,7 +79,7 @@ export function Footer() {
 
         <div className="border-t border-[#8B7355] mt-8 pt-8 text-center">
           <p className="text-[#8B7355] font-classic">
-            © 2024 LITABLEAU - Literary Society of Anna University. All rights reserved.
+            © 2025 LITCLUB - Literary Society of Anna University. All rights reserved.
           </p>
         </div>
       </div>

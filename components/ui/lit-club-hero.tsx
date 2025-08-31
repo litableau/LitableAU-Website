@@ -146,7 +146,7 @@ export function LitClubHero() {
       {/* Welcome Text Section - Minimal bottom spacing */}
       <div className="text-center py-8 px-4 relative z-10">
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#99aba6] mb-1 leading-tight font-serif">
-          LITABLEAU
+          LIT CLUB
         </h1>
         <p className="text-xl md:text-2xl lg:text-3xl text-[#A8B5A0] mt-4 max-w-4xl mx-auto mb-6 font-medium leading-relaxed font-serif">
          Literary Club of Anna University</p>

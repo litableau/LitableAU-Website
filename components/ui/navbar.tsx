@@ -26,6 +26,9 @@ export function Navbar() {
             <a href="#activities" className="text-[#8B7355] hover:text-[#D4A574] transition-colors duration-200 font-classic text-lg">
               Activities
             </a>
+            <a href="#gallery" className="text-[#8B7355] hover:text-[#D4A574] transition-colors duration-200 font-classic text-lg">
+              Gallery
+            </a>
             <a href="#contact" className="text-[#8B7355] hover:text-[#D4A574] transition-colors duration-200 font-classic text-lg">
               Contact
             </a>
@@ -66,6 +69,13 @@ export function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Activities
+              </a>
+              <a
+                href="#gallery"
+                className="block px-3 py-2 text-[#8B7355] hover:text-[#D4A574] transition-colors duration-200 font-classic"
+                onClick={() => setIsOpen(false)}
+              >
+                Gallery
               </a>
               <a
                 href="#contact"

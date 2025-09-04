@@ -53,6 +53,7 @@ export function Footer() {
               <li><a href="#home" className="text-[#8B7355] hover:text-[#A08B6A] transition-colors">Home</a></li>
               <li><a href="#about" className="text-[#8B7355] hover:text-[#A08B6A] transition-colors">About</a></li>
               <li><a href="#activities" className="text-[#8B7355] hover:text-[#A08B6A] transition-colors">Activities</a></li>
+              <li><a href="#gallery" className="text-[#8B7355] hover:text-[#A08B6A] transition-colors">Gallery</a></li>
               <li><a href="#contact" className="text-[#8B7355] hover:text-[#A08B6A] transition-colors">Contact</a></li>
             </ul>
           </div>

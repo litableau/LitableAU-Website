@@ -1,0 +1,305 @@
+"use client";
+import React, { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight, ChevronDown, Calendar, ImageIcon } from "lucide-react";
+import { galleryEvents, GalleryEvent } from "@/app/data/gallery-data";
+import Image from "next/image";
+
+export function GallerySection() {
+    const [selectedEvent, setSelectedEvent] = useState<GalleryEvent>(galleryEvents[0]);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) =>
+            prev === selectedEvent.images.length - 1 ? 0 : prev + 1
+        );
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) =>
+            prev === 0 ? selectedEvent.images.length - 1 : prev - 1
+        );
+    };
+
+    const selectEvent = (event: GalleryEvent) => {
+        setSelectedEvent(event);
+        setCurrentImageIndex(0);
+        setIsDropdownOpen(false);
+    };
+
+    const scrollToImage = (index: number) => {
+        setCurrentImageIndex(index);
+        if (scrollContainerRef.current) {
+            const container = scrollContainerRef.current;
+            const imageWidth = container.offsetWidth / 3; // Assuming 3 images visible
+            container.scrollTo({
+                left: index * imageWidth,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    return (
+        <section id="gallery" className="py-20 bg-[#8B7355] dark:bg-[#8B7355] relative overflow-hidden">
+            {/* Custom CSS for moving beige dots */}
+            <style jsx>{`
+        @keyframes float-beige-gallery {
+          0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+          10% { opacity: 0.8; }
+          90% { opacity: 0.8; }
+          100% { transform: translateY(-60px) translateX(40px); opacity: 0; }
+        }
+        
+        @keyframes drift-beige-gallery {
+          0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0; }
+          20% { opacity: 0.6; transform: translateY(-15px) translateX(10px) scale(1.1); }
+          80% { opacity: 0.6; transform: translateY(-45px) translateX(30px) scale(0.9); }
+          100% { transform: translateY(-80px) translateX(50px) scale(0.8); opacity: 0; }
+        }
+        
+        @keyframes gentle-beige-gallery {
+          0% { opacity: 0; transform: scale(0.8) translateY(0px) translateX(0px); }
+          25% { opacity: 0.5; transform: scale(1.2) translateY(-20px) translateX(15px); }
+          75% { opacity: 0.5; transform: scale(1) translateY(-60px) translateX(40px); }
+          100% { opacity: 0; transform: scale(0.6) translateY(-100px) translateX(70px); }
+        }
+        
+        .dot-float-beige-gallery { animation: float-beige-gallery 8s linear infinite; }
+        .dot-drift-beige-gallery { animation: drift-beige-gallery 10s linear infinite; }
+        .dot-gentle-beige-gallery { animation: gentle-beige-gallery 12s linear infinite; }
+      `}</style>
+
+            {/* Elegant Beige Background Effects */}
+            <div className="absolute inset-0">
+                {/* Main brown background with subtle beige overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8B7355]/90 via-[#8B7355]/80 to-[#8B7355]/70"></div>
+
+                {/* Animated beige dots pattern */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Top area dots */}
+                    <div className="absolute top-8 left-8 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '0s' }}></div>
+                    <div className="absolute top-16 left-20 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-24 left-12 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '2s' }}></div>
+
+                    <div className="absolute top-12 right-16 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute top-20 right-8 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '1.5s' }}></div>
+                    <div className="absolute top-32 right-24 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '2.5s' }}></div>
+
+                    {/* Middle area dots */}
+                    <div className="absolute top-1/3 left-16 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-1/2 left-8 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute top-2/3 left-24 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '3s' }}></div>
+
+                    <div className="absolute top-1/3 right-8 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '1.5s' }}></div>
+                    <div className="absolute top-1/2 right-20 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '2.5s' }}></div>
+                    <div className="absolute top-2/3 right-12 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '3.5s' }}></div>
+
+                    {/* Bottom area dots */}
+                    <div className="absolute bottom-16 left-12 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute bottom-24 left-24 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '3s' }}></div>
+                    <div className="absolute bottom-32 left-8 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '4s' }}></div>
+
+                    <div className="absolute bottom-12 right-8 w-2 h-2 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-60" style={{ animationDelay: '2.5s' }}></div>
+                    <div className="absolute bottom-20 right-20 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-drift-beige-gallery opacity-50" style={{ animationDelay: '3.5s' }}></div>
+                    <div className="absolute bottom-28 right-16 w-1 h-1 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-55" style={{ animationDelay: '4.5s' }}></div>
+
+                    {/* Center area dots */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#F5F5DC] rounded-full dot-gentle-beige-gallery opacity-45" style={{ animationDelay: '0s' }}></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-[#F5F5DC] rounded-full dot-float-beige-gallery opacity-40" style={{ animationDelay: '3s' }}></div>
+                </div>
+
+                {/* Soft beige circular elements */}
+                <div className="absolute top-10 right-20 w-32 h-32 bg-gradient-to-bl from-[#F5F5DC]/15 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute bottom-10 left-20 w-40 h-40 bg-gradient-to-tr from-[#F5F5DC]/15 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute top-1/3 left-1/4 w-24 h-24 bg-gradient-to-br from-[#F5F5DC]/10 to-transparent rounded-full blur-xl"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-28 h-28 bg-gradient-to-tl from-[#F5F5DC]/10 to-transparent rounded-full blur-xl"></div>
+
+                {/* Elegant diagonal lines */}
+                <div className="absolute top-0 left-0 w-full h-full opacity-5">
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#F5F5DC] to-transparent transform rotate-12"></div>
+                    <div className="absolute top-20 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#F5F5DC] to-transparent transform -rotate-8"></div>
+                    <div className="absolute top-40 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#F5F5DC] to-transparent transform rotate-15"></div>
+                </div>
+
+                {/* Subtle corner accents */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#F5F5DC]/8 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#F5F5DC]/8 to-transparent"></div>
+            </div>
+
+            {/* Section Divider */}
+            <div className="pb-8 relative z-10">
+                <div className="max-w-4xl mx-auto">
+                    <div className="flex items-center justify-center space-x-4">
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
+                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl md:text-6xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-6 font-elegant tracking-wide">
+                        GALLERY
+                    </h2>
+                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-classic leading-relaxed italic">
+                        A glimpse into our events & memories...
+                    </p>
+                </div>
+
+                {/* Event Selector Dropdown */}
+                <div className="flex justify-center mb-8">
+                    <div className="relative">
+                        <button
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="bg-white/20 dark:bg-[#2F4F4F]/30 rounded-2xl px-6 py-3 border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-lg backdrop-blur-sm text-[#F5F5DC] font-classic flex items-center space-x-2 hover:bg-white/30 transition-colors duration-200 min-w-[300px] justify-between"
+                        >
+              <span className="flex items-center space-x-2">
+                <Calendar className="h-5 w-5" />
+                <span>{selectedEvent.title}</span>
+              </span>
+                            <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {isDropdownOpen && (
+                            <div className="absolute top-full mt-2 left-0 right-0 bg-white/30 dark:bg-[#2F4F4F]/40 rounded-2xl border border-[#F5F5DC] shadow-xl backdrop-blur-md z-20">
+                                {galleryEvents.map((event) => (
+                                    <button
+                                        key={event.id}
+                                        onClick={() => selectEvent(event)}
+                                        className="w-full text-left px-6 py-3 text-[#F5F5DC] hover:bg-white/20 transition-colors duration-200 font-classic first:rounded-t-2xl last:rounded-b-2xl"
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium">{event.title}</span>
+                                            <span className="text-sm opacity-75">{event.date}</span>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Main Gallery Display */}
+                <div className="bg-white/20 dark:bg-[#2F4F4F]/30 rounded-3xl p-8 border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-2xl backdrop-blur-sm">
+                    {/* Event Title and Info */}
+                    <div className="text-center mb-8">
+                        <h3 className="text-3xl md:text-4xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+                            {selectedEvent.title}
+                        </h3>
+                        <div className="flex items-center justify-center space-x-4 text-[#F5F5DC] dark:text-[#F8F6F0] mb-4">
+                            <div className="flex items-center space-x-2">
+                                <Calendar className="h-5 w-5" />
+                                <span className="font-classic">{selectedEvent.date}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <ImageIcon className="h-5 w-5" />
+                                <span className="font-classic">{selectedEvent.images.length} Photos</span>
+                            </div>
+                        </div>
+                        <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic max-w-2xl mx-auto leading-relaxed">
+                            {selectedEvent.description}
+                        </p>
+                    </div>
+
+                    {/* Main Image Display */}
+                    <div className="relative mb-8">
+                        <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden bg-[#8B7355]/20">
+                            <Image
+                                src={selectedEvent.images[currentImageIndex]}
+                                alt={`${selectedEvent.title} - Image ${currentImageIndex + 1}`}
+                                fill
+                                className="object-cover transition-opacity duration-500"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        </div>
+
+                        {/* Navigation Arrows */}
+                        <button
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
+                        >
+                            <ChevronLeft className="h-6 w-6" />
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
+                        >
+                            <ChevronRight className="h-6 w-6" />
+                        </button>
+
+                        {/* Image Counter */}
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-classic backdrop-blur-sm">
+                            {currentImageIndex + 1} / {selectedEvent.images.length}
+                        </div>
+                    </div>
+
+                    {/* Thumbnail Gallery */}
+                    <div className="relative">
+                        <div
+                            ref={scrollContainerRef}
+                            className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                            {selectedEvent.images.map((image, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToImage(index)}
+                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                                        currentImageIndex === index
+                                            ? 'border-[#F5F5DC] scale-105 shadow-lg'
+                                            : 'border-transparent hover:border-[#F5F5DC]/50 hover:scale-102'
+                                    }`}
+                                >
+                                    <Image
+                                        src={image}
+                                        alt={`Thumbnail ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                        sizes="112px"
+                                    />
+                                    <div className={`absolute inset-0 transition-opacity duration-200 ${
+                                        currentImageIndex === index ? 'bg-transparent' : 'bg-black/20 hover:bg-transparent'
+                                    }`}></div>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Scroll Indicator Dots */}
+                        <div className="flex justify-center space-x-2 mt-4">
+                            {selectedEvent.images.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToImage(index)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                                        currentImageIndex === index
+                                            ? 'bg-[#F5F5DC] w-6'
+                                            : 'bg-[#F5F5DC]/40 hover:bg-[#F5F5DC]/70'
+                                    }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Section Divider */}
+            <div className="pt-8 relative z-10">
+                <div className="max-w-4xl mx-auto">
+                    <div className="flex items-center justify-center space-x-4">
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
+                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}

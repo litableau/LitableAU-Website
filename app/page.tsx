@@ -4,6 +4,7 @@ import { AboutSection } from "@/components/ui/about-section";
 import { ActivitiesSection } from "@/components/ui/activities-section";
 import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
+import {GallerySection} from "@/components/ui/gallery-section";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
       
       {/* Activities Section */}
       <ActivitiesSection />
+
+      {/* Gallery Section */}
+      <GallerySection />
       
       {/* Contact Section */}
       <ContactSection />

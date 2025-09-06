@@ -323,7 +323,7 @@ export function GallerySection() {
                     <h2 className="text-4xl md:text-6xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-6 font-elegant tracking-wide">
                         GALLERY
                     </h2>
-                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-classic leading-relaxed italic">
+                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-classic leading-relaxed">
                         A glimpse into our events & memories...
                     </p>
                 </div>

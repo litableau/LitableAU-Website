@@ -347,18 +347,32 @@ export function GallerySection() {
                             // Dropdown: changed to solid light-beige in light mode for better contrast and dark card in dark mode
                             <div
                                 className="absolute top-full mt-2 left-0 right-0 bg-[#F5F5DC] dark:bg-[#2F4F4F] rounded-2xl border border-[#8B7355] dark:border-[#F5F5DC] shadow-xl backdrop-blur-md z-20">
-                                {galleryEvents.map((event) => (
-                                    <button
-                                        key={event.id}
-                                        onClick={() => selectEvent(event)}
-                                        className="w-full text-left px-6 py-3 text-[#2F4F4F] dark:text-[#F5F5DC] hover:bg-[#F5F5DC]/10 dark:hover:bg-white/10 transition-colors duration-200 font-classic first:rounded-t-2xl last:rounded-b-2xl"
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span className="font-medium">{event.title}</span>
-                                            <span className="text-sm opacity-75">{event.date}</span>
-                                        </div>
-                                    </button>
-                                ))}
+                                {[...galleryEvents]
+                                    .sort((a, b) => {
+                                        // Split the date string "DD-MM-YYYY" into parts
+                                        const partsA = a.date.split('-').map(Number); // [15, 3, 2025]
+                                        const partsB = b.date.split('-').map(Number);
+
+                                        // Create Date objects using a reliable constructor: new Date(year, monthIndex, day)
+                                        // Note: The month is 0-indexed in JavaScript (0=Jan, 1=Feb, etc.), so we subtract 1.
+                                        const dateA = new Date(partsA[2], partsA[1] - 1, partsA[0]);
+                                        const dateB = new Date(partsB[2], partsB[1] - 1, partsB[0]);
+
+                                        // Sort in descending order (most recent first)
+                                        return dateB.getTime() - dateA.getTime();
+                                    })
+                                    .map((event) => (
+                                        <button
+                                            key={event.id}
+                                            onClick={() => selectEvent(event)}
+                                            className="w-full text-left px-6 py-3 text-[#2F4F4F] dark:text-[#F5F5DC] hover:bg-[#F5F5DC]/10 dark:hover:bg-white/10 transition-colors duration-200 font-classic first:rounded-t-2xl last:rounded-b-2xl"
+                                        >
+                                            <div className="flex items-center justify-between">
+                                                <span className="font-medium">{event.title}</span>
+                                                <span className="text-sm opacity-75">{event.date}</span>
+                                            </div>
+                                        </button>
+                                    ))}
                             </div>
                         )}
                     </div>

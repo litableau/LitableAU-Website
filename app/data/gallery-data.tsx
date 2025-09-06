@@ -8,6 +8,18 @@ export interface GalleryEvent {
 
 export const galleryEvents: GalleryEvent[] = [
     {
+        id: "writing-workshop",
+        title: "CREATIVE WRITING WORKSHOP",
+        date: "22-02-2025",
+        description: "Interactive workshop focused on developing creative writing skills and storytelling techniques.",
+        images: [
+            "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&crop=entropy",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=bottom",
+            "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop&crop=top"
+        ]
+    },
+    {
         id: "litablaze-24",
         title: "LITABLAZE '24 : LITCLUB'S FLAGSHIP EVENT",
         date: "04-04-2025",
@@ -43,19 +55,6 @@ export const galleryEvents: GalleryEvent[] = [
             "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&crop=bottom",
             "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop&crop=faces",
             "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&h=600&fit=crop&crop=edges"
-        ]
-    },
-
-    {
-        id: "writing-workshop",
-        title: "CREATIVE WRITING WORKSHOP",
-        date: "22-02-2025",
-        description: "Interactive workshop focused on developing creative writing skills and storytelling techniques.",
-        images: [
-            "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&crop=entropy",
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=bottom",
-            "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop&crop=top"
         ]
     },
     {

@@ -1,11 +1,19 @@
 "use client";
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, {useState, useRef, useEffect, useCallback} from "react";
 import {ChevronLeft, ChevronRight, ChevronDown, Calendar, ImageIcon} from "lucide-react";
 import {galleryEvents, GalleryEvent} from "@/app/data/gallery-data";
 import Image from "next/image";
 
 export function GallerySection() {
-    const [selectedEvent, setSelectedEvent] = useState<GalleryEvent>(galleryEvents[0]);
+    const sortedEvents = [...galleryEvents].sort((a, b) => {
+        const partsA = a.date.split('-').map(Number);
+        const partsB = b.date.split('-').map(Number);
+        const dateA = new Date(partsA[2], partsA[1] - 1, partsA[0]);
+        const dateB = new Date(partsB[2], partsB[1] - 1, partsB[0]);
+        return dateB.getTime() - dateA.getTime();
+    });
+
+    const [selectedEvent, setSelectedEvent] = useState<GalleryEvent>(sortedEvents[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -323,7 +331,7 @@ export function GallerySection() {
                     <h2 className="text-4xl md:text-6xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-6 font-elegant tracking-wide">
                         GALLERY
                     </h2>
-                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-classic leading-relaxed">
+                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-elegant leading-relaxed">
                         A glimpse into our events & memories...
                     </p>
                 </div>
@@ -347,20 +355,7 @@ export function GallerySection() {
                             // Dropdown: changed to solid light-beige in light mode for better contrast and dark card in dark mode
                             <div
                                 className="absolute top-full mt-2 left-0 right-0 bg-[#F5F5DC] dark:bg-[#2F4F4F] rounded-2xl border border-[#8B7355] dark:border-[#F5F5DC] shadow-xl backdrop-blur-md z-20">
-                                {[...galleryEvents]
-                                    .sort((a, b) => {
-                                        // Split the date string "DD-MM-YYYY" into parts
-                                        const partsA = a.date.split('-').map(Number); // [15, 3, 2025]
-                                        const partsB = b.date.split('-').map(Number);
-
-                                        // Create Date objects using a reliable constructor: new Date(year, monthIndex, day)
-                                        // Note: The month is 0-indexed in JavaScript (0=Jan, 1=Feb, etc.), so we subtract 1.
-                                        const dateA = new Date(partsA[2], partsA[1] - 1, partsA[0]);
-                                        const dateB = new Date(partsB[2], partsB[1] - 1, partsB[0]);
-
-                                        // Sort in descending order (most recent first)
-                                        return dateB.getTime() - dateA.getTime();
-                                    })
+                                {sortedEvents
                                     .map((event) => (
                                         <button
                                             key={event.id}
@@ -405,14 +400,15 @@ export function GallerySection() {
                     {/* Main Image Display */}
                     <div className="relative mb-8">
                         {/* Navigation Controls - Above images */}
-                        <div className="flex justify-between items-center mb-4 px-4" role="toolbar" aria-label="Gallery navigation">
+                        <div className="flex justify-between items-center mb-4 px-4" role="toolbar"
+                             aria-label="Gallery navigation">
                             <button
                                 onClick={prevImage}
                                 className="w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
                                 aria-label="Previous image"
                                 title="Previous image (Left arrow key)"
                             >
-                                <ChevronLeft className="h-6 w-6" />
+                                <ChevronLeft className="h-6 w-6"/>
                             </button>
                             <div
                                 className="bg-black/50 text-white px-3 py-1 rounded-full text-sm font-classic backdrop-blur-sm"
@@ -427,7 +423,7 @@ export function GallerySection() {
                                 aria-label="Next image"
                                 title="Next image (Right arrow key)"
                             >
-                                <ChevronRight className="h-6 w-6" />
+                                <ChevronRight className="h-6 w-6"/>
                             </button>
                         </div>
 
@@ -453,7 +449,8 @@ export function GallerySection() {
                             </div>
 
                             {/* Current Image (Main) */}
-                            <div className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 ring-2 ring-[#F5F5DC]/50">
+                            <div
+                                className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 ring-2 ring-[#F5F5DC]/50">
                                 <Image
                                     src={selectedEvent.images[currentImageIndex]}
                                     alt={`${selectedEvent.title} - Image ${currentImageIndex + 1}`}
@@ -485,7 +482,7 @@ export function GallerySection() {
                             <div
                                 ref={scrollContainerRef}
                                 className="flex justify-center space-x-4 overflow-x-auto scrollbar-hide pb-4 px-4"
-                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                                style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
                             >
                                 {selectedEvent.images.map((image, index) => (
                                     <button

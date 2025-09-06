@@ -1,5 +1,5 @@
 "use client";
-import React, {useState, useRef} from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {ChevronLeft, ChevronRight, ChevronDown, Calendar, ImageIcon} from "lucide-react";
 import {galleryEvents, GalleryEvent} from "@/app/data/gallery-data";
 import Image from "next/image";
@@ -10,17 +10,31 @@ export function GallerySection() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    const nextImage = () => {
+    const nextImage = useCallback(() => {
         setCurrentImageIndex((prev) =>
             prev === selectedEvent.images.length - 1 ? 0 : prev + 1
         );
-    };
+    }, [selectedEvent.images.length]);
 
-    const prevImage = () => {
+    const prevImage = useCallback(() => {
         setCurrentImageIndex((prev) =>
             prev === 0 ? selectedEvent.images.length - 1 : prev - 1
         );
-    };
+    }, [selectedEvent.images.length]);
+
+    // Add keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [nextImage, prevImage]);
 
     const selectEvent = (event: GalleryEvent) => {
         setSelectedEvent(event);
@@ -41,7 +55,12 @@ export function GallerySection() {
     };
 
     return (
-        <section id="gallery" className="py-20 bg-[#8B7355] dark:bg-[#8B7355] relative overflow-hidden">
+        <section
+            id="gallery"
+            className="py-20 bg-[#8B7355] dark:bg-[#8B7355] relative overflow-hidden"
+            aria-label="Image gallery"
+            role="region"
+        >
             {/* Custom CSS for moving beige dots */}
             <style jsx>{`
                 @keyframes float-beige-gallery {
@@ -350,88 +369,133 @@ export function GallerySection() {
                     className="bg-white/20 dark:bg-[#2F4F4F]/30 rounded-3xl p-8 border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-2xl backdrop-blur-sm">
                     {/* Event Title and Info */}
                     <div className="text-center mb-8">
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
                             {selectedEvent.title}
-                        </h3>
+                        </h2>
                         <div
                             className="flex items-center justify-center space-x-4 text-[#F5F5DC] dark:text-[#F8F6F0] mb-4">
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 align-middle">
                                 <Calendar className="h-5 w-5"/>
                                 <span className="font-classic">{selectedEvent.date}</span>
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 align-middle">
                                 <ImageIcon className="h-5 w-5"/>
                                 <span className="font-classic">{selectedEvent.images.length} Photos</span>
                             </div>
                         </div>
-                        <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic max-w-2xl mx-auto leading-relaxed text-lg md:text-xl">
                             {selectedEvent.description}
                         </p>
                     </div>
 
                     {/* Main Image Display */}
                     <div className="relative mb-8">
-                        <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden bg-[#8B7355]/20">
-                            <Image
-                                src={selectedEvent.images[currentImageIndex]}
-                                alt={`${selectedEvent.title} - Image ${currentImageIndex + 1}`}
-                                fill
-                                className="object-cover transition-opacity duration-500"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        {/* Navigation Controls - Above images */}
+                        <div className="flex justify-between items-center mb-4 px-4" role="toolbar" aria-label="Gallery navigation">
+                            <button
+                                onClick={prevImage}
+                                className="w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
+                                aria-label="Previous image"
+                                title="Previous image (Left arrow key)"
+                            >
+                                <ChevronLeft className="h-6 w-6" />
+                            </button>
+                            <div
+                                className="bg-black/50 text-white px-3 py-1 rounded-full text-sm font-classic backdrop-blur-sm"
+                                aria-live="polite"
+                                role="status"
+                            >
+                                {currentImageIndex + 1} / {selectedEvent.images.length}
+                            </div>
+                            <button
+                                onClick={nextImage}
+                                className="w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
+                                aria-label="Next image"
+                                title="Next image (Right arrow key)"
+                            >
+                                <ChevronRight className="h-6 w-6" />
+                            </button>
                         </div>
 
-                        {/* Navigation Arrows */}
-                        <button
-                            onClick={prevImage}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
-                        >
-                            <ChevronLeft className="h-6 w-6"/>
-                        </button>
-                        <button
-                            onClick={nextImage}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F5DC]/20 hover:bg-[#F5F5DC]/40 rounded-full flex items-center justify-center text-[#F5F5DC] transition-all duration-200 backdrop-blur-sm border border-[#F5F5DC]/30"
-                        >
-                            <ChevronRight className="h-6 w-6"/>
-                        </button>
-
-                        {/* Image Counter */}
+                        {/* Three Image Display */}
                         <div
-                            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-classic backdrop-blur-sm">
-                            {currentImageIndex + 1} / {selectedEvent.images.length}
+                            className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[400px] md:h-[500px]"
+                            role="group"
+                            aria-roledescription="Gallery slideshow"
+                        >
+                            {/* Previous Image */}
+                            <div
+                                className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 hidden md:block"
+                                aria-hidden="true"
+                            >
+                                <Image
+                                    src={selectedEvent.images[currentImageIndex === 0 ? selectedEvent.images.length - 1 : currentImageIndex - 1]}
+                                    alt="Previous image"
+                                    fill
+                                    className="object-cover transition-all duration-500 opacity-70 hover:opacity-100"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10"></div>
+                            </div>
+
+                            {/* Current Image (Main) */}
+                            <div className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 ring-2 ring-[#F5F5DC]/50">
+                                <Image
+                                    src={selectedEvent.images[currentImageIndex]}
+                                    alt={`${selectedEvent.title} - Image ${currentImageIndex + 1}`}
+                                    fill
+                                    className="object-cover transition-all duration-500"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            </div>
+
+                            {/* Next Image */}
+                            <div className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 hidden md:block">
+                                <Image
+                                    src={selectedEvent.images[currentImageIndex === selectedEvent.images.length - 1 ? 0 : currentImageIndex + 1]}
+                                    alt="Next image"
+                                    fill
+                                    className="object-cover transition-all duration-500 opacity-70 hover:opacity-100"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10"></div>
+                            </div>
                         </div>
                     </div>
 
                     {/* Thumbnail Gallery */}
                     <div className="relative">
-                        <div
-                            ref={scrollContainerRef}
-                            className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
-                            style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
-                        >
-                            {selectedEvent.images.map((image, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => scrollToImage(index)}
-                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
-                                        currentImageIndex === index
-                                            ? 'border-[#F5F5DC] scale-105 shadow-lg'
-                                            : 'border-transparent hover:border-[#F5F5DC]/50 hover:scale-102'
-                                    }`}
-                                >
-                                    <Image
-                                        src={image}
-                                        alt={`Thumbnail ${index + 1}`}
-                                        fill
-                                        className="object-cover"
-                                        sizes="112px"
-                                    />
-                                    <div className={`absolute inset-0 transition-opacity duration-200 ${
-                                        currentImageIndex === index ? 'bg-transparent' : 'bg-black/20 hover:bg-transparent'
-                                    }`}></div>
-                                </button>
-                            ))}
+                        <div className="max-w-3xl mx-auto">
+                            <div
+                                ref={scrollContainerRef}
+                                className="flex justify-center space-x-4 overflow-x-auto scrollbar-hide pb-4 px-4"
+                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            >
+                                {selectedEvent.images.map((image, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => scrollToImage(index)}
+                                        className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                                            currentImageIndex === index
+                                                ? 'border-[#F5F5DC] scale-105 shadow-lg'
+                                                : 'border-transparent hover:border-[#F5F5DC]/50 hover:scale-102'
+                                        }`}
+                                    >
+                                        <Image
+                                            src={image}
+                                            alt={`Thumbnail ${index + 1}`}
+                                            fill
+                                            className="object-cover"
+                                            sizes="96px"
+                                        />
+                                        <div className={`absolute inset-0 transition-opacity duration-200 ${
+                                            currentImageIndex === index ? 'bg-transparent' : 'bg-black/20 hover:bg-transparent'
+                                        }`}></div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Scroll Indicator Dots */}

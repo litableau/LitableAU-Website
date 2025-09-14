@@ -1,0 +1,40 @@
+/* App Styles */
+.App {
+    min-height: 100vh;
+    background: rgb(229,199,177); 
+    font-family: 'Argesta Serif', 'Times New Roman', serif;
+  }
+  
+  /* Global Reset */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Argesta Serif', 'Times New Roman', serif;
+    background: rgb(229, 199, 177);
+    color: rgb(23, 58, 43);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f5f5dc;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #2f4f4f;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8fbc8f;
+  }

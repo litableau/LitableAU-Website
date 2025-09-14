@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/ui/navbar";
 import { LitClubHero } from "@/components/ui/lit-club-hero";
 import { AboutSection } from "@/components/ui/about-section";
-import { ActivitiesSection } from "@/components/ui/activities-section";
+import  ActivitiesSection  from "@/components/ui/activities-section";
 import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
 import {GallerySection} from "@/components/ui/gallery-section";

@@ -23,7 +23,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/activities-section.tsx", "components/ui/eventdetails.tsx", "components/ui/eventslist.tsx", "components/ui/EventsOutline.tsx"],
   "exclude": ["node_modules"]
 }
 

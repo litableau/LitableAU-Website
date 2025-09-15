@@ -348,6 +348,14 @@
   justify-content: space-between;
   text-align: center;
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.our-event-card:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 10 !important;
 }
 
 
@@ -360,6 +368,7 @@
   font-size: 3rem;
   background: rgb(229,199,177);
   border-bottom: 2px solid #ccc;
+  transition: all 0.3s ease;
 }
 
 /* Caption */
@@ -370,6 +379,7 @@
   font-weight: bold;
   color: rgb(229,199,177);
   border-top: 2px solid #ddd;
+  transition: all 0.3s ease;
 }
 
 /* Center card */
@@ -459,6 +469,14 @@
   .event-listing.dark {
     background: #2f4f4f;
     color: #f5f5dc;
+  }
+
+  .event-listing.dark .event-meta {
+    color: #e5d5b7; /* Lighter beige for dark background */
+  }
+
+  .event-listing.dark .event-arrow {
+    color: #deb887; /* Light brown/tan for dark background */
   }
   
   .event-listing.light {
@@ -660,4 +678,269 @@
       font-size: 0.8rem;
     }
   }
+
+/* Event Detail View Styles - Simplified */
+.event-detail-view {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: rgb(229,199,177);
+  min-height: 100vh;
+  color: #2f4f4f;
+  padding: 2rem 0;
+}
+
+/* Event Detail Cards */
+.event-detail-card {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  align-items: start;
+  background: rgba(47, 79, 79, 0.05); /* Changed from brown to green theme */
+  border-radius: 0;
+  padding: 2rem;
+}
+
+.event-detail-card:nth-child(even) {
+  background: rgba(47, 79, 79, 0.1); /* Changed from brown to green theme */
+}
+
+.event-detail-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-btn-detail {
+  background: #2f4f4f;
+  color: #f5f5dc;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.back-btn-detail:hover {
+  background: #1a2e2e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.event-detail-image {
+  width: 100%;
+  max-width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.event-detail-right {
+  background: #2f4f4f; /* Changed from brown to green theme */
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: #f5f5dc;
+  position: relative;
+  min-height: 200px;
+}
+
+.event-detail-title {
+  font-size: 2rem;
+  color: #f5f5dc;
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-align: left;
+}
+
+.event-detail-date-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.event-detail-date-label {
+  background: #f5f5dc;
+  color: #2f4f4f; /* Changed from brown to green theme */
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.event-detail-date-number {
+  background: #f5f5dc;
+  color: #2f4f4f; /* Changed from brown to green theme */
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.event-detail-date-divider {
+  flex: 1;
+  height: 1px;
+  background: #f5f5dc;
+  opacity: 0.6;
+  margin: 0 1rem;
+}
+
+.event-detail-description-section {
+  background: rgba(245, 245, 220, 0.95);
+  color: #2f4f4f; /* Changed from brown to green theme */
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.event-detail-description-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #2f4f4f; /* Changed from brown to green theme */
+  letter-spacing: 1px;
+}
+
+.event-detail-description-content p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #2f4f4f; /* Changed from brown to green theme */
+  font-size: 0.95rem;
+}
+
+.event-detail-meta {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(47, 79, 79, 0.3); /* Changed from brown to green theme */
+  font-size: 0.9rem;
+}
+
+.event-detail-meta p {
+  margin-bottom: 0.3rem;
+  color: #2f4f4f; /* Changed from brown to green theme */
+}
+
+.event-detail-join-btn {
+  background: #3bb170; /* New green color */
+  color: #f5f5dc;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  margin-top: 1rem;
+  float: right;
+  clear: both;
+}
+
+.event-detail-join-btn:hover {
+  background: #36a265; /* Darker green on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsive Design for Detail View */
+@media (max-width: 768px) {
+  .event-detail-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .event-detail-left {
+    order: 1;
+  }
+  
+  .event-detail-right {
+    order: 2;
+  }
+  
+  .back-btn-detail {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .event-detail-title {
+    font-size: 2rem;
+  }
+}
+
+/* Keep existing styles for normal list view */
+
+/* Enhanced Event Listings for clicking */
+.event-listing {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-listing:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.event-arrow {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.event-arrow:hover {
+  transform: scale(1.1);
+}
+
+.event-listing.light .event-arrow {
+  background: #2f4f4f;
+  color: #f5f5dc;
+}
+
+.event-listing.dark .event-arrow {
+  background: #f5f5dc;
+  color: #2f4f4f;
+}
+
+/* Responsive Design for Detail View */
+@media (max-width: 768px) {
+  .detail-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .detail-event-title {
+    font-size: 2rem;
+  }
+  
+  .back-btn {
+    position: static;
+    margin-bottom: 1rem;
+  }
+}
   

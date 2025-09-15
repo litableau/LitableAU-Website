@@ -137,7 +137,7 @@ export const sampleEvents: Event[] = [
     tags: ['Books', 'Literature', 'Discussion'],
     isLiked: true,
     isRegistered: true,
-    type: 'upcoming'
+    type: 'ongoing'
   },
   {
     id: '7',

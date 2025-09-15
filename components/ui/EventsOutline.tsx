@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import '../../app/EventsOutline.css'; 
+import '../../app/EventsOutline.css';
 
 export interface Event {
   id: string;
@@ -35,6 +35,8 @@ interface EventsOutlineProps {
 const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) => {
   // null means "no category selected" → show all
   const [selectedCategory, setSelectedCategory] = useState<'past' | 'ongoing' | 'upcoming' | null>(null);
+  // State to track selected event for detailed view
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   /*const eventTypes = [
     { id: 'shipwreck', name: 'SHIPWRECK', icon: '⛵' },
@@ -47,12 +49,12 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
   // Filter events based on selected category; null → all events
   const [searchQuery, setSearchQuery] = useState('');
   const filteredEvents = useMemo(() => {
-  return events
-    .filter(event => !selectedCategory || event.type === selectedCategory)
-    .filter(event =>
-      event.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-}, [events, selectedCategory, searchQuery]);
+    return events
+      .filter(event => !selectedCategory || event.type === selectedCategory)
+      .filter(event =>
+        event.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+  }, [events, selectedCategory, searchQuery]);
 
 
   const handleCategoryClick = (category: 'past' | 'ongoing' | 'upcoming') => {
@@ -78,14 +80,14 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
     if (diff === 2) return "our-event-card right2";
     return "our-event-card hidden";
   };
-  
+
 
   // Title for Our Events section
   const categoryTitle = selectedCategory ? `${selectedCategory.toUpperCase()} EVENTS` : 'OUR EVENTS';
 
   return (
     <div className="vintage-events-page">
-         {/* Header Navigation */}
+      {/* Header Navigation */}
       <header className="vintage-header">
         <div className="header-content">
           <div className="logo"><div className="logo-icon">✒️</div></div>
@@ -97,15 +99,15 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
             <a href="#contact" className="nav-link">MEET US</a>
           </nav>
           <div className="search-box">
-  <input
-    type="text"
-    placeholder="Search events..."
-    className="search-input"
-    // Optional: handle input change
-     onChange={(e) => setSearchQuery(e.target.value)}
-  />
-  <span className="search-icon">🔍</span>
-</div>
+            <input
+              type="text"
+              placeholder="Search events..."
+              className="search-input"
+              // Optional: handle input change
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <span className="search-icon">🔍</span>
+          </div>
 
         </div>
       </header>
@@ -129,11 +131,11 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
       <section className="categories-section">
         <div className="categories-container">
           {['past', 'ongoing', 'upcoming'].map((cat) => (
-            <div key={cat} className={`category-card ${selectedCategory === cat ? 'selected' : ''}`} 
-                 onClick={() => handleCategoryClick(cat as 'past' | 'ongoing' | 'upcoming')}>
+            <div key={cat} className={`category-card ${selectedCategory === cat ? 'selected' : ''}`}
+              onClick={() => handleCategoryClick(cat as 'past' | 'ongoing' | 'upcoming')}>
               <div className="polaroid-frame">
-                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" 
-                     alt={`${cat} events`} />
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop"
+                  alt={`${cat} events`} />
               </div>
               <button className="category-btn">{cat.toUpperCase()}</button>
               <button className="category-arrow">→</button>
@@ -141,94 +143,162 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
           ))}
         </div>
       </section>
-{/* Our Events Section */}
-<section className="our-events-section">
-  <div className="section-header">
-    <div className="section-line"></div>
-    <h2 className="section-title">{categoryTitle}</h2>
-    <div className="section-line"></div>
-  </div>
-
- <div className="our-events-container">
-  {filteredEvents.length > 0 ? (
-    filteredEvents.map((event, index) => {
-      const diff = index - currentIndex;
-
-      // Scale and opacity based on distance from center
-      const scale = diff === 0 ? 1.2 : diff === -1 || diff === 1 ? 0.9 : 0.75;
-      const opacity = diff === 0 ? 1 : diff === -1 || diff === 1 ? 0.8 : 0.6;
-      const order = diff + filteredEvents.length; // ensures center is always visually first
-
-      return (
-        <div
-          key={event.id}
-          className="our-event-card"
-          style={{
-            transform: `scale(${scale})`,
-            opacity,
-            order,
-            margin: '0 10px', // spacing between cards
-            transition: 'all 0.5s ease',
-          }}
-        >
-          <div className="our-event-icon">🎫</div>
-          <div className="our-event-name">{event.title}</div>
+      {/* Our Events Section */}
+      <section className="our-events-section">
+        <div className="section-header">
+          <div className="section-line"></div>
+          <h2 className="section-title">{categoryTitle}</h2>
+          <div className="section-line"></div>
         </div>
-      );
-    })
-  ) : (
-    <p>No events to display</p>
-  )}
-</div>
 
-  {/* Navigation */}
-  <div className="our-events-nav">
-    <button
-      className="nav-arrow left"
-      onClick={() => setCurrentIndex((i) => Math.max(i - 1, 0))}
-      disabled={currentIndex === 0}
-    >
-      «
-    </button>
-    <div className="line"></div>
-    <button
-      className="nav-arrow right"
-      onClick={() =>
-        setCurrentIndex((i) => Math.min(i + 1, filteredEvents.length - 1))
-      }
-      disabled={currentIndex === filteredEvents.length - 1}
-    >
-      »
-    </button>
-  </div>
-</section>
+        <div className="our-events-container">
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event, index) => {
+              const diff = index - currentIndex;
 
+              // Scale and opacity based on distance from center
+              const scale = diff === 0 ? 1.2 : diff === -1 || diff === 1 ? 0.9 : 0.75;
+              const opacity = diff === 0 ? 1 : diff === -1 || diff === 1 ? 0.8 : 0.6;
+              const order = diff + filteredEvents.length; // ensures center is always visually first
 
-
-
-      {/* Event Listings */}
-      <section className="event-listings">
-        {filteredEvents.map((event, index) => (
-          <div key={event.id} className={`event-listing ${index % 2 === 0 ? 'dark' : 'light'}`}>
-            <div className="event-image-bg">
-              <img src={event.imageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=100&h=100&fit=crop'} alt={event.title} />
-            </div>
-            <div className="event-content">
-              <div className="event-date">
-                <div className="date-month">{formatDate(event.date).month}</div>
-                <div className="date-day">{formatDate(event.date).day}</div>
-              </div>
-              <div className="event-info">
-                <h3 className="event-title">{event.title}</h3>
-                <div className="event-description">
-                  <span className="desc-label">{event.description}</span>
+              return (
+                <div
+                  key={event.id}
+                  className="our-event-card"
+                  style={{
+                    transform: `scale(${scale})`,
+                    opacity,
+                    order,
+                    margin: '0 10px', // spacing between cards
+                    transition: 'all 0.5s ease',
+                    cursor: 'pointer', // Add cursor pointer to indicate clickable
+                  }}
+                  onClick={() => setSelectedEvent(event)} // Handle click to select event
+                  onMouseEnter={() => setCurrentIndex(index)} // Handle hover to center the card
+                >
+                  <div className="our-event-icon">🎫</div>
+                  <div className="our-event-name">{event.title}</div>
                 </div>
+              );
+            })
+          ) : (
+            <p>No events to display</p>
+          )}
+        </div>
+
+        {/* Navigation */}
+        <div className="our-events-nav">
+          <button
+            className="nav-arrow left"
+            onClick={() => setCurrentIndex((i) => Math.max(i - 1, 0))}
+            disabled={currentIndex === 0}
+          >
+            «
+          </button>
+          <div className="line"></div>
+          <button
+            className="nav-arrow right"
+            onClick={() =>
+              setCurrentIndex((i) => Math.min(i + 1, filteredEvents.length - 1))
+            }
+            disabled={currentIndex === filteredEvents.length - 1}
+          >
+            »
+          </button>
+        </div>
+      </section>
+
+
+
+
+      {/* Event Listings - Show either detailed view or normal list */}
+      {selectedEvent ? (
+        // Detailed Event View - Simple layout
+        <section className="event-detail-view">
+          {/* Event Card - Only Selected Event */}
+          <div className="event-detail-card">
+            <div className="event-detail-left">
+              <button
+                className="back-btn-detail"
+                onClick={() => setSelectedEvent(null)}
+              >
+                ← Back
+              </button>
+              <img
+                src={selectedEvent.imageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop'}
+                alt={selectedEvent.title}
+                className="event-detail-image"
+              />
+            </div>
+
+            <div className="event-detail-right">
+              <h2 className="event-detail-title">{selectedEvent.title}</h2>
+
+              <div className="event-detail-date-section">
+                <div className="event-detail-date-label">
+                  {formatDate(selectedEvent.date).month}
+                </div>
+                <div className="event-detail-date-number">
+                  {formatDate(selectedEvent.date).day}
+                </div>
+                <div className="event-detail-date-divider"></div>
               </div>
-              <button className="join-btn" onClick={() => onEventClick?.(event)}>JOIN NOW</button>
+
+              <div className="event-detail-description-section">
+                <h3 className="event-detail-description-title">DESCRIPTION</h3>
+                <div className="event-detail-description-content">
+                  <p>{selectedEvent.description}</p>
+                  <div className="event-detail-meta">
+                    <p><strong>Time:</strong> {selectedEvent.time}</p>
+                    <p><strong>Location:</strong> {selectedEvent.location}</p>
+                    {!selectedEvent.isFree && (
+                      <p><strong>Price:</strong> ${selectedEvent.price}</p>
+                    )}
+                  </div>
+                </div>
+
+                {selectedEvent.type === 'ongoing' && (
+                  <button
+                    className="event-detail-join-btn"
+                    onClick={() => onEventClick?.(selectedEvent)}
+                  >
+                    JOIN NOW
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        ))}
-      </section>
+        </section>
+      ) : (
+        // Normal Event Listings (simplified without descriptions)
+        <section className="event-listings">
+          {filteredEvents.map((event, index) => (
+            <div
+              key={event.id}
+              className={`event-listing ${index % 2 === 0 ? 'dark' : 'light'}`}
+              style={{ cursor: 'pointer' }}
+              onClick={() => setSelectedEvent(event)}
+            >
+              <div className="event-image-bg">
+                <img src={event.imageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=100&h=100&fit=crop'} alt={event.title} />
+              </div>
+              <div className="event-content">
+                <div className="event-date">
+                  <div className="date-month">{formatDate(event.date).month}</div>
+                  <div className="date-day">{formatDate(event.date).day}</div>
+                </div>
+                <div className="event-info">
+                  <h3 className="event-title">{event.title}</h3>
+                  <div className="event-meta">
+                    <span className="event-time">{event.time}</span>
+                  </div>
+                </div>
+                <div className="event-arrow">→</div>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
     </div>
   );
 };

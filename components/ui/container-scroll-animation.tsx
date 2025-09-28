@@ -85,9 +85,9 @@ export const Card = ({
         scale,
         transformStyle: "preserve-3d",
       }}
-      className="max-w-5xl mx-auto h-[40rem] w-full border-4 border-[#8B7355] p-6 bg-[#8B7355] rounded-[30px] shadow-2xl"
+      className="max-w-5xl mx-auto h-[40rem] w-full border-4 border-[#2f4f4f] p-6 bg-[#2f4f4f] rounded-[30px] shadow-2xl"
     >
-      <div className="h-full w-full overflow-hidden rounded-2xl bg-[#F5F5DC] dark:bg-[#8B7355] p-4">
+      <div className="h-full w-full overflow-hidden rounded-2xl bg-[#F5F5DC] dark:bg-[#2f4f4f] p-4">
         {children}
       </div>
     </motion.div>

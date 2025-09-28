@@ -87,35 +87,19 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
 
   return (
     <div className="vintage-events-page">
-      {/* Header Navigation */}
-      <header className="vintage-header">
-        <div className="header-content">
-          <div className="logo"><div className="logo-icon">✒️</div></div>
-          <nav className="main-nav">
-            <a href="#about" className="nav-link">ABOUT US</a>
-            <a href="#home" className="nav-link">HOME PAGE</a>
-            <span className="logo-text">LITABLEAU</span>
-            <a href="#activities" className="nav-link active">EVENTS</a>
-            <a href="#contact" className="nav-link">MEET US</a>
-          </nav>
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search events..."
-              className="search-input"
-              // Optional: handle input change
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <span className="search-icon">🔍</span>
-          </div>
-
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title"><span className="title-main">EVENTS</span></h1>
+          <div className="search-box" style={{ marginTop: '1rem', maxWidth: '320px' }}>
+            <input
+              type="text"
+              placeholder="Search events..."
+              className="search-input"
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <span className="search-icon">🔍</span>
+          </div>
           <div className="hero-images">
             <div className="hero-image hero-image-1"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Vintage magnifying glass" /></div>
             <div className="hero-image hero-image-2"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Old books" /></div>

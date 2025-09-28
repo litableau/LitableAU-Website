@@ -1,14 +1,12 @@
 import { Navbar } from "@/components/ui/navbar";
 import { LitClubHero } from "@/components/ui/lit-club-hero";
 import { AboutSection } from "@/components/ui/about-section";
-import  ActivitiesSection  from "@/components/ui/activities-section";
-import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
-import {GallerySection} from "@/components/ui/gallery-section";
+ 
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F5F5DC] dark:bg-[#8B7355]">
+    <main className="min-h-screen bg-[rgb(229,199,177)] text-[#2f4f4f]">
       <Navbar />
       
       {/* Hero Section with Scroll Animation */}
@@ -19,14 +17,9 @@ export default function Home() {
       {/* About Section */}
       <AboutSection />
       
-      {/* Activities Section */}
-      <ActivitiesSection />
+      {/* Events moved to dedicated /events page */}
 
-      {/* Gallery Section */}
-      <GallerySection />
-      
-      {/* Contact Section */}
-      <ContactSection />
+      {/* Gallery and Contact moved to dedicated pages */}
       
       {/* Footer */}
       <Footer />

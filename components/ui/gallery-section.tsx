@@ -65,7 +65,7 @@ export function GallerySection() {
     return (
         <section
             id="gallery"
-            className="py-20 bg-[#8B7355] dark:bg-[#8B7355] relative overflow-hidden"
+            className="py-20 bg-[rgb(229,199,177)] relative overflow-hidden"
             aria-label="Image gallery"
             role="region"
         >
@@ -204,9 +204,9 @@ export function GallerySection() {
 
             {/* Elegant Beige Background Effects */}
             <div className="absolute inset-0">
-                {/* Main brown background with subtle beige overlay */}
+                {/* Main beige background with subtle beige overlay */}
                 <div
-                    className="absolute inset-0 bg-gradient-to-br from-[#8B7355]/90 via-[#8B7355]/80 to-[#8B7355]/70"></div>
+                    className="absolute inset-0 bg-gradient-to-br from-[rgb(229,199,177)]/90 via-[rgb(229,199,177)]/80 to-[rgb(229,199,177)]/70"></div>
 
                 {/* Animated beige dots pattern */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -328,10 +328,10 @@ export function GallerySection() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-6xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-6 font-elegant tracking-wide">
+                    <h2 className="text-4xl md:text-6xl font-bold text-[#2F4F4F] mb-6 font-elegant tracking-wide">
                         GALLERY
                     </h2>
-                    <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-elegant leading-relaxed">
+                    <p className="text-xl text-[#2F4F4F] max-w-3xl mx-auto font-elegant leading-relaxed">
                         A glimpse into our events & memories...
                     </p>
                 </div>
@@ -354,7 +354,7 @@ export function GallerySection() {
                         {isDropdownOpen && (
                             // Dropdown: changed to solid light-beige in light mode for better contrast and dark card in dark mode
                             <div
-                                className="absolute top-full mt-2 left-0 right-0 bg-[#F5F5DC] dark:bg-[#2F4F4F] rounded-2xl border border-[#8B7355] dark:border-[#F5F5DC] shadow-xl backdrop-blur-md z-20">
+                                className="absolute top-full mt-2 left-0 right-0 bg-[#F5F5DC] dark:bg-[#2F4F4F] rounded-2xl border border-[#2f4f4f] dark:border-[#F5F5DC] shadow-xl backdrop-blur-md z-20">
                                 {sortedEvents
                                     .map((event) => (
                                         <button
@@ -435,7 +435,7 @@ export function GallerySection() {
                         >
                             {/* Previous Image */}
                             <div
-                                className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 hidden md:block"
+                                className="relative rounded-2xl overflow-hidden bg-[#2f4f4f]/20 hidden md:block"
                                 aria-hidden="true"
                             >
                                 <Image
@@ -450,7 +450,7 @@ export function GallerySection() {
 
                             {/* Current Image (Main) */}
                             <div
-                                className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 ring-2 ring-[#F5F5DC]/50">
+                                className="relative rounded-2xl overflow-hidden bg-[#2f4f4f]/20 ring-2 ring-[#F5F5DC]/50">
                                 <Image
                                     src={selectedEvent.images[currentImageIndex]}
                                     alt={`${selectedEvent.title} - Image ${currentImageIndex + 1}`}
@@ -463,7 +463,7 @@ export function GallerySection() {
                             </div>
 
                             {/* Next Image */}
-                            <div className="relative rounded-2xl overflow-hidden bg-[#8B7355]/20 hidden md:block">
+                            <div className="relative rounded-2xl overflow-hidden bg-[#2f4f4f]/20 hidden md:block">
                                 <Image
                                     src={selectedEvent.images[currentImageIndex === selectedEvent.images.length - 1 ? 0 : currentImageIndex + 1]}
                                     alt="Next image"

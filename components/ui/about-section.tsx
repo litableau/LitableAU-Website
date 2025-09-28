@@ -4,7 +4,7 @@ import { BookOpen, Users, Award, Heart } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-[#8B7355] dark:bg-[#2F4F4F] relative overflow-hidden">
+    <section id="about" className="py-20 bg-[#2F4F4F] dark:bg-[#2F4F4F] relative overflow-hidden">
       {/* Custom CSS for moving beige dots */}
       <style jsx>{`
         @keyframes float-beige-about {
@@ -36,7 +36,7 @@ export function AboutSection() {
       {/* Elegant Beige Background Effects */}
       <div className="absolute inset-0">
         {/* Main brown background with subtle beige overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#8B7355]/90 via-[#8B7355]/80 to-[#8B7355]/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2F4F4F]/90 via-[#2F4F4F]/80 to-[#2F4F4F]/70"></div>
         
         {/* Animated beige dots pattern */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

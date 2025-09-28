@@ -310,21 +310,7 @@ export function GallerySection() {
                     className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#F5F5DC]/8 to-transparent"></div>
             </div>
 
-            {/* Section Divider */}
-            <div className="pb-8 relative z-10">
-                <div className="max-w-4xl mx-auto">
-                    <div className="flex items-center justify-center space-x-4">
-                        <div
-                            className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-                        <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-                        <div
-                            className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-                    </div>
-                </div>
-            </div>
-
+            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-12">
@@ -378,11 +364,11 @@ export function GallerySection() {
                     className="bg-white/20 dark:bg-[#2F4F4F]/30 rounded-3xl p-8 border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-2xl backdrop-blur-sm">
                     {/* Event Title and Info */}
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#2F4F4F] dark:text-[#F8F6F0] mb-2 font-elegant">
                             {selectedEvent.title}
                         </h2>
                         <div
-                            className="flex items-center justify-center space-x-4 text-[#F5F5DC] dark:text-[#F8F6F0] mb-4">
+                            className="flex items-center justify-center space-x-4 text-[#2F4F4F] dark:text-[#F8F6F0] mb-4">
                             <div className="flex items-center space-x-2 align-middle">
                                 <Calendar className="h-5 w-5"/>
                                 <span className="font-classic">{selectedEvent.date}</span>
@@ -392,7 +378,7 @@ export function GallerySection() {
                                 <span className="font-classic">{selectedEvent.images.length} Photos</span>
                             </div>
                         </div>
-                        <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic max-w-2xl mx-auto leading-relaxed text-lg md:text-xl">
+                        <p className="text-[#2F4F4F] dark:text-[#F8F6F0] font-classic max-w-2xl mx-auto leading-relaxed text-lg md:text-xl">
                             {selectedEvent.description}
                         </p>
                     </div>
@@ -527,20 +513,7 @@ export function GallerySection() {
                 </div>
             </div>
 
-            {/* Section Divider */}
-            <div className="pt-8 relative z-10">
-                <div className="max-w-4xl mx-auto">
-                    <div className="flex items-center justify-center space-x-4">
-                        <div
-                            className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-                        <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-                        <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-                        <div
-                            className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-                    </div>
-                </div>
-            </div>
+           
         </section>
     );
 }

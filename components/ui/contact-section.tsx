@@ -36,18 +36,7 @@ export function ContactSection() {
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#F5F5DC]/8 to-transparent"></div>
       </div>
       
-      {/* Section Divider */}
-      <div className="pb-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F5F5DC] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F5F5DC] to-transparent flex-1"></div>
-          </div>
-        </div>
-      </div>
+    
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -192,18 +181,7 @@ export function ContactSection() {
         </div>
       </div>
 
-      {/* Section Divider */}
-      <div className="pt-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F5F5DC] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F5F5DC] to-transparent flex-1"></div>
-          </div>
-        </div>
-      </div>
+     
     </section>
   );
 }

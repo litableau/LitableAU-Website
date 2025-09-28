@@ -5,19 +5,7 @@ import { BookOpen, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin }
 export function Footer() {
   return (
     <footer className="bg-[#2f4f4f] text-[#f5f5dc]">
-      {/* Section Divider */}
-      <div className="pt-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#f5f5dc] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#f5f5dc] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#f5f5dc] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#f5f5dc] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#f5f5dc] to-transparent flex-1"></div>
-          </div>
-        </div>
-      </div>
-
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and Description */}

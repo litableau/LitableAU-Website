@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import { BookOpen, Users, Award, Heart } from "lucide-react";
+import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-[#2F4F4F] dark:bg-[#2F4F4F] relative overflow-hidden">
+    <section id="about" className="py-20 bg-[rgb(229,199,177)] relative overflow-hidden">
       {/* Custom CSS for moving beige dots */}
       <style jsx>{`
         @keyframes float-beige-about {
@@ -35,8 +36,8 @@ export function AboutSection() {
       
       {/* Elegant Beige Background Effects */}
       <div className="absolute inset-0">
-        {/* Main brown background with subtle beige overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2F4F4F]/90 via-[#2F4F4F]/80 to-[#2F4F4F]/70"></div>
+        {/* Main beige background with subtle beige overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[rgb(229,199,177)]/90 via-[rgb(229,199,177)]/80 to-[rgb(229,199,177)]/70"></div>
         
         {/* Animated beige dots pattern */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -94,80 +95,78 @@ export function AboutSection() {
       </div>
       
       {/* Section Divider */}
-      <div className="pb-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-          </div>
-        </div>
-      </div>
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-6 font-elegant">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#2F4F4F] mb-6 font-elegant">
             About Our Literary Society
           </h2>
-          <p className="text-xl text-[#F5F5DC] dark:text-[#F8F6F0] max-w-3xl mx-auto font-classic leading-relaxed">
+          <p className="text-xl text-[#2F4F4F] max-w-3xl mx-auto font-classic leading-relaxed">
             We are a community of passionate readers, writers, and literature enthusiasts dedicated to fostering creativity and intellectual growth.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center p-6 bg-white/20 dark:bg-[#2F4F4F]/30 rounded-2xl border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-lg backdrop-blur-sm">
-            <div className="w-16 h-16 bg-[#F5F5DC] dark:bg-[#F5F5DC] rounded-full flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="h-8 w-8 text-[#5D4E37] dark:text-[#5D4E37]" />
-            </div>
-            <h3 className="text-xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
-              Literary Excellence
-            </h3>
-            <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic">
-              Promoting the highest standards of literary achievement and creative expression.
-            </p>
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+         
 
-          <div className="text-center p-6 bg-white/20 dark:bg-[#2F4F4F]/30 rounded-2xl border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-lg backdrop-blur-sm">
-            <div className="w-16 h-16 bg-[#F5F5DC] dark:bg-[#F5F5DC] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="h-8 w-8 text-[#5D4E37] dark:text-[#5D4E37]" />
+          <div className="text-center p-6 bg-white/60 rounded-2xl border border-[#2F4F4F]/20 shadow-lg backdrop-blur-sm">
+            <div className="w-16 h-16 bg-[#2F4F4F]/10 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+              <Image
+                src="/images/community-image.jpg"
+                alt="Community"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
-            <h3 className="text-xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+            <h3 className="text-xl font-bold text-[#2F4F4F] mb-2 font-elegant">
               Community
             </h3>
-            <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic">
-              Building a supportive network of writers, readers, and literature lovers.
+            <p className="text-[#2F4F4F] font-classic">
+              Fun workshops and club events
             </p>
           </div>
 
-          <div className="text-center p-6 bg-white/20 dark:bg-[#2F4F4F]/30 rounded-2xl border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-lg backdrop-blur-sm">
-            <div className="w-16 h-16 bg-[#F5F5DC] dark:bg-[#F5F5DC] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Award className="h-8 w-8 text-[#5D4E37] dark:text-[#5D4E37]" />
+          <div className="text-center p-6 bg-white/60 rounded-2xl border border-[#2F4F4F]/20 shadow-lg backdrop-blur-sm">
+            <div className="w-16 h-16 bg-[#2F4F4F]/10 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+              <Image
+                src="/images/recognition-image.jpg"
+                alt="Recognition"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
-            <h3 className="text-xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+            <h3 className="text-xl font-bold text-[#2F4F4F] mb-2 font-elegant">
               Recognition
             </h3>
-            <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic">
-              Celebrating outstanding contributions to literature and creative writing.
+            <p className="text-[#2F4F4F] font-classic">
+              Free weekly book recommendations
             </p>
           </div>
 
-          <div className="text-center p-6 bg-white/20 dark:bg-[#2F4F4F]/30 rounded-2xl border border-[#F5F5DC] dark:border-[#F5F5DC] shadow-lg backdrop-blur-sm">
-            <div className="w-16 h-16 bg-[#F5F5DC] dark:bg-[#F5F5DC] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="h-8 w-8 text-[#5D4E37] dark:text-[#5D4E37]" />
+          <div className="text-center p-6 bg-white/60 rounded-2xl border border-[#2F4F4F]/20 shadow-lg backdrop-blur-sm">
+            <div className="w-16 h-16 bg-[#2F4F4F]/10 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+              <Image
+                src="/images/passion-image.jpg"
+                alt="Passion"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
-            <h3 className="text-xl font-bold text-[#F5F5DC] dark:text-[#F8F6F0] mb-2 font-elegant">
+            <h3 className="text-xl font-bold text-[#2F4F4F] mb-2 font-elegant">
               Passion
             </h3>
-            <p className="text-[#F5F5DC] dark:text-[#F8F6F0] font-classic">
-              Fueling the love for literature through engaging events and activities.
+            <p className="text-[#2F4F4F] font-classic">
+              A platform to discuss and gather reviews
             </p>
           </div>
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-lg text-[#F5F5DC] dark:text-[#F8F6F0] max-w-4xl mx-auto font-classic leading-relaxed">
+          <p className="text-lg text-[#2F4F4F] max-w-4xl mx-auto font-classic leading-relaxed">
             As one of the most prestigious clubs in Anna University, We promote a variety of literary and cultural activities
             such as public speaking, debating, creative writing, charades, reading and other spontaneous stage events. The primary
             goal of the Literary Club is to aid students in their creative endeavours and to empower them to express their thoughts
@@ -178,18 +177,7 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Section Divider */}
-      <div className="pt-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#F5F5DC] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#F5F5DC] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#F5F5DC] dark:via-[#F8F6F0] to-transparent flex-1"></div>
-          </div>
-        </div>
-      </div>
+     
     </section>
   );
 }

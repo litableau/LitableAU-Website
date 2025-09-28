@@ -143,57 +143,72 @@ export function LitClubHero() {
         <div className="absolute top-4/4 right-2/3 w-1 h-1 bg-[#8B7355] rounded-full dot-twinkle" style={{ animationDelay: '2.4s' }}></div>
       </div>
       
-      {/* Welcome Text Section - Minimal bottom spacing */}
-      <div className="text-center py-8 px-4 relative z-10">
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#99aba6] mb-1 leading-tight font-serif">
-          LIT CLUB
-        </h1>
-        <p className="text-xl md:text-2xl lg:text-3xl text-[#A8B5A0] mt-4 max-w-4xl mx-auto mb-6 font-medium leading-relaxed font-serif">
-         Literary Club of Anna University</p>
-        
-      </div>
+      
 
-      {/* Scroll Container - Minimal top spacing for seamless flow */}
+      {/* Static Hero Image (normal backdrop). Scroll container preserved below, commented out. */}
       <div className="-mt-8 relative z-10">
-        <ContainerScroll
-          titleComponent={null}
-        >
-          <div className="relative h-full w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&h=720&fit=crop&crop=center"
-              alt="Literature and books"
-              height={720}
-              width={1400}
-              className="mx-auto rounded-2xl object-cover h-full w-full"
-              draggable={false}
-              priority
-            />
-            
-            {/* Bottom text overlay on image */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-[#F5F5DC] text-center z-20">
-              <p className="text-3xl md:text-4xl font-bold font-serif leading-tight">
-                Discover the power of words
-              </p>
-              <p className="mt-4 text-lg md:text-2xl opacity-90 font-serif max-w-2xl">
-                Join our community of writers, poets, and literature enthusiasts
-              </p>
-            </div>
-          </div>
-        </ContainerScroll>
-      </div>
+        <div className="relative w-full h-[65vh] md:h-[70vh] lg:h-[75vh]">
+          <Image
+           src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&h=720&fit=crop&crop=center"
+            /*src="/images/hero-image.jpg"*/
+            alt="Literature and books"
+            fill
+            className="rounded-2xl object-cover"
+            draggable={false}
+            priority
+          />
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div className="w-full flex flex-col items-center px-4">
+  <h1
+    className="font-serif font-thin leading-none text-[#F5F5DC] text-[16vw] md:text-[14vw] lg:text-[12vw] tracking-tight text-center"
+    style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+  >
+    LITCLUB
+  </h1>
+  <p
+    className="mt-2 text-[#F5F5DC] opacity-90 text-sm md:text-base lg:text-lg text-justify"
+    style={{
+      fontFamily: "'Georgia', 'Times New Roman', serif",
+      maxWidth: '104ch', // match approx width of LITCLUB
+      wordSpacing: '11ch', // adjust spacing to stretch nicely
+    }}
+  >
+    Literary Club of Anna University
+  </p>
+</div>
 
-      {/* Section Divider */}
-      <div className="py-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#A8B5A0] to-transparent flex-1"></div>
-            <div className="w-3 h-3 bg-[#D4A574] rounded-full"></div>
-            <div className="w-2 h-2 bg-[#A8B5A0] rounded-full"></div>
-            <div className="w-3 h-3 bg-[#D4A574] rounded-full"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#A8B5A0] to-transparent flex-1"></div>
+
           </div>
         </div>
       </div>
+
+      {/**
+       * Scroll Container - Minimal top spacing for seamless flow (preserved for later)
+       *
+       * <div className="-mt-8 relative z-10">
+       *   <ContainerScroll titleComponent={null}>
+       *     <div className="relative h-full w-full">
+       *       <Image
+       *         src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&h=720&fit=crop&crop=center"
+       *         alt="Literature and books"
+       *         height={720}
+       *         width={1400}
+       *         className="mx-auto rounded-2xl object-cover h-full w-full"
+       *         draggable={false}
+       *         priority
+       *       />
+       *       <div className="absolute inset-0 flex items-center justify-center z-20">
+       *         <div className="w-full max-w-7xl px-4 text-left">
+       *           <h1 className="font-serif font-thin leading-none text-[#F5F5DC] text-[14vw] md:text-[12vw] lg:text-[10vw] tracking-tight" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>LITCLUB</h1>
+       *           <p className="mt-2 text-[#F5F5DC] opacity-90 text-sm md:text-base lg:text-lg tracking-tight" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>Literary Club of Anna University</p>
+       *         </div>
+       *       </div>
+       *     </div>
+       *   </ContainerScroll>
+       * </div>
+       */}
+
+      
     </div>
   );
 }

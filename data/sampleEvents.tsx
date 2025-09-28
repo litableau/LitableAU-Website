@@ -11,7 +11,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'adventure',
       name: 'Adventure',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 45,
@@ -34,7 +34,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'adventure',
       name: 'Adventure',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 25,
@@ -57,7 +57,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'mystery',
       name: 'Mystery',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 55,
@@ -80,7 +80,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'entertainment',
       name: 'Entertainment',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 30,
@@ -103,7 +103,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'quiz',
       name: 'Quiz',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 15,
@@ -126,7 +126,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'literature',
       name: 'Literature',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 0,
@@ -149,7 +149,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'antiques',
       name: 'Antiques',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 20,
@@ -172,7 +172,7 @@ export const sampleEvents: Event[] = [
     category: {
       id: 'social',
       name: 'Social',
-      color: '#2f4f4f'
+      color: 'rgb(23,58,43)'
     },
     imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
     price: 40,

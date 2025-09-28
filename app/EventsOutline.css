@@ -3,12 +3,12 @@
     font-family: 'Georgia', 'Times New Roman', serif;
     background: rgb(229,199,177);
     min-height: 100vh;
-    color: #2f4f4f;
+    color: rgb(23,58,43);
   }
   
   /* Header Styles */
   .vintage-header {
-    background: #2f4f4f;
+    background: rgb(23,58,43);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -65,7 +65,7 @@
   .search-box {
   display: flex;
   align-items: center;
-  border: 2px solid #2f4f4f;
+  border: 2px solid rgb(23,58,43);
   border-radius: 20px;
   padding: 0.25rem 0.5rem;
   background:  rgb(229,199,177);
@@ -130,7 +130,7 @@
 .hero-title {
   font-size: 7rem;
   font-weight: 900;
-  color: #2f4f4f;
+  color: rgb(23,58,43);
   margin: 0;
   position: relative;
   z-index: 2;
@@ -150,7 +150,7 @@
   position: absolute;
   width: 180px;
   height: 180px;
-  border: 8px solid #2f4f4f; /* polaroid frame */
+  border: 8px solid rgb(23,58,43); /* polaroid frame */
   background: #fff;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   overflow: hidden;
@@ -200,8 +200,8 @@
   height: 2px;
   background: repeating-linear-gradient(
     to right,
-    #2f4f4f 0,
-    #2f4f4f 10px,
+    rgb(23,58,43) 0,
+    rgb(23,58,43) 10px,
     transparent 10px,
     transparent 20px
   );
@@ -222,7 +222,7 @@
   
   /* Categories Section */
   .categories-section {
-    background: #2f4f4f;
+    background:rgb(23,58,43);
     padding: 4rem 2rem;
   }
   
@@ -267,7 +267,7 @@
   
   .category-btn {
     background:  rgb(251,232,216);
-    color: #2f4f4f;
+    color: rgb(23,58,43);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 25px;
@@ -286,7 +286,7 @@
   
   .category-arrow {
     background:  rgb(251,232,216);
-    color: #2f4f4f;
+    color: rgb(23,58,43);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -319,13 +319,13 @@
   .section-line {
     flex: 1;
     height: 2px;
-    background: #2f4f4f;
+    background: rgb(23,58,43);
   }
   
   .section-title {
     font-size: 3rem;
     font-weight: bold;
-    color: #2f4f4f;
+    color: rgb(23,58,43);
     margin: 0;
     letter-spacing: 1px;
   }
@@ -342,7 +342,7 @@
   width: 175px;
   height: 200px;
   background: #fff;
-  border: 3px solid #2f4f4f;
+  border: 3px solid rgb(23,58,43);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -373,7 +373,7 @@
 
 /* Caption */
 .our-event-name {
-  background: #2f4f4f;
+  background:rgb(23,58,43);
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: bold;
@@ -427,7 +427,7 @@
 }
 
 .nav-arrow {
-  color: #2f4f4f;
+  color: rgb(23,58,43);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -445,7 +445,7 @@
   flex: 1;
   height: 6px;
   border-radius: 10px;
-  background: #2f4f4f;
+  background:rgb(23,58,43);
   max-width: 600px;
 }
 
@@ -467,7 +467,7 @@
   }
   
   .event-listing.dark {
-    background: #2f4f4f;
+    background: rgb(23,58,43);
     color: #f5f5dc;
   }
 
@@ -481,8 +481,8 @@
   
   .event-listing.light {
     background: #f5f5dc;
-    color: #2f4f4f;
-    border: 2px solid #2f4f4f;
+    color: rgb(23,58,43);
+    border: 2px solid rgb(23,58,43);
   }
   
   .event-image-bg {
@@ -514,7 +514,7 @@
   
   .event-date {
     background: #f5f5dc;
-    color: #2f4f4f;
+    color:rgb(23,58,43);
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
@@ -522,7 +522,7 @@
   }
   
   .event-listing.light .event-date {
-    background: #2f4f4f;
+    background: rgb(23,58,43);
     color: #f5f5dc;
   }
   
@@ -551,14 +551,14 @@
   
   .event-description {
     background: #f5f5dc;
-    color: #2f4f4f;
+    color: rgb(23,58,43);
     padding: 1rem;
     border-radius: 8px;
     min-height: 60px;
   }
   
   .event-listing.light .event-description {
-    background: #2f4f4f;
+    background: rgb(23,58,43);
     color: #f5f5dc;
   }
   
@@ -570,7 +570,7 @@
   
   .join-btn {
      background: #f5f5dc;
-    color: #2f4f4f;
+    color: rgb(23,58,43);
     border: none;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -582,9 +582,9 @@
   }
   
   .event-listing.light .join-btn {
-    background: #2f4f4f;
+    background:rgb(23,58,43);
     color: #f5f5dc;
-    border: 2px solid #2f4f4f;
+    border: 2px solid rgb(23,58,43);
   }
   
   .join-btn:hover {
@@ -684,7 +684,7 @@
   font-family: 'Georgia', 'Times New Roman', serif;
   background: rgb(229,199,177);
   min-height: 100vh;
-  color: #2f4f4f;
+  color:rgb(23,58,43);
   padding: 2rem 0;
 }
 
@@ -713,7 +713,7 @@
 }
 
 .back-btn-detail {
-  background: #2f4f4f;
+  background: rgb(23,58,43);
   color: #f5f5dc;
   border: none;
   padding: 0.75rem 1.25rem;
@@ -746,7 +746,7 @@
 }
 
 .event-detail-right {
-  background: #2f4f4f; /* Changed from brown to green theme */
+  background: rgb(23,58,43); /* Changed from brown to green theme */
   padding: 1.5rem;
   border-radius: 10px;
   color: #f5f5dc;
@@ -772,7 +772,7 @@
 
 .event-detail-date-label {
   background: #f5f5dc;
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color:rgb(23,58,43); /* Changed from brown to green theme */
   padding: 0.3rem 0.8rem;
   border-radius: 3px;
   font-weight: bold;
@@ -781,7 +781,7 @@
 
 .event-detail-date-number {
   background: #f5f5dc;
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color:rgb(23,58,43); /* Changed from brown to green theme */
   padding: 0.3rem 0.8rem;
   border-radius: 3px;
   font-weight: bold;
@@ -798,7 +798,7 @@
 
 .event-detail-description-section {
   background: rgba(245, 245, 220, 0.95);
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color: rgb(23,58,43); /* Changed from brown to green theme */
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 1rem;
@@ -808,14 +808,14 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color: rgb(23,58,43); /* Changed from brown to green theme */
   letter-spacing: 1px;
 }
 
 .event-detail-description-content p {
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color:rgb(23,58,43); /* Changed from brown to green theme */
   font-size: 0.95rem;
 }
 
@@ -828,11 +828,11 @@
 
 .event-detail-meta p {
   margin-bottom: 0.3rem;
-  color: #2f4f4f; /* Changed from brown to green theme */
+  color: rgb(23,58,43); /* Changed from brown to green theme */
 }
 
 .event-detail-join-btn {
-  background: #3bb170; /* New green color */
+  background:rgb(23,58,43); /* New green color */
   color: #f5f5dc;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -849,7 +849,7 @@
 }
 
 .event-detail-join-btn:hover {
-  background: #36a265; /* Darker green on hover */
+  background: rgb(23,58,44); /* Darker green on hover */
   transform: translateY(-1px);
   box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
@@ -915,13 +915,13 @@
 }
 
 .event-listing.light .event-arrow {
-  background: #2f4f4f;
+  background: rgb(23,58,43);
   color: #f5f5dc;
 }
 
 .event-listing.dark .event-arrow {
   background: #f5f5dc;
-  color: #2f4f4f;
+  color:rgb(23,58,43);
 }
 
 /* Responsive Design for Detail View */

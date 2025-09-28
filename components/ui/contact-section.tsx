@@ -40,10 +40,10 @@ export function ContactSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#2f4f4f] mb-6 font-elegant">
+          <h2 className="text-4xl md:text-5xl font-bold text-[rgb(23,58,43)] mb-6 font-elegant">
             Get in Touch
           </h2>
-          <p className="text-xl text-[#2f4f4f] max-w-3xl mx-auto font-classic leading-relaxed">
+          <p className="text-xl text-[rgb(23,58,43)] max-w-3xl mx-auto font-classic leading-relaxed">
             Have questions about our literary society? Want to join our community? We'd love to hear from you.
           </p>
         </div>
@@ -51,39 +51,39 @@ export function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8">
-            <div className="bg-white/60 rounded-2xl p-6 border border-[#2f4f4f]/20 shadow-lg backdrop-blur-sm">
-              <h3 className="text-2xl font-bold text-[#2f4f4f] mb-6 font-elegant">
+            <div className="bg-white/60 rounded-2xl p-6 border border-[rgb(23,58,43)]/20 shadow-lg backdrop-blur-sm">
+              <h3 className="text-2xl font-bold text-[rgb(23,58,43)] mb-6 font-elegant">
                 Contact Information
               </h3>
               
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#2f4f4f]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-[#2f4f4f]" />
+                  <div className="w-12 h-12 bg-[rgb(23,58,43)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#2f4f4f] font-elegant">Email</h4>
-                    <p className="text-[#2f4f4f] font-classic">litableau@annauniv.edu</p>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Email</h4>
+                    <p className="text-[rgb(23,58,43)] font-classic">litableau@annauniv.edu</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#2f4f4f]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-[#2f4f4f]" />
+                  <div className="w-12 h-12 bg-[rgb(23,58,43)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#2f4f4f] font-elegant">Phone</h4>
-                    <p className="text-[#2f4f4f] font-classic">+91 44 2235 7000</p>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Phone</h4>
+                    <p className="text-[rgb(23,58,43)] font-classic">+91 44 2235 7000</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#2f4f4f]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-[#2f4f4f]" />
+                  <div className="w-12 h-12 bg-[rgb(23,58,43)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#2f4f4f] font-elegant">Location</h4>
-                    <p className="text-[#2f4f4f] font-classic">
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Location</h4>
+                    <p className="text-[rgb(23,58,43)] font-classic">
                       College of Engineering , Guindy<br />
                       Anna University, Chennai
                     </p>
@@ -91,12 +91,12 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#2f4f4f]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-[#2f4f4f]" />
+                  <div className="w-12 h-12 bg-[rgb(23,58,43)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#2f4f4f] font-elegant">Office Hours</h4>
-                    <p className="text-[#2f4f4f] font-classic">
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Office Hours</h4>
+                    <p className="text-[rgb(23,58,43)] font-classic">
                       Monday - Friday: 9:00 AM - 5:00 PM<br />
                       Saturday: 9:00 AM - 1:00 PM
                     </p>
@@ -107,63 +107,63 @@ export function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/60 rounded-2xl p-6 border border-[#2f4f4f]/20 shadow-lg backdrop-blur-sm">
-            <h3 className="text-2xl font-bold text-[#2f4f4f] mb-6 font-elegant">
+          <div className="bg-white/60 rounded-2xl p-6 border border-[rgb(23,58,43)]/20 shadow-lg backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-[rgb(23,58,43)] mb-6 font-elegant">
               Send us a Message
             </h3>
             
             <form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[#2f4f4f] mb-2 font-classic">
+                <label htmlFor="name" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
                   Full Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full px-4 py-3 border border-[#2f4f4f]/20 rounded-lg focus:ring-2 focus:ring-[#2f4f4f] focus:border-transparent bg-white text-[#2f4f4f] font-classic"
+                  className="w-full px-4 py-3 border border-[rgb(23,58,43)]/20 rounded-lg focus:ring-2 focus:ring-[rgb(23,58,43)] focus:border-transparent bg-white text-[rgb(23,58,43)] font-classic"
                   placeholder="Enter your full name"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#2f4f4f] mb-2 font-classic">
+                <label htmlFor="email" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
                   Email Address
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full px-4 py-3 border border-[#2f4f4f]/20 rounded-lg focus:ring-2 focus:ring-[#2f4f4f] focus:border-transparent bg-white text-[#2f4f4f] font-classic"
+                  className="w-full px-4 py-3 border border-[rgb(23,58,43)]/20 rounded-lg focus:ring-2 focus:ring-[rgb(23,58,43)] focus:border-transparent bg-white text-[rgb(23,58,43)] font-classic"
                   placeholder="Enter your email address"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-[#2f4f4f] mb-2 font-classic">
+                <label htmlFor="subject" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
                   Subject
                 </label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
-                  className="w-full px-4 py-3 border border-[#2f4f4f]/20 rounded-lg focus:ring-2 focus:ring-[#2f4f4f] focus:border-transparent bg-white text-[#2f4f4f] font-classic"
+                  className="w-full px-4 py-3 border border-[rgb(23,58,43)]/20 rounded-lg focus:ring-2 focus:ring-[rgb(23,58,43)] focus:border-transparent bg-white text-[rgb(23,58,43)] font-classic"
                   placeholder="What is this about?"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[#2f4f4f] mb-2 font-classic">
+                <label htmlFor="message" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
-                  className="w-full px-4 py-3 border border-[#2f4f4f]/20 rounded-lg focus:ring-2 focus:ring-[#2f4f4f] focus:border-transparent bg-white text-[#2f4f4f] font-classic resize-none"
+                  className="w-full px-4 py-3 border border-[rgb(23,58,43)]/20 rounded-lg focus:ring-2 focus:ring-[rgb(23,58,43)] focus:border-transparent bg-white text-[rgb(23,58,43)] font-classic resize-none"
                   placeholder="Tell us more about your inquiry..."
                   required
                 ></textarea>
@@ -171,7 +171,7 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full bg-[#2f4f4f] text-[#F5F5DC] py-3 px-6 rounded-lg hover:bg-[#2f4f4f]/90 transition-colors duration-200 font-semibold font-elegant flex items-center justify-center space-x-2"
+                className="w-full bg-[rgb(23,58,43)] text-[#F5F5DC] py-3 px-6 rounded-lg hover:bg-[rgb(23,58,43)]/90 transition-colors duration-200 font-semibold font-elegant flex items-center justify-center space-x-2"
               >
                 <Send className="h-5 w-5" />
                 <span>Send Message</span>

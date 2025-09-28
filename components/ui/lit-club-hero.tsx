@@ -54,75 +54,75 @@ export function LitClubHero() {
       {/* Animated Brown Dots - Evenly Scattered Stars & Glitter Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Top Area - Evenly Spaced */}
-        <div className="absolute top-8 left-8 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute top-8 left-8 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '0s' }}></div>
         <div className="absolute top-12 left-24 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-float" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute top-16 left-40 w-1 h-1 bg-[#A8B5A0] rounded-full dot-sparkle" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-20 left-56 w-2 h-2 bg-[#2f4f4f] rounded-full dot-bubble" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-20 left-56 w-2 h-2 bg-[rgb(23,58,43)] rounded-full dot-bubble" style={{ animationDelay: '1.5s' }}></div>
         <div className="absolute top-24 left-72 w-1 h-1 bg-[#D4A574] rounded-full dot-twinkle" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-28 left-88 w-1.5 h-1.5 bg-[#A8B5A0] rounded-full dot-glitter" style={{ animationDelay: '2.5s' }}></div>
         
         <div className="absolute top-10 right-12 w-1.5 h-1.5 bg-[#A8B5A0] rounded-full dot-bubble" style={{ animationDelay: '0.2s' }}></div>
-        <div className="absolute top-14 right-28 w-1 h-1 bg-[#2f4f4f] rounded-full dot-twinkle" style={{ animationDelay: '0.7s' }}></div>
+        <div className="absolute top-14 right-28 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-twinkle" style={{ animationDelay: '0.7s' }}></div>
         <div className="absolute top-18 right-44 w-2 h-2 bg-[#D4A574] rounded-full dot-glitter" style={{ animationDelay: '1.2s' }}></div>
         <div className="absolute top-22 right-60 w-1 h-1 bg-[#A8B5A0] rounded-full dot-float" style={{ animationDelay: '1.7s' }}></div>
-        <div className="absolute top-26 right-76 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-sparkle" style={{ animationDelay: '2.2s' }}></div>
+        <div className="absolute top-26 right-76 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-sparkle" style={{ animationDelay: '2.2s' }}></div>
         <div className="absolute top-30 right-92 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '2.7s' }}></div>
         
         {/* Upper Middle Area - Left Side */}
         <div className="absolute top-45 left-16 w-1 h-1 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '0.3s' }}></div>
-        <div className="absolute top-55 left-32 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.8s' }}></div>
+        <div className="absolute top-55 left-32 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.8s' }}></div>
         <div className="absolute top-65 left-48 w-1 h-1 bg-[#A8B5A0] rounded-full dot-bubble" style={{ animationDelay: '1.3s' }}></div>
         <div className="absolute top-75 left-64 w-2 h-2 bg-[#D4A574] rounded-full dot-twinkle" style={{ animationDelay: '1.8s' }}></div>
-        <div className="absolute top-85 left-80 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '2.3s' }}></div>
+        <div className="absolute top-85 left-80 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '2.3s' }}></div>
         <div className="absolute top-95 left-96 w-1.5 h-1.5 bg-[#A8B5A0] rounded-full dot-float" style={{ animationDelay: '2.8s' }}></div>
         
         {/* Upper Middle Area - Right Side */}
-        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.4s' }}></div>
+        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.4s' }}></div>
         <div className="absolute top-50 right-36 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '0.9s' }}></div>
         <div className="absolute top-60 right-52 w-2 h-2 bg-[#A8B5A0] rounded-full dot-twinkle" style={{ animationDelay: '1.4s' }}></div>
-        <div className="absolute top-70 right-68 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '1.9s' }}></div>
+        <div className="absolute top-70 right-68 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '1.9s' }}></div>
         <div className="absolute top-80 right-84 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '2.4s' }}></div>
         <div className="absolute top-90 right-100 w-1 h-1 bg-[#A8B5A0] rounded-full dot-float" style={{ animationDelay: '2.9s' }}></div>
         
         {/* Center Area - Evenly Distributed */}
         <div className="absolute top-35 left-1/4 w-1 h-1 bg-[#A8B5A0] rounded-full dot-glitter" style={{ animationDelay: '0.1s' }}></div>
-        <div className="absolute top-45 left-1/3 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.6s' }}></div>
+        <div className="absolute top-45 left-1/3 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.6s' }}></div>
         <div className="absolute top-55 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '1.1s' }}></div>
         <div className="absolute top-65 left-2/3 w-2 h-2 bg-[#A8B5A0] rounded-full dot-bubble" style={{ animationDelay: '1.6s' }}></div>
-        <div className="absolute top-75 left-3/4 w-1 h-1 bg-[#2f4f4f] rounded-full dot-twinkle" style={{ animationDelay: '2.1s' }}></div>
+        <div className="absolute top-75 left-3/4 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-twinkle" style={{ animationDelay: '2.1s' }}></div>
         
         <div className="absolute top-40 right-1/4 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '0.3s' }}></div>
-        <div className="absolute top-50 right-1/3 w-1 h-1 bg-[#2f4f4f] rounded-full dot-twinkle" style={{ animationDelay: '0.8s' }}></div>
+        <div className="absolute top-50 right-1/3 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-twinkle" style={{ animationDelay: '0.8s' }}></div>
         <div className="absolute top-60 right-1/2 transform translate-x-1/2 w-2 h-2 bg-[#A8B5A0] rounded-full dot-glitter" style={{ animationDelay: '1.3s' }}></div>
         <div className="absolute top-70 right-2/3 w-1 h-1 bg-[#D4A574] rounded-full dot-float" style={{ animationDelay: '1.8s' }}></div>
-        <div className="absolute top-80 right-3/4 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-sparkle" style={{ animationDelay: '2.3s' }}></div>
+        <div className="absolute top-80 right-3/4 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-sparkle" style={{ animationDelay: '2.3s' }}></div>
         
         {/* Lower Middle Area - Left Side */}
         <div className="absolute top-105 left-24 w-1 h-1 bg-[#A8B5A0] rounded-full dot-sparkle" style={{ animationDelay: '0.2s' }}></div>
-        <div className="absolute top-115 left-40 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.7s' }}></div>
+        <div className="absolute top-115 left-40 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.7s' }}></div>
         <div className="absolute top-125 left-56 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '1.2s' }}></div>
         <div className="absolute top-135 left-72 w-2 h-2 bg-[#A8B5A0] rounded-full dot-twinkle" style={{ animationDelay: '1.7s' }}></div>
-        <div className="absolute top-145 left-88 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '2.2s' }}></div>
+        <div className="absolute top-145 left-88 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '2.2s' }}></div>
         
         {/* Lower Middle Area - Right Side */}
-        <div className="absolute top-110 right-28 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.4s' }}></div>
+        <div className="absolute top-110 right-28 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.4s' }}></div>
         <div className="absolute top-120 right-44 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '0.9s' }}></div>
         <div className="absolute top-130 right-60 w-2 h-2 bg-[#A8B5A0] rounded-full dot-twinkle" style={{ animationDelay: '1.4s' }}></div>
-        <div className="absolute top-140 right-76 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '1.9s' }}></div>
+        <div className="absolute top-140 right-76 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '1.9s' }}></div>
         <div className="absolute top-150 right-92 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '2.4s' }}></div>
         
         {/* Bottom Area - Evenly Spaced */}
         <div className="absolute bottom-20 left-12 w-1 h-1 bg-[#A8B5A0] rounded-full dot-sparkle" style={{ animationDelay: '0.1s' }}></div>
-        <div className="absolute bottom-25 left-28 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.6s' }}></div>
+        <div className="absolute bottom-25 left-28 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.6s' }}></div>
         <div className="absolute bottom-30 left-44 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '1.1s' }}></div>
         <div className="absolute bottom-35 left-60 w-2 h-2 bg-[#A8B5A0] rounded-full dot-twinkle" style={{ animationDelay: '1.6s' }}></div>
-        <div className="absolute bottom-40 left-76 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '2.1s' }}></div>
+        <div className="absolute bottom-40 left-76 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '2.1s' }}></div>
         <div className="absolute bottom-45 left-92 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '2.6s' }}></div>
         
-        <div className="absolute bottom-18 right-16 w-1.5 h-1.5 bg-[#2f4f4f] rounded-full dot-float" style={{ animationDelay: '0.3s' }}></div>
+        <div className="absolute bottom-18 right-16 w-1.5 h-1.5 bg-[rgb(23,58,43)] rounded-full dot-float" style={{ animationDelay: '0.3s' }}></div>
         <div className="absolute bottom-23 right-32 w-1 h-1 bg-[#D4A574] rounded-full dot-bubble" style={{ animationDelay: '0.8s' }}></div>
         <div className="absolute bottom-28 right-48 w-2 h-2 bg-[#A8B5A0] rounded-full dot-twinkle" style={{ animationDelay: '1.3s' }}></div>
-        <div className="absolute bottom-33 right-64 w-1 h-1 bg-[#2f4f4f] rounded-full dot-glitter" style={{ animationDelay: '1.8s' }}></div>
+        <div className="absolute bottom-33 right-64 w-1 h-1 bg-[rgb(23,58,43)] rounded-full dot-glitter" style={{ animationDelay: '1.8s' }}></div>
         <div className="absolute bottom-38 right-80 w-1.5 h-1.5 bg-[#D4A574] rounded-full dot-sparkle" style={{ animationDelay: '2.3s' }}></div>
         <div className="absolute bottom-43 right-96 w-1 h-1 bg-[#A8B5A0] rounded-full dot-float" style={{ animationDelay: '2.8s' }}></div>
         

@@ -4,7 +4,7 @@ import { BookOpen, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin }
 
 export function Footer() {
   return (
-    <footer className="bg-[#2f4f4f] text-[#f5f5dc]">
+    <footer className="bg-[rgb(23,58,43)] text-[#f5f5dc]">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
@@ -20,16 +20,16 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Facebook className="h-5 w-5 text-[#2f4f4f]" />
+                <Facebook className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
               <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Twitter className="h-5 w-5 text-[#2f4f4f]" />
+                <Twitter className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
               <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Instagram className="h-5 w-5 text-[#2f4f4f]" />
+                <Instagram className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
               <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Linkedin className="h-5 w-5 text-[#2f4f4f]" />
+                <Linkedin className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
             </div>
           </div>

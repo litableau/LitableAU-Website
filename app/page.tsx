@@ -6,7 +6,7 @@ import { Footer } from "@/components/ui/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[rgb(229,199,177)] text-[#2f4f4f]">
+    <main className="min-h-screen bg-[rgb(229,199,177)] text-[rgb(23,58,43)]">
       <Navbar />
       
       {/* Hero Section with Scroll Animation */}

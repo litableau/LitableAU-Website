@@ -21,7 +21,7 @@ const galleryEvents = [
         category: 'adventure'
     },
     {
-        id: '4',
+        id: '3',
         eventName: 'Murder Mystery Night',
         title: 'MURDER MYSTERY',
         date: '04/04/25',
@@ -30,7 +30,7 @@ const galleryEvents = [
         category: 'mystery'
     },
     {
-        id: '5',
+        id: '4',
         eventName: 'Vintage Ball Gala',
         title: 'VINTAGE BALL',
         date: '04/04/25',
@@ -39,7 +39,7 @@ const galleryEvents = [
         category: 'social'
     },
     {
-        id: '6',
+        id: '5',
         eventName: 'Book Reading Session',
         title: 'BOOK READING',
         date: '04/04/25',
@@ -54,7 +54,7 @@ export default function GalleryRedesign() {
     const itemsPerView = 3;
     const maxIndex = Math.max(0, galleryEvents.length - itemsPerView);
 
-    // Ensure selectedIndex is always centered in the view
+    // Ensure selectedIndex is always centered in the view for desktop
     const getCurrentIndex = () => {
         // Clamp so selected is always in the center unless at edges
         if (selectedIndex <= Math.floor(itemsPerView / 2)) return 0;
@@ -77,56 +77,134 @@ export default function GalleryRedesign() {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    // Navigation logic for arrows
     const nextSlide = () => {
-        setSelectedIndex(prev => Math.min(prev + 1, maxIndex));
+        setSelectedIndex(prev => Math.min(prev + 1, galleryEvents.length - 1));
     };
 
     const prevSlide = () => {
         setSelectedIndex(prev => Math.max(prev - 1, 0));
     };
 
+    // Touch handlers for mobile swipe
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
+
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        setTouchEnd(null);
+        // @ts-ignore
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        // @ts-ignore
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            setSelectedIndex(idx => Math.min(idx + 1, galleryEvents.length - 1));
+        }
+        if (isRightSwipe) {
+            setSelectedIndex(idx => Math.max(idx - 1, 0));
+        }
+    };
+
     return (
         <div className="min-h-screen" style={{ backgroundColor: 'rgb(229,199,177)' }}>
-
             {/* Gallery Section */}
-            <div className="py-20">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="flex items-center justify-center mb-12">
+            <div className="py-10 md:py-20">
+                <div className="max-w-7xl mx-auto px-2 md:px-4">
+                    {/* Desktop Header with Arrows */}
+                    <div className="hidden md:flex flex-row items-center justify-center mb-8 md:mb-12 gap-4 md:gap-0">
                         <button
                             onClick={prevSlide}
-                            disabled={currentIndex === 0}
-                            className={`p-2 ${currentIndex === 0 ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            disabled={selectedIndex === 0}
+                            className={`p-2 md:p-2.5 ${selectedIndex === 0 ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            aria-label="Previous image"
                         >
-                            <MoveLeft size={48} />
+                            <MoveLeft size={36} className="md:w-12 md:h-12" />
                         </button>
-
-                        <div className="text-center mx-8">
-                            <h1 className="text-7xl font-bold text-green-800 mb-4 tracking-wide font-serif">
+                        <div className="text-center mx-2 md:mx-8">
+                            <h1 className="text-3xl md:text-7xl font-bold text-green-800 mb-2 md:mb-4 tracking-wide font-serif">
                                 GALLERY
                             </h1>
-                            <p className="text-xl text-green-800 italic font-serif">
+                            <p className="text-base md:text-xl text-green-800 italic font-serif">
                                 A glimpse into our events & memories.
                             </p>
                         </div>
-
                         <button
                             onClick={nextSlide}
-                            disabled={currentIndex === maxIndex}
-                            className={`p-2 ${currentIndex === maxIndex ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            disabled={selectedIndex === galleryEvents.length - 1}
+                            className={`p-2 md:p-2.5 ${selectedIndex === galleryEvents.length - 1 ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            aria-label="Next image"
                         >
-                            <MoveRight size={48} />
+                            <MoveRight size={36} className="md:w-12 md:h-12" />
                         </button>
                     </div>
 
-                    {/* Gallery Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    {/* Mobile Header */}
+                    <div className="md:hidden text-center mb-6">
+                        <h1 className="text-3xl font-bold text-green-800 mb-2 tracking-wide font-serif">
+                            GALLERY
+                        </h1>
+                        <p className="text-base text-green-800 italic font-serif">
+                            A glimpse into our events & memories.
+                        </p>
+                    </div>
+
+                    {/* Mobile View - Single Card */}
+                    <div
+                        className="md:hidden"
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
+                    >
+                        <div className="flex justify-center">
+                            <div className="w-full max-w-sm bg-white rounded-lg shadow-xl overflow-hidden border-2 border-green-700">
+                                <div className="relative h-64">
+                                    <img
+                                        src={galleryEvents[selectedIndex].imageUrl}
+                                        alt={galleryEvents[selectedIndex].title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                </div>
+                                <div className="p-6 text-green-800">
+                                    <h3 className="text-xl font-bold mb-2 tracking-wide">
+                                        {galleryEvents[selectedIndex].title}
+                                    </h3>
+                                    <p className="text-sm opacity-90 mb-2">
+                                        {galleryEvents[selectedIndex].description}
+                                    </p>
+                                    <p className="text-sm opacity-75">
+                                        {galleryEvents[selectedIndex].date}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Desktop View - Three Cards */}
+                    <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {visibleEvents.map((event, idx) => {
                             const absoluteIdx = currentIndex + idx;
                             const isCenter = absoluteIdx === selectedIndex;
                             return (
                                 <div
                                     key={event.id}
-                                    className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative cursor-pointer ${isCenter ? 'border-2 border-green-700' : 'border border-gray-200'}`}
+                                    className={`bg-white rounded-lg overflow-hidden transition-all duration-300 flex flex-col relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 ${
+                                        isCenter
+                                            ? 'shadow-2xl border-4 border-green-700 transform scale-105 z-10'
+                                            : 'shadow-lg border border-gray-200 hover:shadow-xl opacity-75 hover:opacity-90'
+                                    }`}
                                     onClick={() => setSelectedIndex(absoluteIdx)}
                                     tabIndex={0}
                                     aria-label={`Select ${event.eventName}`}
@@ -138,6 +216,11 @@ export default function GalleryRedesign() {
                                             className="w-full h-full object-cover"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                        {isCenter && (
+                                            <div className="absolute top-2 right-2 bg-green-700 text-white px-2 py-1 rounded text-xs font-semibold">
+                                                FEATURED
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="p-6 text-green-800">
                                         <h3 className="text-xl font-bold mb-1 tracking-wide">
@@ -154,13 +237,18 @@ export default function GalleryRedesign() {
                             );
                         })}
                     </div>
+
                     {/* Dot Indicators */}
-                    <div className="flex justify-center mt-8 space-x-2">
+                    <div className="flex justify-center mt-6 md:mt-8 space-x-2">
                         {Array.from({ length: galleryEvents.length }).map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setSelectedIndex(index)}
-                                className={`w-3 h-3 rounded-full transition-colors duration-200 ${selectedIndex === index ? 'bg-green-800' : 'bg-green-300'}`}
+                                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                                    selectedIndex === index
+                                        ? 'bg-green-800 scale-125'
+                                        : 'bg-green-300 hover:bg-green-500'
+                                }`}
                                 aria-label={`Go to event ${galleryEvents[index].eventName}`}
                             />
                         ))}
@@ -168,12 +256,12 @@ export default function GalleryRedesign() {
                 </div>
             </div>
 
-            <div className="text-center py-16">
-                <h2 className="text-4xl font-bold text-green-800 tracking-wide">
+            {/* Event Name Display */}
+            <div className="text-center py-8 md:py-16">
+                <h2 className="text-2xl md:text-4xl font-bold text-green-800 tracking-wide font-serif">
                     {galleryEvents[selectedIndex]?.eventName}
                 </h2>
             </div>
-
         </div>
     );
 }

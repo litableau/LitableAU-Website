@@ -234,7 +234,7 @@ export default function GalleryRedesign() {
             {/* Event Name Display */}
             <div className="text-center py-8 md:py-16">
                 <h2 className="text-2xl md:text-4xl font-bold text-green-800 tracking-wide font-serif">
-                    {galleryEvents[selectedIndex]?.eventName}
+                    {sortedGalleryEvents[selectedIndex]?.eventName}
                 </h2>
             </div>
         </div>

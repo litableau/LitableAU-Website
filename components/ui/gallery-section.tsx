@@ -1,76 +1,44 @@
 import React, { useState } from 'react';
 import { MoveRight, MoveLeft } from 'lucide-react';
-
-const galleryEvents = [
-    {
-        id: '1',
-        eventName: 'Annual Stage Performance',
-        title: 'ON STAGE',
-        date: '04/04/25',
-        description: 'Event Desc.',
-        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center',
-        category: 'performance'
-    },
-    {
-        id: '2',
-        eventName: 'Shipwreck Challenge',
-        title: 'SHIPWRECK',
-        date: '04/04/25',
-        description: 'Event Desc.',
-        imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop&crop=center',
-        category: 'adventure'
-    },
-    {
-        id: '3',
-        eventName: 'Murder Mystery Night',
-        title: 'MURDER MYSTERY',
-        date: '04/04/25',
-        description: 'Event Desc.',
-        imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&crop=center',
-        category: 'mystery'
-    },
-    {
-        id: '4',
-        eventName: 'Vintage Ball Gala',
-        title: 'VINTAGE BALL',
-        date: '04/04/25',
-        description: 'Event Desc.',
-        imageUrl: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=300&fit=crop&crop=center',
-        category: 'social'
-    },
-    {
-        id: '5',
-        eventName: 'Book Reading Session',
-        title: 'BOOK READING',
-        date: '04/04/25',
-        description: 'Event Desc.',
-        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center',
-        category: 'literature'
-    }
-];
+import { galleryEvents } from '@/app/data/gallery-data';
 
 export default function GalleryRedesign() {
+    // Sort galleryEvents by date descending (latest first)
+    const sortedGalleryEvents = [...galleryEvents].sort((a, b) => {
+        // Parse MM/DD/YY to Date object
+        const parseDate = (str) => {
+            const [mm, dd, yy] = str.split('/');
+            // Assume 20xx for years < 50, 19xx for years >= 50
+            const year = parseInt(yy, 10) < 50 ? 2000 + parseInt(yy, 10) : 1900 + parseInt(yy, 10);
+            return new Date(year, parseInt(mm, 10) - 1, parseInt(dd, 10));
+        };
+        return parseDate(b.date) - parseDate(a.date);
+    });
+
     const [selectedIndex, setSelectedIndex] = useState(0);
     const itemsPerView = 3;
-    const maxIndex = Math.max(0, galleryEvents.length - itemsPerView);
 
-    // Ensure selectedIndex is always centered in the view for desktop
-    const getCurrentIndex = () => {
-        // Clamp so selected is always in the center unless at edges
-        if (selectedIndex <= Math.floor(itemsPerView / 2)) return 0;
-        if (selectedIndex >= galleryEvents.length - Math.ceil(itemsPerView / 2)) return maxIndex;
-        return selectedIndex - Math.floor(itemsPerView / 2);
+    // Get visible events in circular fashion for desktop
+    const getVisibleEvents = () => {
+        const events = [];
+        for (let i = 0; i < itemsPerView; i++) {
+            const index = (selectedIndex - Math.floor(itemsPerView / 2) + i + sortedGalleryEvents.length) % sortedGalleryEvents.length;
+            events.push({
+                ...sortedGalleryEvents[index],
+                absoluteIndex: index
+            });
+        }
+        return events;
     };
-    const currentIndex = getCurrentIndex();
-    const visibleEvents = galleryEvents.slice(currentIndex, currentIndex + itemsPerView);
+    const visibleEvents = getVisibleEvents();
 
     // Keyboard navigation
     React.useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        const handleKeyDown = (e) => {
             if (e.key === 'ArrowLeft') {
-                setSelectedIndex(idx => Math.max(idx - 1, 0));
+                setSelectedIndex(idx => (idx - 1 + sortedGalleryEvents.length) % sortedGalleryEvents.length);
             } else if (e.key === 'ArrowRight') {
-                setSelectedIndex(idx => Math.min(idx + 1, galleryEvents.length - 1));
+                setSelectedIndex(idx => (idx + 1) % sortedGalleryEvents.length);
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -79,11 +47,11 @@ export default function GalleryRedesign() {
 
     // Navigation logic for arrows
     const nextSlide = () => {
-        setSelectedIndex(prev => Math.min(prev + 1, galleryEvents.length - 1));
+        setSelectedIndex(prev => (prev + 1) % sortedGalleryEvents.length);
     };
 
     const prevSlide = () => {
-        setSelectedIndex(prev => Math.max(prev - 1, 0));
+        setSelectedIndex(prev => (prev - 1 + sortedGalleryEvents.length) % sortedGalleryEvents.length);
     };
 
     // Touch handlers for mobile swipe
@@ -92,14 +60,12 @@ export default function GalleryRedesign() {
 
     const minSwipeDistance = 50;
 
-    const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const onTouchStart = (e) => {
         setTouchEnd(null);
-        // @ts-ignore
         setTouchStart(e.targetTouches[0].clientX);
     };
 
-    const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-        // @ts-ignore
+    const onTouchMove = (e) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
 
@@ -110,10 +76,10 @@ export default function GalleryRedesign() {
         const isRightSwipe = distance < -minSwipeDistance;
 
         if (isLeftSwipe) {
-            setSelectedIndex(idx => Math.min(idx + 1, galleryEvents.length - 1));
+            setSelectedIndex(idx => (idx + 1) % sortedGalleryEvents.length);
         }
         if (isRightSwipe) {
-            setSelectedIndex(idx => Math.max(idx - 1, 0));
+            setSelectedIndex(idx => (idx - 1 + sortedGalleryEvents.length) % sortedGalleryEvents.length);
         }
     };
 
@@ -126,8 +92,7 @@ export default function GalleryRedesign() {
                     <div className="hidden md:flex flex-row items-center justify-center mb-8 md:mb-12 gap-4 md:gap-0">
                         <button
                             onClick={prevSlide}
-                            disabled={selectedIndex === 0}
-                            className={`p-2 md:p-2.5 ${selectedIndex === 0 ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            className="p-2 md:p-2.5 text-green-800 hover:text-green-600 transition-colors"
                             aria-label="Previous image"
                         >
                             <MoveLeft size={36} className="md:w-12 md:h-12" />
@@ -142,8 +107,7 @@ export default function GalleryRedesign() {
                         </div>
                         <button
                             onClick={nextSlide}
-                            disabled={selectedIndex === galleryEvents.length - 1}
-                            className={`p-2 md:p-2.5 ${selectedIndex === galleryEvents.length - 1 ? 'text-gray-400' : 'text-green-800 hover:text-green-600'} transition-colors`}
+                            className="p-2 md:p-2.5 text-green-800 hover:text-green-600 transition-colors"
                             aria-label="Next image"
                         >
                             <MoveRight size={36} className="md:w-12 md:h-12" />
@@ -168,24 +132,41 @@ export default function GalleryRedesign() {
                         onTouchEnd={onTouchEnd}
                     >
                         <div className="flex justify-center">
-                            <div className="w-full max-w-sm bg-white rounded-lg shadow-xl overflow-hidden border-2 border-green-700">
+                            <div className="w-full max-w-sm bg-white rounded-lg shadow-xl overflow-hidden border-2 border-green-700 relative">
+                                {/* Overlay Arrows */}
+                                <button
+                                    onClick={prevSlide}
+                                    aria-label="Previous image"
+                                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-green-800/80 text-white rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-green-700"
+                                    style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+                                >
+                                    <MoveLeft size={28} />
+                                </button>
+                                <button
+                                    onClick={nextSlide}
+                                    aria-label="Next image"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-green-800/80 text-white rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-green-700"
+                                    style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+                                >
+                                    <MoveRight size={28} />
+                                </button>
                                 <div className="relative h-64">
                                     <img
-                                        src={galleryEvents[selectedIndex].imageUrl}
-                                        alt={galleryEvents[selectedIndex].title}
+                                        src={sortedGalleryEvents[selectedIndex].imageUrl}
+                                        alt={sortedGalleryEvents[selectedIndex].title}
                                         className="w-full h-full object-cover"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 </div>
                                 <div className="p-6 text-green-800">
                                     <h3 className="text-xl font-bold mb-2 tracking-wide">
-                                        {galleryEvents[selectedIndex].title}
+                                        {sortedGalleryEvents[selectedIndex].title}
                                     </h3>
                                     <p className="text-sm opacity-90 mb-2">
-                                        {galleryEvents[selectedIndex].description}
+                                        {sortedGalleryEvents[selectedIndex].description}
                                     </p>
                                     <p className="text-sm opacity-75">
-                                        {galleryEvents[selectedIndex].date}
+                                        {sortedGalleryEvents[selectedIndex].date}
                                     </p>
                                 </div>
                             </div>
@@ -194,18 +175,17 @@ export default function GalleryRedesign() {
 
                     {/* Desktop View - Three Cards */}
                     <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {visibleEvents.map((event, idx) => {
-                            const absoluteIdx = currentIndex + idx;
-                            const isCenter = absoluteIdx === selectedIndex;
+                        {visibleEvents.map((event) => {
+                            const isCenter = event.absoluteIndex === selectedIndex;
                             return (
                                 <div
-                                    key={event.id}
+                                    key={`${event.id}-${event.absoluteIndex}`}
                                     className={`bg-white rounded-lg overflow-hidden transition-all duration-300 flex flex-col relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 ${
                                         isCenter
                                             ? 'shadow-2xl border-4 border-green-700 transform scale-105 z-10'
                                             : 'shadow-lg border border-gray-200 hover:shadow-xl opacity-75 hover:opacity-90'
                                     }`}
-                                    onClick={() => setSelectedIndex(absoluteIdx)}
+                                    onClick={() => setSelectedIndex(event.absoluteIndex)}
                                     tabIndex={0}
                                     aria-label={`Select ${event.eventName}`}
                                 >
@@ -216,11 +196,6 @@ export default function GalleryRedesign() {
                                             className="w-full h-full object-cover"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                        {isCenter && (
-                                            <div className="absolute top-2 right-2 bg-green-700 text-white px-2 py-1 rounded text-xs font-semibold">
-                                                FEATURED
-                                            </div>
-                                        )}
                                     </div>
                                     <div className="p-6 text-green-800">
                                         <h3 className="text-xl font-bold mb-1 tracking-wide">

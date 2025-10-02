@@ -944,3 +944,197 @@
   }
 }
   
+/* Additional Mobile Optimizations: portrait and landscape */
+/* Mobile portrait: tighten spacing, stack visuals, make carousel/cards fit */
+@media (max-width: 768px) and (orientation: portrait) {
+  .hero-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .hero-content::before {
+    font-size: 5.5rem;
+    left: 0.25rem;
+    -webkit-text-stroke: 2px rgba(47, 79, 79, 0.15);
+    text-stroke: 2px rgba(47, 79, 79, 0.15);
+  }
+
+  .hero-title {
+    font-size: 3.25rem;
+  }
+
+  .search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero-images {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.25rem;
+  }
+
+  .hero-image,
+  .hero-image-1,
+  .hero-image-2,
+  .hero-image-3 {
+    position: static;
+    width: 120px;
+    height: 120px;
+    transform: none;
+  }
+
+  .categories-section {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .categories-container {
+    gap: 1.25rem;
+  }
+
+  .polaroid-frame {
+    width: 180px;
+    height: 180px;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .our-events-section {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .our-events-container {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    min-height: unset;
+  }
+
+  .our-event-card {
+    width: 140px;
+    height: 160px;
+    margin: 0.25rem;
+  }
+
+  /* Neutralize carousel transforms on small screens for better layout */
+  .our-event-card.center,
+  .our-event-card.left1,
+  .our-event-card.left2,
+  .our-event-card.right1,
+  .our-event-card.right2 {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .our-events-nav .line {
+    max-width: 320px;
+  }
+
+  .event-listing {
+    padding: 1.25rem;
+  }
+
+  .event-image-bg {
+    height: 180px;
+  }
+}
+
+/* Mobile landscape: reduce heights, keep side-by-side where possible */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .hero-content::before {
+    font-size: 4.5rem;
+    left: 0.25rem;
+    -webkit-text-stroke: 2px rgba(47, 79, 79, 0.15);
+    text-stroke: 2px rgba(47, 79, 79, 0.15);
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-images {
+    position: absolute;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    transform: none;
+    width: 320px;
+    height: 200px;
+  }
+
+  .hero-image,
+  .hero-image-1,
+  .hero-image-2,
+  .hero-image-3 {
+    width: 110px;
+    height: 110px;
+  }
+
+  .categories-section {
+    padding: 2rem 1rem;
+  }
+
+  .categories-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .polaroid-frame {
+    width: 160px;
+    height: 160px;
+  }
+
+  .our-events-section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .our-events-container {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .our-event-card {
+    width: 150px;
+    height: 170px;
+    margin: 0.25rem;
+  }
+
+  .our-event-card.center,
+  .our-event-card.left1,
+  .our-event-card.left2,
+  .our-event-card.right1,
+  .our-event-card.right2 {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .event-listing {
+    padding: 1.25rem;
+  }
+
+  .event-image-bg {
+    height: 140px;
+  }
+
+  /* Detail view two-column feels cramped; stack and shrink image */
+  .event-detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail-image {
+    max-width: 220px;
+    height: 140px;
+  }
+}

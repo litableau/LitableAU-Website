@@ -96,9 +96,6 @@
   position: relative;
   text-align: left;
   overflow: visible; /* allow children to be fully visible on mobile */
-  width: 100vw; /* ensure full-bleed background */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
 }
 
 .hero-content {
@@ -225,12 +222,9 @@
 
   
   /* Categories Section */
-  .categories-section {
+.categories-section {
   background:rgb(23,58,43);
   padding: 4rem 2rem;
-  width: 100vw; /* ensure full-bleed background */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   }
   
   .categories-container {
@@ -312,9 +306,6 @@
   background: rgb(229,199,177);
   padding: 4rem 2rem;
   text-align: center;
-  width: 100vw; /* ensure full-bleed background */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
 }
 
  .section-header {
@@ -346,6 +337,7 @@
   align-items: center;
   min-height: 280px;
   perspective: 1000px;
+  flex-wrap: wrap; /* allow wrapping if viewport is narrow */
 }
 
 .our-event-card {
@@ -461,16 +453,13 @@
 
   /* Event Listings */
   .event-listings {
-  background: rgb(229,199,177);
-  padding: 2rem;
-  width: 100vw; /* ensure full-bleed background on narrow landscape */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+    background: rgb(229,199,177);
+    padding: 2rem;
   }
   
   .event-listing {
     max-width: 1200px;
-    margin: 0 auto 2rem;
+  margin: 0 0 2rem 0;
     display: flex;
     align-items: center;
     padding: 2rem;
@@ -960,6 +949,10 @@
 /* Additional Mobile Optimizations: portrait and landscape */
 /* Mobile portrait: tighten spacing, stack visuals, make carousel/cards fit */
 @media (max-width: 768px) and (orientation: portrait) {
+  .vintage-events-page {
+    overflow-x: hidden;
+  }
+
   .hero-section {
     padding: 4rem 1.25rem;
   }
@@ -1041,6 +1034,7 @@
   .our-event-card.right2 {
     transform: none !important;
     opacity: 1 !important;
+    order: initial !important;
   }
 
   .our-events-nav .line {
@@ -1059,6 +1053,10 @@
 
 /* Mobile landscape: reduce heights, keep side-by-side where possible */
 @media (max-width: 768px) and (orientation: landscape) {
+  .vintage-events-page {
+    overflow-x: hidden;
+  }
+
   .hero-section {
     padding: 3rem 1.25rem;
   }
@@ -1075,13 +1073,15 @@
   }
 
   .hero-images {
-    position: absolute;
-    top: auto;
-    bottom: 1rem;
-    right: 1rem;
+    position: static;
     transform: none;
-    width: 320px;
-    height: 200px;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 0.75rem auto 0;
   }
 
   .hero-image,
@@ -1132,6 +1132,7 @@
   .our-event-card.right2 {
     transform: none !important;
     opacity: 1 !important;
+    order: initial !important;
   }
 
   .event-listing {

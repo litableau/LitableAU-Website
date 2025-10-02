@@ -1,3 +1,10 @@
+/* Mobile dropdown color override (peacoat) */
+@media (max-width: 768px) and (orientation: portrait) {
+  .mobile-dropdown {
+    background: #A7885E; /* peacoat */
+    border-color: rgba(245, 235, 219, 0.2);
+  }
+}
 /* Vintage Events Page Styles */
 .vintage-events-page {
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -958,12 +965,12 @@
   }
 
   .hero-content::before {
-    font-size: 5.5rem;
-    left: 0.25rem;
-    -webkit-text-stroke: 2px rgba(47, 79, 79, 0.15);
-    text-stroke: 2px rgba(47, 79, 79, 0.15);
-    opacity: 1;
-    top: 50%;
+    font-size: 3.25rem; /* smaller so it does not collide with search */
+    left: 0.5rem;
+    top: 70%;
+    -webkit-text-stroke: 1.5px rgba(47, 79, 79, 0.12);
+    text-stroke: 1.5px rgba(47, 79, 79, 0.12);
+    opacity: 0.25;
   }
 
   .hero-title {
@@ -973,6 +980,8 @@
   .search-box {
     max-width: 100%;
     width: 100%;
+    border-color: rgb(23,58,43);
+    background: #FBEBDB; /* new book, more contrast with bg text */
   }
 
   .hero-images {

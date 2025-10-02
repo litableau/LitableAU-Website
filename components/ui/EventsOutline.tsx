@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Search } from 'lucide-react';
 import '../../app/EventsOutline.css';
 
 export interface Event {
@@ -98,7 +99,9 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
               className="search-input"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <span className="search-icon">🔍</span>
+            <span className="search-icon" aria-hidden>
+              <Search size={18} />
+            </span>
           </div>
           <div className="hero-images">
             <div className="hero-image hero-image-1"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Vintage magnifying glass" /></div>

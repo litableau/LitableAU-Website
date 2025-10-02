@@ -6,7 +6,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#2f4f4f] backdrop-blur-md border-b border-[#2f4f4f] shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgb(23,58,43)] backdrop-blur-md border-b border-[rgb(23,58,43)] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Desktop Navbar */}
@@ -55,7 +55,7 @@ export function Navbar() {
         {/* Mobile Navigation (only visible when open) */}
         {isOpen && (
           <div className="md:hidden mt-2">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-[#2f4f4f] rounded-lg border border-[#f5f5dc]/20">
+            <div className="mobile-dropdown px-2 pt-2 pb-3 space-y-1 bg-[rgb(23,58,43)] rounded-lg border border-[#f5f5dc]/20">
               <a
                 href="/#about"
                 className="block px-3 py-2 text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors duration-200 font-classic uppercase"

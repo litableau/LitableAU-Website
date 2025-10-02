@@ -1154,4 +1154,14 @@
     max-width: 220px;
     height: 140px;
   }
+
+  /* Make sections full-bleed like About/Gallery in landscape */
+  .hero-section,
+  .categories-section,
+  .our-events-section,
+  .event-listings {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
 }

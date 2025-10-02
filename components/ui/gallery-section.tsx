@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, TouchEvent } from 'react';
 import { MoveRight, MoveLeft } from 'lucide-react';
 import { galleryEvents } from '@/app/data/gallery-data';
 
@@ -6,13 +6,13 @@ export default function GalleryRedesign() {
     // Sort galleryEvents by date descending (latest first)
     const sortedGalleryEvents = [...galleryEvents].sort((a, b) => {
         // Parse MM/DD/YY to Date object
-        const parseDate = (str) => {
+        const parseDate = (str: string) => {
             const [mm, dd, yy] = str.split('/');
             // Assume 20xx for years < 50, 19xx for years >= 50
             const year = parseInt(yy, 10) < 50 ? 2000 + parseInt(yy, 10) : 1900 + parseInt(yy, 10);
             return new Date(year, parseInt(mm, 10) - 1, parseInt(dd, 10));
         };
-        return parseDate(b.date) - parseDate(a.date);
+        return parseDate(b.date).getTime() - parseDate(a.date).getTime();
     });
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -34,7 +34,7 @@ export default function GalleryRedesign() {
 
     // Keyboard navigation
     React.useEffect(() => {
-        const handleKeyDown = (e) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'ArrowLeft') {
                 setSelectedIndex(idx => (idx - 1 + sortedGalleryEvents.length) % sortedGalleryEvents.length);
             } else if (e.key === 'ArrowRight') {
@@ -55,17 +55,17 @@ export default function GalleryRedesign() {
     };
 
     // Touch handlers for mobile swipe
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
     const minSwipeDistance = 50;
 
-    const onTouchStart = (e) => {
+    const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
     };
 
-    const onTouchMove = (e) => {
+    const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
 

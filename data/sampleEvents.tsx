@@ -184,5 +184,28 @@ export const sampleEvents: Event[] = [
     isLiked: false,
     isRegistered: false,
     type: 'upcoming'
+  },
+  {
+    id: '9',
+    title: 'SEIZE THE DEAL',
+    description: 'An elegant afternoon tea party with vintage china, traditional pastries, and period-appropriate attire.',
+    date: '2025-03-06',
+    time: '2:00 PM - 5:00 PM',
+    location: 'Red building Room 9',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop',
+    price: 40,
+    isFree: false,
+    organizer: 'LITABLEAU Events',
+    attendees: 20,
+    maxAttendees: 25,
+    tags: ['Deal', 'Elegant', 'Social'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'past'
   }
 ];

@@ -3,6 +3,32 @@
   .mobile-dropdown {
     background: rgb(23,58,43); /* emerald */
     border-color: rgba(245, 235, 219, 0.2);
+    color: #f5f5dc;
+  }
+  .mobile-dropdown a {
+    color: #f5f5dc;
+    text-decoration: none;
+  }
+  .mobile-dropdown a:hover {
+    color: rgba(245, 245, 220, 0.8);
+  }
+  .mobile-menu-button {
+    color: #A7885E; /* peacoat */
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .mobile-dropdown {
+    background: rgb(23,58,43); /* emerald */
+    border-color: rgba(245, 235, 219, 0.2);
+    color: #f5f5dc;
+  }
+  .mobile-dropdown a {
+    color: #f5f5dc;
+    text-decoration: none;
+  }
+  .mobile-dropdown a:hover {
+    color: rgba(245, 245, 220, 0.8);
   }
   .mobile-menu-button {
     color: #A7885E; /* peacoat */

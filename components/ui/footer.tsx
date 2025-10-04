@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { BookOpen, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { BookOpen, Mail, Phone, MapPin, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
     <footer className="bg-[rgb(23,58,43)] text-[#f5f5dc]">
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -18,17 +17,30 @@ export function Footer() {
               The Literary Society of Anna University, fostering creativity, critical thinking, and a love for literature 
               among students. Join our community of writers, poets, and literature enthusiasts.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Facebook className="h-5 w-5 text-[rgb(23,58,43)]" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
-                <Twitter className="h-5 w-5 text-[rgb(23,58,43)]" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
+            {/* Social Icons */}
+            <div className="flex space-x-4 mt-2">
+              <a
+                href="https://www.instagram.com/litclubau?igsh=N3doa20xZnRhMnZs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors"
+              >
                 <Instagram className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
-              <a href="#" className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors">
+              <a
+                href="https://chat.whatsapp.com/Ff8kpU0z2sh0c3O9XJJdyL?mode=ac_t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors"
+              >
+                <MessageCircle className="h-5 w-5 text-[rgb(23,58,43)]" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/literary-club-of-anna-university/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#f5f5dc] rounded-full flex items-center justify-center hover:bg-[#f5f5dc]/80 transition-colors"
+              >
                 <Linkedin className="h-5 w-5 text-[rgb(23,58,43)]" />
               </a>
             </div>
@@ -39,10 +51,10 @@ export function Footer() {
             <h3 className="text-lg font-bold mb-4 font-elegant">Quick Links</h3>
             <ul className="space-y-2 font-classic">
               <li><a href="/" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">Home</a></li>
-              <li><a href="#about" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">About</a></li>
+              <li><a href="#about" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">About Us</a></li>
               <li><a href="/events" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">Events</a></li>
               <li><a href="/gallery" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">Gallery</a></li>
-              <li><a href="/contact" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">Contact</a></li>
+              <li><a href="/contact" className="text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors">Meet Us</a></li>
             </ul>
           </div>
 
@@ -52,11 +64,11 @@ export function Footer() {
             <ul className="space-y-2 font-classic">
               <li className="flex items-center space-x-2 text-[#f5f5dc]">
                 <Mail className="h-4 w-4 text-[#f5f5dc]" />
-                <span>litableau@annauniv.edu</span>
+                <span>litclubau@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2 text-[#f5f5dc]">
                 <Phone className="h-4 w-4 text-[#f5f5dc]" />
-                <span>+91 44 2235 7000</span>
+                <span>+91 98407 90675</span>
               </li>
               <li className="flex items-center space-x-2 text-[#f5f5dc]">
                 <MapPin className="h-4 w-4 text-[#f5f5dc]" />

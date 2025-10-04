@@ -13,17 +13,17 @@ export const AboutSection: React.FC = () => {
     <section id="about">
       <div
         className="min-h-screen flex flex-col font-argesta 
-                   bg-[url('/Backgound.jpg')] bg-top-left sm:bg-center bg-cover bg-no-repeat"
+                   bg-[url('/Background.jpg')] bg-center bg-cover bg-no-repeat"
       >
         {/* Header */}
         <div className="text-center my-6 sm:my-10 px-4">
-          <h1 className="text-3xl sm:text-5xl font-bold text-[#012D20] tracking-widest leading-snug">
+          <h1 className="text-3xl sm:text-5xl font-bold text-[#012D20]  tracking-widest leading-snug">
             ABOUT US
           </h1>
         </div>
 
         {/* Grid for cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-8 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 px-4 sm:px-8 mt-12 mb-12">
           <SignatureCard
             active={activeCard === "story"}
             setActiveCard={setActiveCard}

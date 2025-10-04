@@ -15,7 +15,7 @@ export function Navbar() {
           {/* Left links */}
           <div className="flex items-center justify-start space-x-20">
             <a
-              href="/#about"
+              href="/aboutus"
               className="text-[#f5f5dc] uppercase font-classic text-lg hover:text-[#f5f5dc]/80 transition-colors duration-200"
             >
               ABOUT US

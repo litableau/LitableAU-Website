@@ -2,19 +2,19 @@ import React, { useState, TouchEvent } from 'react';
 import { MoveRight, MoveLeft } from 'lucide-react';
 import { galleryEvents } from '@/app/data/gallery-data';
 
-
-const groupEventsByYear = (events: typeof galleryEvents) => {
+// Group events by eventName
+const groupEventsByEventName = (events: typeof galleryEvents) => {
     const grouped: Record<string, typeof galleryEvents> = {};
     events.forEach(event => {
-        const year = event.date.split('/')[2];
-        if (!grouped[year]) grouped[year] = [];
-        grouped[year].push(event);
+        const name = event.eventName;
+        if (!grouped[name]) grouped[name] = [];
+        grouped[name].push(event);
     });
-    // Sort years descending
-    const sortedYears = Object.keys(grouped).sort((a, b) => parseInt(b) - parseInt(a));
-    // Sort events in each year by date descending
-    sortedYears.forEach(year => {
-        grouped[year].sort((a, b) => {
+    // Sort event names alphabetically
+    const sortedEventNames = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+    // Sort events in each group by date descending
+    sortedEventNames.forEach(name => {
+        grouped[name].sort((a, b) => {
             const parseDate = (str: string) => {
                 const [mm, dd, yyyy] = str.split('/');
                 return new Date(parseInt(yyyy), parseInt(mm) - 1, parseInt(dd));
@@ -22,47 +22,47 @@ const groupEventsByYear = (events: typeof galleryEvents) => {
             return parseDate(b.date).getTime() - parseDate(a.date).getTime();
         });
     });
-    return { grouped, sortedYears };
+    return { grouped, sortedEventNames };
 };
 
 export default function GalleryRedesign() {
-    const { grouped, sortedYears } = groupEventsByYear(galleryEvents);
+    const { grouped, sortedEventNames } = groupEventsByEventName(galleryEvents);
     const [selectedIndexes, setSelectedIndexes] = useState<Record<string, number>>(() => {
         const obj: Record<string, number> = {};
-        sortedYears.forEach(year => { obj[year] = 0; });
+        sortedEventNames.forEach(name => { obj[name] = 0; });
         return obj;
     });
     const itemsPerView = 3;
-    const middleIndex = Math.floor(itemsPerView / 2); // Middle position (1 for 3 items)
+    const middleIndex = Math.floor(itemsPerView / 2);
 
-    // Navigation logic per year
-    const nextSlide = (year: string, max: number) => {
+    // Navigation logic per eventName
+    const nextSlide = (name: string, max: number) => {
         setSelectedIndexes(prev => ({
             ...prev,
-            [year]: (prev[year] + 1) % max
+            [name]: (prev[name] + 1) % max
         }));
     };
-    const prevSlide = (year: string, max: number) => {
+    const prevSlide = (name: string, max: number) => {
         setSelectedIndexes(prev => ({
             ...prev,
-            [year]: (prev[year] - 1 + max) % max
+            [name]: (prev[name] - 1 + max) % max
         }));
     };
 
     React.useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            sortedYears.forEach(year => {
-                const max = grouped[year].length;
+            sortedEventNames.forEach(name => {
+                const max = grouped[name].length;
                 if (e.key === 'ArrowLeft') {
-                    prevSlide(year, max);
+                    prevSlide(name, max);
                 } else if (e.key === 'ArrowRight') {
-                    nextSlide(year, max);
+                    nextSlide(name, max);
                 }
             });
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [sortedYears, grouped]);
+    }, [sortedEventNames, grouped]);
 
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -74,13 +74,13 @@ export default function GalleryRedesign() {
     const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
-    const onTouchEnd = (year: string, max: number) => {
+    const onTouchEnd = (name: string, max: number) => {
         if (!touchStart || !touchEnd) return;
         const distance = touchStart - touchEnd;
         const isLeftSwipe = distance > minSwipeDistance;
         const isRightSwipe = distance < -minSwipeDistance;
-        if (isLeftSwipe) nextSlide(year, max);
-        if (isRightSwipe) prevSlide(year, max);
+        if (isLeftSwipe) nextSlide(name, max);
+        if (isRightSwipe) prevSlide(name, max);
     };
 
     return (
@@ -107,24 +107,24 @@ export default function GalleryRedesign() {
                         </p>
                     </div>
 
-                    {/* Render by year */}
-                    {sortedYears.map(year => (
-                        <div key={year} className="mb-12">
-                            <h2 className="text-xl md:text-3xl font-bold text-green-800 mb-4 md:mb-6 text-center font-serif">{year}</h2>
+                    {/* Render by eventName */}
+                    {sortedEventNames.map(name => (
+                        <div key={name} className="mb-12">
+                            <h2 className="text-xl md:text-3xl font-bold text-green-800 mb-4 md:mb-6 text-center font-serif">{name}</h2>
                             {/* Mobile View */}
-                            <div className="md:hidden" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={() => onTouchEnd(year, grouped[year].length)}>
+                            <div className="md:hidden" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={() => onTouchEnd(name, grouped[name].length)}>
                                 <div className="flex justify-center">
                                     <div className="w-full max-w-sm bg-white rounded-lg shadow-xl overflow-hidden border-2 border-green-700 relative">
                                         {/* Overlay Arrows */}
                                         <button
-                                            onClick={() => prevSlide(year, grouped[year].length)}
+                                            onClick={() => prevSlide(name, grouped[name].length)}
                                             aria-label="Previous image"
                                             className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-green-800/80 text-white rounded-full p-2"
                                         >
                                             <MoveLeft size={28} />
                                         </button>
                                         <button
-                                            onClick={() => nextSlide(year, grouped[year].length)}
+                                            onClick={() => nextSlide(name, grouped[name].length)}
                                             aria-label="Next image"
                                             className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-green-800/80 text-white rounded-full p-2"
                                         >
@@ -132,32 +132,32 @@ export default function GalleryRedesign() {
                                         </button>
                                         <div className="relative h-64">
                                             <img
-                                                src={grouped[year][selectedIndexes[year]].imageUrl}
-                                                alt={grouped[year][selectedIndexes[year]].title}
+                                                src={grouped[name][selectedIndexes[name]].imageUrl}
+                                                alt={grouped[name][selectedIndexes[name]].title}
                                                 className="w-full h-full object-cover"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                         </div>
                                         <div className="p-6 text-green-800">
                                             <h3 className="text-xl font-bold mb-2 tracking-wide">
-                                                {grouped[year][selectedIndexes[year]].title}
+                                                {grouped[name][selectedIndexes[name]].title}
                                             </h3>
                                             <p className="text-sm opacity-90 mb-2">
-                                                {grouped[year][selectedIndexes[year]].description}
+                                                {grouped[name][selectedIndexes[name]].description}
                                             </p>
                                             <p className="text-sm opacity-75">
-                                                {grouped[year][selectedIndexes[year]].date}
+                                                {grouped[name][selectedIndexes[name]].date}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 {/* Dot Indicators */}
                                 <div className="flex justify-center mt-4 space-x-2">
-                                    {grouped[year].map((_, idx) => (
+                                    {grouped[name].map((_, idx) => (
                                         <button
                                             key={idx}
-                                            onClick={() => setSelectedIndexes(prev => ({ ...prev, [year]: idx }))}
-                                            className={`w-3 h-3 rounded-full transition-all duration-200 ${selectedIndexes[year] === idx ? 'bg-green-800 scale-125' : 'bg-green-300 hover:bg-green-500'}`}
+                                            onClick={() => setSelectedIndexes(prev => ({ ...prev, [name]: idx }))}
+                                            className={`w-3 h-3 rounded-full transition-all duration-200 ${selectedIndexes[name] === idx ? 'bg-green-800 scale-125' : 'bg-green-300 hover:bg-green-500'}`}
                                         />
                                     ))}
                                 </div>
@@ -166,13 +166,13 @@ export default function GalleryRedesign() {
                             {/* Desktop View */}
                             <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                                 {Array.from({ length: itemsPerView }).map((_, idx) => {
-                                    const eventIndex = (selectedIndexes[year] - middleIndex + idx + grouped[year].length) % grouped[year].length;
-                                    const event = grouped[year][eventIndex];
+                                    const eventIndex = (selectedIndexes[name] - middleIndex + idx + grouped[name].length) % grouped[name].length;
+                                    const event = grouped[name][eventIndex];
                                     return (
                                         <div
                                             key={`${event.id}-${idx}`}
                                             className={`bg-white rounded-lg overflow-hidden transition-all duration-300 flex flex-col relative cursor-pointer shadow-lg border border-gray-200 hover:shadow-xl opacity-75 hover:opacity-90`}
-                                            onClick={() => setSelectedIndexes(prev => ({ ...prev, [year]: eventIndex }))}
+                                            onClick={() => setSelectedIndexes(prev => ({ ...prev, [name]: eventIndex }))}
                                         >
                                             <div className="relative h-64">
                                                 <img
@@ -199,29 +199,29 @@ export default function GalleryRedesign() {
                             </div>
                             {/* Desktop Arrows */}
                             <div className="hidden md:flex justify-center mt-4 gap-4">
-                                <button onClick={() => prevSlide(year, grouped[year].length)} aria-label="Previous image">
+                                <button onClick={() => prevSlide(name, grouped[name].length)} aria-label="Previous image">
                                     <MoveLeft size={36} />
                                 </button>
-                                <button onClick={() => nextSlide(year, grouped[year].length)} aria-label="Next image">
+                                <button onClick={() => nextSlide(name, grouped[name].length)} aria-label="Next image">
                                     <MoveRight size={36} />
                                 </button>
                             </div>
                             {/* Dot Indicators */}
                             <div className="hidden md:flex justify-center mt-4 space-x-2">
-                                {grouped[year].map((_, idx) => (
+                                {grouped[name].map((_, idx) => (
                                     <button
                                         key={idx}
-                                        onClick={() => setSelectedIndexes(prev => ({ ...prev, [year]: idx }))}
-                                        className={`w-3 h-3 rounded-full transition-all duration-200 ${selectedIndexes[year] === idx ? 'bg-green-800 scale-125' : 'bg-green-300 hover:bg-green-500'}`}
+                                        onClick={() => setSelectedIndexes(prev => ({ ...prev, [name]: idx }))}
+                                        className={`w-3 h-3 rounded-full transition-all duration-200 ${selectedIndexes[name] === idx ? 'bg-green-800 scale-125' : 'bg-green-300 hover:bg-green-500'}`}
                                     />
                                 ))}
                             </div>
                             {/* Event Name Display */}
-                            <div className="text-center py-4 md:py-8">
-                                <h2 className="text-lg md:text-2xl font-bold text-green-800 tracking-wide font-serif">
-                                    {grouped[year][selectedIndexes[year]]?.eventName}
-                                </h2>
-                            </div>
+                            {/*<div className="text-center py-4 md:py-8">*/}
+                            {/*    <h2 className="text-lg md:text-2xl font-bold text-green-800 tracking-wide font-serif">*/}
+                            {/*        {grouped[name][selectedIndexes[name]]?.eventName}*/}
+                            {/*    </h2>*/}
+                            {/*</div>*/}
                         </div>
                     ))}
                 </div>

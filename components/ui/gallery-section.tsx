@@ -10,13 +10,29 @@ const groupEventsByEventName = (events: typeof galleryEvents) => {
         if (!grouped[name]) grouped[name] = [];
         grouped[name].push(event);
     });
-    // Sort event names alphabetically
-    const sortedEventNames = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+    // Sort event names by most recent event date in each group (descending)
+    const sortedEventNames = Object.keys(grouped).sort((a, b) => {
+        const getMostRecentDate = (events: typeof galleryEvents) => {
+            return events.reduce((latest, curr) => {
+                const parseDate = (str: string) => {
+                    // Parse DD/MM/YYYY
+                    const [dd, mm, yyyy] = str.split('/');
+                    return new Date(parseInt(yyyy), parseInt(mm) - 1, parseInt(dd));
+                };
+                const currDate = parseDate(curr.date);
+                return currDate > latest ? currDate : latest;
+            }, new Date(0));
+        };
+        const dateA = getMostRecentDate(grouped[a]);
+        const dateB = getMostRecentDate(grouped[b]);
+        return dateB.getTime() - dateA.getTime();
+    });
     // Sort events in each group by date descending
     sortedEventNames.forEach(name => {
         grouped[name].sort((a, b) => {
             const parseDate = (str: string) => {
-                const [mm, dd, yyyy] = str.split('/');
+                // Parse DD/MM/YYYY
+                const [dd, mm, yyyy] = str.split('/');
                 return new Date(parseInt(yyyy), parseInt(mm) - 1, parseInt(dd));
             };
             return parseDate(b.date).getTime() - parseDate(a.date).getTime();
@@ -142,9 +158,6 @@ export default function GalleryRedesign() {
                                             <h3 className="text-xl font-bold mb-2 tracking-wide">
                                                 {grouped[name][selectedIndexes[name]].title}
                                             </h3>
-                                            <p className="text-sm opacity-90 mb-2">
-                                                {grouped[name][selectedIndexes[name]].description}
-                                            </p>
                                             <p className="text-sm opacity-75">
                                                 {grouped[name][selectedIndexes[name]].date}
                                             </p>
@@ -186,9 +199,6 @@ export default function GalleryRedesign() {
                                                 <h3 className="text-xl font-bold mb-1 tracking-wide">
                                                     {event.title}
                                                 </h3>
-                                                <p className="text-sm opacity-90 mb-1">
-                                                    {event.description}
-                                                </p>
                                                 <p className="text-xs opacity-75">
                                                     {event.date}
                                                 </p>

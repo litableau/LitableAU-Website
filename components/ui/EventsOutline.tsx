@@ -7,7 +7,7 @@ export interface Event {
   title: string;
   description: string;
   date: string;
-  time: string;
+  time?: string;
   location: string;
   category: EventCategory;
   imageUrl?: string;
@@ -20,6 +20,9 @@ export interface Event {
   isLiked: boolean;
   isRegistered: boolean;
   type: 'past' | 'ongoing' | 'upcoming';
+  contactInfo?: string;
+  isLink?: boolean;
+  googleFormUrl?: string;
 }
 
 export interface EventCategory {
@@ -38,16 +41,6 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
   const [selectedCategory, setSelectedCategory] = useState<'past' | 'ongoing' | 'upcoming' | null>(null);
   // State to track selected event for detailed view
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-
-  /*const eventTypes = [
-    { id: 'shipwreck', name: 'SHIPWRECK', icon: '⛵' },
-    { id: 'treasure-hunt', name: 'TREASURE HUNT', icon: '🧭' },
-    { id: 'murder-mystery', name: 'MURDER MYSTERY', icon: '🔍' },
-    { id: 'channel-surfing', name: 'CHANNEL SURFING', icon: '📺' },
-    { id: 'quiz', name: 'QUIZ', icon: '❓' }
-  ];*/
-
-  // Filter events based on selected category; null → all events
   const [searchQuery, setSearchQuery] = useState('');
   const filteredEvents = useMemo(() => {
     return events
@@ -82,6 +75,11 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
     return "our-event-card hidden";
   };
 
+  const categoryImages: Record<'past' | 'ongoing' | 'upcoming', string> = {
+  past: 'https://i.ibb.co/zWycVHFB/past.jpg',
+  ongoing: 'https://i.ibb.co/Gf9RqyLs/ongoing.jpg',
+  upcoming: 'https://i.ibb.co/K8z4bG6/upcoming.png', // Example: sunrise or future theme
+  };
 
   // Title for Our Events section
   const categoryTitle = selectedCategory ? `${selectedCategory.toUpperCase()} EVENTS` : 'OUR EVENTS';
@@ -104,9 +102,9 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
             </span>
           </div>
           <div className="hero-images">
-            <div className="hero-image hero-image-1"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Vintage magnifying glass" /></div>
-            <div className="hero-image hero-image-2"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Old books" /></div>
-            <div className="hero-image hero-image-3"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop" alt="Daisy flowers" /></div>
+            <div className="hero-image hero-image-1"><img src="https://i.ibb.co/VWrR48fJ/hero1.jpg" alt="Vintage magnifying glass" /></div>
+            <div className="hero-image hero-image-2"><img src="https://i.ibb.co/x0J0STg/hero2.jpg" alt="Old books" /></div>
+            <div className="hero-image hero-image-3"><img src="https://i.ibb.co/6JLDz77y/hero3.jpg" alt="Daisy flowers" /></div>
           </div>
         </div>
         <div className="hero-lines">
@@ -121,8 +119,10 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
             <div key={cat} className={`category-card ${selectedCategory === cat ? 'selected' : ''}`}
               onClick={() => handleCategoryClick(cat as 'past' | 'ongoing' | 'upcoming')}>
               <div className="polaroid-frame">
-                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=200&fit=crop"
-                  alt={`${cat} events`} />
+                <img
+                  src={categoryImages[cat as 'past' | 'ongoing' | 'upcoming']}
+                  alt={`${cat} events`}
+                />
               </div>
               <button className="category-btn">{cat.toUpperCase()}</button>
               <button className="category-arrow">→</button>
@@ -163,13 +163,25 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                   onClick={() => setSelectedEvent(event)} // Handle click to select event
                   onMouseEnter={() => setCurrentIndex(index)} // Handle hover to center the card
                 >
-                  <div className="our-event-icon">🎫</div>
+                  <div className="our-event-icon">
+                    <img 
+                      src={event.imageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=cover'} 
+                      alt={event.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
                   <div className="our-event-name">{event.title}</div>
                 </div>
               );
             })
+          ) : selectedCategory === 'ongoing' ? (
+            <p className="section-title">No ongoing events to display</p>
+          ) : selectedCategory === 'upcoming' ? (
+            <p className="section-title">Coming Soon ...</p>
+          ) : selectedCategory === 'past' ? (
+            <p className="section-title">No past events to display</p>
           ) : (
-            <p>No events to display</p>
+            <p className="section-title">No events to display</p>
           )}
         </div>
 
@@ -236,18 +248,23 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                 <div className="event-detail-description-content">
                   <p>{selectedEvent.description}</p>
                   <div className="event-detail-meta">
-                    <p><strong>Time:</strong> {selectedEvent.time}</p>
+                    {selectedEvent.time && (
+                      <p><strong>Time:</strong> {selectedEvent.time}</p>
+                    )}
                     <p><strong>Location:</strong> {selectedEvent.location}</p>
                     {!selectedEvent.isFree && (
                       <p><strong>Price:</strong> ${selectedEvent.price}</p>
                     )}
+                    {selectedEvent.contactInfo && (
+                      <p><strong>Contact:</strong> {selectedEvent.contactInfo}</p>
+                    )}
                   </div>
                 </div>
 
-                {selectedEvent.type === 'ongoing' && (
+                {selectedEvent.type === 'ongoing' && selectedEvent.isLink && selectedEvent.googleFormUrl && (
                   <button
                     className="event-detail-join-btn"
-                    onClick={() => onEventClick?.(selectedEvent)}
+                    onClick={() => window.open(selectedEvent.googleFormUrl, '_blank')}
                   >
                     JOIN NOW
                   </button>

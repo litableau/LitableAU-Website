@@ -57,7 +57,7 @@ export function Navbar() {
           <div className="md:hidden mt-2">
             <div className="mobile-dropdown px-2 pt-2 pb-3 space-y-1 bg-[rgb(23,58,43)] rounded-lg border border-[#f5f5dc]/20">
               <a
-                href="/#about"
+                href="/aboutus"
                 className="block px-3 py-2 text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors duration-200 font-classic uppercase"
                 onClick={() => setIsOpen(false)}
               >

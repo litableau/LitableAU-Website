@@ -96,3 +96,26 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #A8B5A0;
 }
+
+.carousel-3d .swiper-slide {
+  transform-origin: center center -200px;
+  transform: rotateY(0deg) translateZ(200px);
+  transition: transform 0.5s;
+}
+
+.carousel-3d .swiper-slide-active {
+  transform: rotateY(0deg) translateZ(300px) scale(1.05);
+  z-index: 10;
+}
+
+.carousel-3d .swiper-slide-prev,
+.carousel-3d .swiper-slide-next {
+  transform: rotateY(45deg) translateZ(200px) scale(0.9);
+  z-index: 5;
+}
+
+.carousel-3d .swiper-slide-prev-prev,
+.carousel-3d .swiper-slide-next-next {
+  transform: rotateY(90deg) translateZ(200px) scale(0.8);
+  z-index: 1;
+}

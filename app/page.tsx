@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/ui/navbar";
 import { LitClubHero } from "@/components/ui/lit-club-hero";
 import { AboutSection } from "@/components/ui/about-section";
+import { InstaCarousel } from "@/components/ui/insta-carousel";
 import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
 
@@ -16,6 +17,9 @@ export default function Home() {
       
       {/* About Section */}
       <AboutSection />
+
+       {/* Instagram Carousel Section */}
+      <InstaCarousel />
       
       {/* Contact Section */}
       <ContactSection />

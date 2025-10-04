@@ -28,3 +28,9 @@ build/
 node_modules/
 build/
 .env
+
+node_modules/
+build/
+.env
+legacy/litclub-team-page/node_modules/
+legacy/litclub-team-page/build/

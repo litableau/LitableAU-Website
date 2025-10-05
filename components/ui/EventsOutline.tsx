@@ -311,7 +311,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
               key={event.id}
               className={`event-listing ${index % 2 === 0 ? 'dark' : 'light'}`}
               style={{ cursor: 'pointer' }}
-              onClick={() => setSelectedEvent(event)}
+              onClick={() => handleEventClick(event)}
             >
               <div className="event-image-bg">
                 <img src={event.imageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=100&h=100&fit=crop'} alt={event.title} />

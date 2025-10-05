@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo,useRef,useEffect } from 'react';
 import { Search } from 'lucide-react';
 import '../../app/EventsOutline.css';
 
@@ -45,6 +45,8 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
   // State to track selected event for detailed view
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const ourEventsRef = useRef<HTMLDivElement>(null);
+  const eventDetailRef = useRef<HTMLDivElement>(null);
   const filteredEvents = useMemo(() => {
       const sortedEvents = [...events].sort((a, b) => {
       const dateA = new Date(a.date).getTime();
@@ -60,10 +62,17 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
 
 
   const handleCategoryClick = (category: 'past' | 'ongoing' | 'upcoming') => {
-    // Toggle selection: deselect if clicked again
     setSelectedCategory(prev => (prev === category ? null : category));
+    setTimeout(() => {
+      ourEventsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100); 
   };
-
+  const handleEventClick = (event: Event) => {
+    setSelectedEvent(event);
+    setTimeout(() => {
+      eventDetailRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return {
@@ -84,9 +93,9 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
   };
 
   const categoryImages: Record<'past' | 'ongoing' | 'upcoming', string> = {
-  past: 'https://i.ibb.co/zWycVHFB/past.jpg',
-  ongoing: 'https://i.ibb.co/Gf9RqyLs/ongoing.jpg',
-  upcoming: 'https://i.ibb.co/K8z4bG6/upcoming.png', // Example: sunrise or future theme
+  past: 'events/past.jpg',
+  ongoing: 'events/ongoing.jpg',
+  upcoming: 'events/upcoming.png', // Example: sunrise or future theme
   };
 
   // Title for Our Events section
@@ -139,7 +148,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
         </div>
       </section>
       {/* Our Events Section */}
-      <section className="our-events-section">
+      <section className="our-events-section" ref={ourEventsRef}>
         <div className="section-header">
           <div className="section-line"></div>
           <h2 className="section-title">{categoryTitle}</h2>
@@ -168,7 +177,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                     transition: 'all 0.5s ease',
                     cursor: 'pointer', // Add cursor pointer to indicate clickable
                   }}
-                  onClick={() => setSelectedEvent(event)} // Handle click to select event
+                  onClick={() => handleEventClick(event)} // Handle click to select event
                   onMouseEnter={() => setCurrentIndex(index)} // Handle hover to center the card
                 >
                   <div className="our-event-icon">
@@ -221,7 +230,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
       {/* Event Listings - Show either detailed view or normal list */}
       {selectedEvent ? (
         // Detailed Event View - Simple layout
-        <section className="event-detail-view">
+        <section className="event-detail-view" ref={eventDetailRef}>
           {/* Event Card - Only Selected Event */}
           <div className="event-detail-card">
             <div className="event-detail-left">
@@ -259,7 +268,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                       {line}
                       <br />
                     </span>
-                  ))}</p>
+                  ))}</p> 
                   <div className="event-detail-meta">
                     {selectedEvent.time && (
                       <p><strong>Time:</strong> {selectedEvent.time}</p>

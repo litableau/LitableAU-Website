@@ -8,7 +8,10 @@ export interface Event {
   description: string;
   date: string;
   time?: string;
-  location: string;
+  location?: string;
+  mode?: 'online' | 'offline' | 'hybrid';
+  platform?: string; 
+  platformCode?: string;
   category: EventCategory;
   imageUrl?: string;
   price: number;
@@ -43,11 +46,16 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const filteredEvents = useMemo(() => {
-    return events
-      .filter(event => !selectedCategory || event.type === selectedCategory)
-      .filter(event =>
-        event.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const sortedEvents = [...events].sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA; // Descending order
+    });
+    return sortedEvents
+    .filter(event => !selectedCategory || event.type === selectedCategory)
+    .filter(event =>
+      event.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   }, [events, selectedCategory, searchQuery]);
 
 
@@ -251,7 +259,15 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                     {selectedEvent.time && (
                       <p><strong>Time:</strong> {selectedEvent.time}</p>
                     )}
-                    <p><strong>Location:</strong> {selectedEvent.location}</p>
+                    {selectedEvent.location && (
+                      <p><strong>Location:</strong> {selectedEvent.location}</p>
+                    )}
+                    {selectedEvent.mode && (
+                      <p><strong>Mode:</strong> {selectedEvent.mode.charAt(0).toUpperCase() + selectedEvent.mode.slice(1)}</p>
+                    )}
+                    {selectedEvent.platform && (
+                      <p><strong>Platform:</strong> {selectedEvent.platform} {selectedEvent.platformCode && `- Code: ${selectedEvent.platformCode}`}</p>
+                    )}
                     {!selectedEvent.isFree && (
                       <p><strong>Price:</strong> ${selectedEvent.price}</p>
                     )}

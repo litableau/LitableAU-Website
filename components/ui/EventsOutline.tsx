@@ -59,7 +59,13 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
       event.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [events, selectedCategory, searchQuery]);
-
+  useEffect(() => {
+    if (searchQuery) {
+      setTimeout(() => {
+        ourEventsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 10000);
+    }
+  }, [searchQuery]);
 
   const handleCategoryClick = (category: 'past' | 'ongoing' | 'upcoming') => {
     setSelectedCategory(prev => (prev === category ? null : category));
@@ -112,11 +118,18 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
               type="text"
               placeholder="Search events..."
               className="search-input"
+              value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  ourEventsRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             />
-            <span className="search-icon" aria-hidden>
+            <button className="search-icon" aria-hidden
+            onClick={() => ourEventsRef.current?.scrollIntoView({ behavior: 'smooth' })}>
               <Search size={18} />
-            </span>
+            </button>
           </div>
           <div className="hero-images">
             <div className="hero-image hero-image-1"><img src="https://i.ibb.co/VWrR48fJ/hero1.jpg" alt="Vintage magnifying glass" /></div>

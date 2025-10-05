@@ -254,7 +254,12 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
               <div className="event-detail-description-section">
                 <h3 className="event-detail-description-title">DESCRIPTION</h3>
                 <div className="event-detail-description-content">
-                  <p>{selectedEvent.description}</p>
+                  <p>{selectedEvent.description.split('\n').map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}</p>
                   <div className="event-detail-meta">
                     {selectedEvent.time && (
                       <p><strong>Time:</strong> {selectedEvent.time}</p>

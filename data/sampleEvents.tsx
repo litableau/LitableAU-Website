@@ -3,6 +3,29 @@ import { Event } from '@/components/ui/EventsOutline';
 export const sampleEvents: Event[] = [
   {
     id: '1',
+    title: 'ICE BREAKER',
+    description: 'An Ice Breaker special event with fun activities to help you connect and engage with new people. Do check out Ice Breaker events like Quiz, IPL Auction, Gossip Magazine, Escape Room and Board games happening on the same day!',
+    date: '2025-10-07',
+    location: 'Vivek Audi and Turing Hall',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: '/events/ib-lit.jpg',
+    price: 0,
+    isFree: true,
+    organizer: 'LITABLEAU Events',
+    attendees: 20,
+    maxAttendees: 25,
+    tags: ['Ice breaker', 'Engagement', 'Social'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'ongoing',
+    isLink: false
+  },
+{
+    id: '2',
     title: 'QUIZ',
     description: 'An Ice Breaker special quiz event where you can expect challenging questions across diverse topics, where only the sharpest minds prevail.',
     date: '2025-10-07',
@@ -13,7 +36,7 @@ export const sampleEvents: Event[] = [
       name: 'Quiz',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/chWhqRfG/quiz-lit.jpg',
+    imageUrl: '/events/quiz-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -28,29 +51,6 @@ export const sampleEvents: Event[] = [
     googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe8ZlEBntS2YdS17OUREPFoveVY8xc9OjWud2Bzidceurf9BA/viewform?fbclid=PAQ0xDSwNNjr5leHRuA2FlbQIxMQABpy_fImJvsJ_vEMkm0r4x1agQsqXxJ-0Gh0cR9P5dvGSyUQtyfrf3GI0GsYVN_aem_a8FTwyA5qMAMdpoaFUkE_g'
   },
   {
-    id: '2',
-    title: 'ICE BREAKER',
-    description: 'An Ice Breaker special event with fun activities to help you connect and engage with new people. Do check out Ice Breaker events like IPL Auction and Quiz happening on the same day!',
-    date: '2025-10-07',
-    location: 'Vivek Audi and Turing Hall',
-    category: {
-      id: 'social',
-      name: 'Social',
-      color: 'rgb(23,58,43)'
-    },
-    imageUrl: 'https://i.ibb.co/0LqR528/ib-lit.jpg',
-    price: 0,
-    isFree: true,
-    organizer: 'LITABLEAU Events',
-    attendees: 20,
-    maxAttendees: 25,
-    tags: ['Ice breaker', 'Engagement', 'Social'],
-    isLiked: false,
-    isRegistered: false,
-    type: 'ongoing',
-    isLink: false
-  },
-  {
     id: '3',
     title: 'IPL AUCTION',
     description: 'An Ice Breaker special event where you step into the shoes of an IPL team owner! Build your dream squad with strategy, cricket knowledge, and smart bidding.',
@@ -62,7 +62,7 @@ export const sampleEvents: Event[] = [
       name: 'Literature',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/C3qPY4nK/ipl-lit.jpg',
+    imageUrl: '/events/ipl-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -88,7 +88,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/zh1MjMps/murder.jpg',
+    imageUrl: '/events/murder.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -113,7 +113,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/ymStRBz7/jam-lit.jpg',
+    imageUrl: '/events/jam-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -138,7 +138,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/TMwXBWMk/fan-lit.jpg',
+    imageUrl: '/events/fandom-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -163,7 +163,7 @@ export const sampleEvents: Event[] = [
       name: 'Literature',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/WNhyhpWb/pot-lit.jpg',
+    imageUrl: '/events/pot-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -188,7 +188,7 @@ export const sampleEvents: Event[] = [
       name: 'Adventure',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/FvH1SJF/ship-lit.jpg',
+    imageUrl: '/events/ship-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -211,7 +211,7 @@ export const sampleEvents: Event[] = [
       name: 'Entertainment',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/TMNtK81g/litab-lit.jpg',
+    imageUrl: '/events/litab-lit.jpg',
     price: 30,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -234,7 +234,7 @@ export const sampleEvents: Event[] = [
       name: 'Antiques',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/VcvZBRPy/law.jpg',
+    imageUrl: '/events/law.jpg',
     price: 20,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -258,7 +258,7 @@ export const sampleEvents: Event[] = [
       name: 'Literature',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/G4MNCKVN/creative-lit.jpg',
+    imageUrl: '/events/creative_writing-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -282,7 +282,7 @@ export const sampleEvents: Event[] = [
       name: 'Grammar',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/Lz4qPQcS/spelling-lit.jpg',
+    imageUrl: '/events/spelling-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -306,7 +306,7 @@ export const sampleEvents: Event[] = [
       name: 'Adventure',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/rGf3gRpX/psy-lit.jpg',
+    imageUrl: '/events/tipsy-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -330,7 +330,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/kVP5RNMB/seize-lit.jpg',
+    imageUrl: '/events/seize-lit.jpg',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -354,7 +354,7 @@ export const sampleEvents: Event[] = [
       name: 'Mystery',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: 'https://i.ibb.co/JFyxwYBc/rapid-lit.jpg',
+    imageUrl: '/events/rapid-lit.jpg',
     price: 55,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -413,5 +413,104 @@ export const sampleEvents: Event[] = [
     isLiked: false,
     isRegistered: false,
     type: 'past'
+  },
+  {
+    id: '18',
+    title: 'GOSSIP MAGAZINE',
+    description: 'Whisphers, Rumors, Scandals. \nThe truth? That\'s optional. The drama? Absolutely needed.\nSpin the most mundane moment into the headlines-because it\'s not about what happened,it\'s about how you spill it. Get your pens ready and let your inner paparazzi out!',
+    date: '2025-10-07',
+    time: '1:00 PM - 4:30 PM',
+    location: 'Vivek Audi',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: '/events/gossip_magazine.jpg',
+    price: 0,
+    isFree: true,
+    organizer: 'LITABLEAU Events',
+    attendees: 0,
+    maxAttendees: 30,
+    tags: ['Gossip', 'Magazine', 'Creativity'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'ongoing',
+    contactInfo: 'Ashmika : +91 81221 21344',
+    isLink: true,
+    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdbO1SniTTtvE1bp33T-s0rfzCvQJAcen92gHk67hklTpo2OQ/viewform?usp=header&fbclid=PAQ0xDSwNPGspleHRuA2FlbQIxMQABp_enNSnanVolxdK4FW1-vDTgu13-DoAjs9aU7fE91Dgnn34exXWLy5fbp4zN_aem_wT55spB_1-eoXabSFNu1ZA'
+  },
+  {
+    id: '19',
+    title: 'ESCAPE ROOM',
+    description: 'Can you think fast enough before the time runs out? \nPut on your Sherlock hat,let\'s test your instincts. Escape before it\'s too late!',
+    date: '2025-10-07',
+    time: '1:00 PM - 4:30 PM',
+    location: 'Vivek Audi',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: '/events/escape_room.jpg',
+    price: 0,
+    isFree: true,
+    organizer: 'LITABLEAU Events',
+    attendees: 0,
+    maxAttendees: 30,
+    tags: ['Escape', 'Room', 'Adventure'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'ongoing',
+    contactInfo: 'Harini : +91 63820 60103',
+    isLink: true,
+    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfpBB3mJjlKGMKC9mKOCm4nnPbLB46RaQutgIYVDoaotFbUyQ/viewform?usp=header&fbclid=PAQ0xDSwNPGt1leHRuA2FlbQIxMQABp0jZmI-cuDAhTxaVSQsfwAWmtX7w-zlT_i8t-H7NQuZAk6yhpkA0_WokZsM4_aem_ezc2Tsh6rAv_-Vn_c2O3wQ'
+  },
+  {
+    id: '20',
+    title: 'BOARD GAMES',
+    description: 'Bring your friends and escape the stresses of college by playing your favorite board games. Enjoy an afternoon of fun and laughter!',
+    date: '2025-10-07',
+    time: '11:30 AM - 4:30 PM',
+    location: 'Vivek Audi',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: '/events/board_games.jpg',
+    price: 0,
+    isFree: true,
+    organizer: 'LITABLEAU Events',
+    attendees: 0,
+    maxAttendees: 30,
+    tags: ['Board', 'Games', 'Social'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'ongoing',
+    contactInfo: 'Niharika : +91 96776 56309 | Shaan : +91 97908 10625',
+    isLink: false,
+  },
+  {
+    id: '21',
+    title: 'THE ULTIMATE GEN Z TEST',
+    description: 'Are you a true Gen-Z? Check if you are the true Gen Z GOAT !!',
+    date: '2025-08-03',
+    mode: 'online',
+    category: {
+      id: 'social',
+      name: 'Social',
+      color: 'rgb(23,58,43)'
+    },
+    imageUrl: '/events/genz_test.jpg',
+    price: 0,
+    isFree: true,
+    organizer: 'LITABLEAU Events',
+    attendees: 0,
+    maxAttendees: 30,
+    tags: ['Gen-Z', 'Quiz', 'Social'],
+    isLiked: false,
+    isRegistered: false,
+    type: 'past',
   }
 ];

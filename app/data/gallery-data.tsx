@@ -39,7 +39,50 @@ export const galleryEvents = [
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit3.jpg',
-    },{
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit4.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit5.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit6.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit7.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit8.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit9.png',
+    },,{
+        id: uuidv4(),
+        eventName: 'Litablaze - 25',
+        title: 'LITABLAZE',
+        date: '05/04/2025',
+        imageUrl: '/2025/litablaze/lit10.png',
+    },
+    {
         id: uuidv4(),
         eventName: 'Members Meet - Litclub',
         title: 'MEMBERS MEET',
@@ -63,5 +106,53 @@ export const galleryEvents = [
         title: 'MEMBERS MEET',
         date: '04/09/2025',
         imageUrl: '/2025/core-meet/meet4.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Members Meet - Litclub',
+        title: 'MEMBERS MEET',
+        date: '04/09/2025',
+        imageUrl: '/2025/core-meet/meet5.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Members Meet - Litclub',
+        title: 'MEMBERS MEET',
+        date: '04/09/2025',
+        imageUrl: '/2025/core-meet/meet6.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Members Meet - Litclub',
+        title: 'MEMBERS MEET',
+        date: '04/09/2025',
+        imageUrl: '/2025/core-meet/meet7.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Members Meet - Litclub',
+        title: 'MEMBERS MEET',
+        date: '04/09/2025',
+        imageUrl: '/2025/core-meet/meet8.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Members Meet - Litclub',
+        title: 'MEMBERS MEET',
+        date: '04/09/2025',
+        imageUrl: '/2025/core-meet/meet9.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Open Call',
+        title: 'LitClub Open Call',
+        date: '12/08/2025',
+        imageUrl: '/2025/open-call/oc1.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Open Call',
+        title: 'LitClub Open Call',
+        date: '12/08/2025',
+        imageUrl: '/2025/open-call/oc2.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Open Call',
+        title: 'LitClub Open Call',
+        date: '12/08/2025',
+        imageUrl: '/2025/open-call/oc3.jpg',
     }
 ];

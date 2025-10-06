@@ -44,7 +44,7 @@ export function Navbar() {
               EVENTS
             </a>
             <a
-              href="/contact"
+              href="/meetus"
               className="text-[#f5f5dc] uppercase font-classic text-lg hover:text-[#f5f5dc]/80 transition-colors duration-200"
             >
               MEET US
@@ -78,7 +78,7 @@ export function Navbar() {
                 EVENTS
               </a>
               <a
-                href="/contact"
+                href="/meetus"
                 className="block px-3 py-2 text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors duration-200 font-classic uppercase"
                 onClick={() => setIsOpen(false)}
               >

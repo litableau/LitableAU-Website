@@ -39,43 +39,43 @@ export const galleryEvents = [
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit3.jpg',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit4.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit5.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit6.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit7.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit8.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',
         date: '05/04/2025',
         imageUrl: '/2025/litablaze/lit9.png',
-    },,{
+    },{
         id: uuidv4(),
         eventName: 'Litablaze - 25',
         title: 'LITABLAZE',

@@ -43,7 +43,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Email</h4>
-                    <p className="text-[rgb(23,58,43)] font-classic">litableau@annauniv.edu</p>
+                    <p className="text-[rgb(23,58,43)] font-classic">litclubau@gmail.com</p>
                   </div>
                 </div>
 
@@ -53,7 +53,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Phone</h4>
-                    <p className="text-[rgb(23,58,43)] font-classic">+91 44 2235 7000</p>
+                    <p className="text-[rgb(23,58,43)] font-classic">+91 98407 90675</p>
                   </div>
                 </div>
 
@@ -78,7 +78,6 @@ export function ContactSection() {
                     <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Office Hours</h4>
                     <p className="text-[rgb(23,58,43)] font-classic">
                       Monday - Friday: 9:00 AM - 5:00 PM<br />
-                      Saturday: 9:00 AM - 1:00 PM
                     </p>
                   </div>
                 </div>

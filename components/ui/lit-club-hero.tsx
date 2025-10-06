@@ -166,11 +166,9 @@ export function LitClubHero() {
     LITCLUB
   </h1>
   <p
-    className="mt-2 text-[#F5F5DC] opacity-90 text-sm md:text-base lg:text-lg text-justify"
+    className="mt-3 text-[#F5F5DC] opacity-90 text-xs sm:text-sm md:text-base lg:text-lg text-center leading-snug max-w-[90vw] md:max-w-3xl"
     style={{
       fontFamily: "'Georgia', 'Times New Roman', serif",
-      maxWidth: '104ch', // match approx width of LITCLUB
-      wordSpacing: '11ch', // adjust spacing to stretch nicely
     }}
   >
     Literary Club of Anna University

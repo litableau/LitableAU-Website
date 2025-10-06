@@ -154,5 +154,59 @@ export const galleryEvents = [
         title: 'LitClub Open Call',
         date: '12/08/2025',
         imageUrl: '/2025/open-call/oc3.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Bibliophiles',
+        title: 'BIBLIOPHILES',
+        date: '01/12/2024',
+        imageUrl: '/2024/bibliophiles/ib1.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Bibliophiles',
+        title: 'BIBLIOPHILES',
+        date: '01/12/2024',
+        imageUrl: '/2024/bibliophiles/ib2.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Bibliophiles',
+        title: 'BIBLIOPHILES',
+        date: '01/12/2024',
+        imageUrl: '/2024/bibliophiles/ib3.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Bibliophiles',
+        title: 'BIBLIOPHILES',
+        date: '01/12/2024',
+        imageUrl: '/2024/bibliophiles/ib4.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '26/08/2024',
+        imageUrl: '/2024/ice-breaker/ib5.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '26/08/2024',
+        imageUrl: '/2024/ice-breaker/ib6.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '26/08/2024',
+        imageUrl: '/2024/ice-breaker/ib7.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '26/08/2024',
+        imageUrl: '/2024/ice-breaker/ib8.jpg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '26/08/2024',
+        imageUrl: '/2024/ice-breaker/ib9.jpg',
     }
 ];

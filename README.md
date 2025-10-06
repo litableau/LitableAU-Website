@@ -12,7 +12,7 @@ To add or edit events in the gallery, update the `app/data/gallery-data.tsx` fil
     title: "EVENT TITLE",            // Short title in uppercase (e.g., "ON STAGE")
     date: "MM/DD/YYYY",                // Date in MM/DD/YYYY format (e.g., "04/04/2025")
     description: "Event description",// Brief description of the event
-    imageUrl: "https://image-url",   // URL of the event image
+    imageUrl: "/2025/event-folder/image1.jpg"   // URL of the event image('/2025/murder-mystery/murder-mystery-2.jpg')
 }
 ```
 

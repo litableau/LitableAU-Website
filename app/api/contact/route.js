@@ -1,10 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-// TypeScript on Vercel may not see local nodemailer types; safely ignore for build.
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import { NextResponse } from "next/server";
+// Using a JavaScript route file so TypeScript type declarations for nodemailer are not required.
 import nodemailer from "nodemailer";
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   try {
     const { name, email, subject, message } = await req.json();
 

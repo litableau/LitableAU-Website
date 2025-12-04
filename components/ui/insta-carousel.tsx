@@ -29,10 +29,13 @@ export function InstaCarousel() {
   }, []);
 
   const posts = [
+    "https://www.instagram.com/p/DMVQcrQxKs0/?igsh=bWdydmlpZzZ1bXRj",
+    "https://www.instagram.com/p/DQjvBc-k0eU/?igsh=MW9mbmV1OGx6aW1xcQ==",
     "https://www.instagram.com/p/DPIwZ0GEWvp/?igsh=czZuZGpleGp5cTdk",
     "https://www.instagram.com/p/DPTNAqTEWyT/?igsh=YnNjYXMwZDkzZnMw",
     "https://www.instagram.com/p/DO3D1qVkUuc/?igsh=eG5vYndxZmh4cGJm",
     "https://www.instagram.com/p/DOWAZo8jN0j/?igsh=bDFsazhmMmFwOGQw",
+    
   ];
 
   return (

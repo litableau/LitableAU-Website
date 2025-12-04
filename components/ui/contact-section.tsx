@@ -1,22 +1,64 @@
 "use client";
-import React from "react";
+
+import React, { useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
-
 export function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setIsSubmitting(true);
+    setStatus("idle");
+    setStatusMessage("");
+
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get("name")?.toString() || "",
+      email: formData.get("email")?.toString() || "",
+      subject: formData.get("subject")?.toString() || "",
+      message: formData.get("message")?.toString() || "",
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setStatus("success");
+      setStatusMessage("Thank you! Your message has been sent.");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setStatusMessage("Sorry, something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <section id="contact" className="py-20 bg-[rgb(229,199,177)] relative overflow-hidden">
-       {/* Elegant Beige Background Effects */}
+    <section
+      id="contact"
+      className="py-20 bg-[rgb(229,199,177)] relative overflow-hidden"
+    >
+      {/* Elegant Beige Background Effects */}
       <div className="absolute inset-0">
         {/* Main brown background with subtle beige overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[rgb(229,199,177)]/90 via-[rgb(229,199,177)]/80 to-[rgb(229,199,177)]/70"></div>
-       
-        
-       
-
-     </div>
-      
-    
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -24,7 +66,8 @@ export function ContactSection() {
             Get in Touch
           </h2>
           <p className="text-xl text-[rgb(23,58,43)] max-w-3xl mx-auto font-classic leading-relaxed">
-            Have questions about our literary society? Want to join our community? We'd love to hear from you.
+            Have questions about our literary society? Want to join our community?
+            We&apos;d love to hear from you.
           </p>
         </div>
 
@@ -35,15 +78,19 @@ export function ContactSection() {
               <h3 className="text-2xl font-bold text-[rgb(23,58,43)] mb-6 font-elegant">
                 Contact Information
               </h3>
-              
+
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[rgb(23,58,43)]/10 rounded-full flex items-center justify-center flex-shrink-0">
                     <Mail className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Email</h4>
-                    <p className="text-[rgb(23,58,43)] font-classic">litclubau@gmail.com</p>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">
+                      Email
+                    </h4>
+                    <p className="text-[rgb(23,58,43)] font-classic">
+                      litclubau@gmail.com
+                    </p>
                   </div>
                 </div>
 
@@ -52,7 +99,9 @@ export function ContactSection() {
                     <Phone className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Phone</h4>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">
+                      Phone
+                    </h4>
                     <p className="text-[rgb(23,58,43)] font-classic">+91 98407 90675</p>
                   </div>
                 </div>
@@ -62,9 +111,12 @@ export function ContactSection() {
                     <MapPin className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Location</h4>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">
+                      Location
+                    </h4>
                     <p className="text-[rgb(23,58,43)] font-classic">
-                      College of Engineering , Guindy<br />
+                      College of Engineering , Guindy
+                      <br />
                       Anna University, Chennai
                     </p>
                   </div>
@@ -75,9 +127,12 @@ export function ContactSection() {
                     <Clock className="h-6 w-6 text-[rgb(23,58,43)]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">Office Hours</h4>
+                    <h4 className="font-semibold text-[rgb(23,58,43)] font-elegant">
+                      Office Hours
+                    </h4>
                     <p className="text-[rgb(23,58,43)] font-classic">
-                      Monday - Friday: 9:00 AM - 5:00 PM<br />
+                      Monday - Friday: 9:00 AM - 5:00 PM
+                      <br />
                     </p>
                   </div>
                 </div>
@@ -90,10 +145,13 @@ export function ContactSection() {
             <h3 className="text-2xl font-bold text-[rgb(23,58,43)] mb-6 font-elegant">
               Send us a Message
             </h3>
-            
-            <form className="space-y-4">
+
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic"
+                >
                   Full Name
                 </label>
                 <input
@@ -107,7 +165,10 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic"
+                >
                   Email Address
                 </label>
                 <input
@@ -121,7 +182,10 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic"
+                >
                   Subject
                 </label>
                 <input
@@ -135,7 +199,10 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-[rgb(23,58,43)] mb-2 font-classic"
+                >
                   Message
                 </label>
                 <textarea
@@ -148,12 +215,25 @@ export function ContactSection() {
                 ></textarea>
               </div>
 
+              {status !== "idle" && (
+                <p
+                  className={`text-sm font-classic ${
+                    status === "success"
+                      ? "text-green-700"
+                      : "text-red-700"
+                  }`}
+                >
+                  {statusMessage}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-[rgb(23,58,43)] text-[#F5F5DC] py-3 px-6 rounded-lg hover:bg-[rgb(23,58,43)]/90 transition-colors duration-200 font-semibold font-elegant flex items-center justify-center space-x-2"
+                disabled={isSubmitting}
+                className="w-full bg-[rgb(23,58,43)] text-[#F5F5DC] py-3 px-6 rounded-lg hover:bg-[rgb(23,58,43)]/90 transition-colors duration-200 font-semibold font-elegant flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 <Send className="h-5 w-5" />
-                <span>Send Message</span>
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               </button>
             </form>
           </div>

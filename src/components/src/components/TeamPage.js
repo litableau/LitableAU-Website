@@ -1487,6 +1487,7 @@ const TeamPage = () => {
     'Ops and Logistics': [
       { id: 8, name: 'Muhammed Sheik', role: 'Head', image: '/images/MuhammedSheik.jpg' },
       { id: 9, name: 'Tanvi Shree', role: 'Head', image: '/images/TanviShree.jpg' },
+      
       { id: 11, name: 'Pritika R.D', role: 'Jr Head', image: '/images/PritikaRD.jpg' },
     ],
     'Media and Marketing': [
@@ -1507,7 +1508,7 @@ const TeamPage = () => {
       { id: 22, name: 'Vaishnave', role: 'Jr Head', image: '/images/Vaishnave.jpg' },
     ],
     'External Relations': [
-    ],
+     ],
     Photography: [
       { id: 25, name: 'Shree Vekka Narayanee', role: 'Head', image: '/images/ShreeVekkaNarayanee.jpg' },
       { id: 26, name: 'Joshika Madhu', role: 'Head', image: '/images/JoshikaMadhu.jpg' },
@@ -1621,9 +1622,7 @@ const TeamPage = () => {
         <FooterMessage>
           <FooterTitle>Join Our Literary Journey</FooterTitle>
           <FooterSubtitle>Every great story needs passionate storytellers. Be part of ours.</FooterSubtitle>
-          <JoinButton as="a" href="https://instagram.com/litclubau" target="_blank" rel="noopener noreferrer">
-            Get Involved
-          </JoinButton>
+          <JoinButton as="a" href="https://instagram.com/litclubau" target="_blank" rel="noopener noreferrer">Get Involved</JoinButton>
         </FooterMessage>
       </TeamFooterSection>
 

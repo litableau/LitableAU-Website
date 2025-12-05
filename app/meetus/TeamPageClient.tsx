@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-// Load TeamPage only on the client to avoid SSR/classname mismatches
+// Client-only wrapper to avoid SSR issues with styled-components
 const TeamPage = dynamic(
   () => import('../../src/components/src/components/TeamPage'),
   { ssr: false, loading: () => <div className="py-10 text-center">Loading team...</div> }

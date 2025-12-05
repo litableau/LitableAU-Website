@@ -27,6 +27,9 @@
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^13.0.0"
   },
+  "overrides": {
+    "stylis": "4.3.1"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",

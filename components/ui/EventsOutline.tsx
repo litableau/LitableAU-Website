@@ -132,9 +132,9 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
             </button>
           </div>
           <div className="hero-images">
-            <div className="hero-image hero-image-1"><img src="https://i.ibb.co/VWrR48fJ/hero1.jpg" alt="Vintage magnifying glass" /></div>
-            <div className="hero-image hero-image-2"><img src="https://i.ibb.co/x0J0STg/hero2.jpg" alt="Old books" /></div>
-            <div className="hero-image hero-image-3"><img src="https://i.ibb.co/6JLDz77y/hero3.jpg" alt="Daisy flowers" /></div>
+            <div className="hero-image hero-image-1"><img src="events/hero1.jpg" alt="Vintage magnifying glass" /></div>
+            <div className="hero-image hero-image-2"><img src="events/hero2.jpg" alt="Old books" /></div>
+            <div className="hero-image hero-image-3"><img src="events/hero3.jpg" alt="Daisy flowers" /></div>
           </div>
         </div>
         <div className="hero-lines">

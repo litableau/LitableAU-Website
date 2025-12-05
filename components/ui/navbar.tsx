@@ -30,11 +30,14 @@ export function Navbar() {
 
           {/* Center Pen Icon */}
           <div className="flex justify-center">
-            <a href="/">
-              <Pen className="h-8 w-8 text-[#f5f5dc] hover:text-[#f5f5dc]/80 transition-colors duration-200" />
-            </a>
+               <a href="/">
+                  <img
+                        src="/images/Liticon.png"
+                        alt="Lit Icon"
+                        className="h-12 w-12 object-contain transition-transform transition-opacity duration-200 hover:scale-110 hover:opacity-80"
+                  />
+                </a>
           </div>
-
           {/* Right links */}
           <div className="flex items-center justify-end space-x-20">
             <a

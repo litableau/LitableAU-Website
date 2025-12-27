@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState, TouchEvent } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { galleryEvents } from "@/app/data/gallery-data";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 /* ---------------- GROUP BY YEAR → EVENT ---------------- */
 
@@ -17,7 +23,8 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
   events.forEach(event => {
     const year = parseDate(event.date).getFullYear().toString();
     if (!grouped[year]) grouped[year] = {};
-    if (!grouped[year][event.eventName]) grouped[year][event.eventName] = [];
+    if (!grouped[year][event.eventName])
+      grouped[year][event.eventName] = [];
     grouped[year][event.eventName].push(event);
   });
 
@@ -26,7 +33,8 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
   sortedYears.forEach(year => {
     Object.keys(grouped[year]).forEach(eventName => {
       grouped[year][eventName].sort(
-        (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime()
+        (a, b) =>
+          parseDate(b.date).getTime() - parseDate(a.date).getTime()
       );
     });
   });
@@ -34,47 +42,139 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
   return { grouped, sortedYears };
 };
 
-/* ---------------- COMPONENT ---------------- */
+/* ---------------- AUTO ROTATING DESKTOP CAROUSEL ---------------- */
+
+function AutoRotatingCarousel({ events }: { events: any[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [holding, setHolding] = useState(false);
+
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const total = events.length;
+  const radius = 380;
+
+  useEffect(() => {
+    if (holding) return;
+
+    intervalRef.current = setInterval(() => {
+      setActiveIndex(i => (i + 1) % total);
+    }, 3000);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [holding, total]);
+
+  const rotateLeft = () =>
+    setActiveIndex(i => (i - 1 + total) % total);
+  const rotateRight = () =>
+    setActiveIndex(i => (i + 1) % total);
+
+  return (
+    <div
+      className={`
+        absolute inset-0 flex items-center justify-center
+        perspective-[1400px]
+        z-10
+        ${holding ? "cursor-grabbing" : "cursor-default"}
+      `}
+      onMouseDown={() => setHolding(true)}
+      onMouseUp={() => setHolding(false)}
+      onMouseLeave={() => setHolding(false)}
+    >
+      {/* CARDS */}
+      {events.map((item, i) => {
+        const offset = ((i - activeIndex + total) % total);
+        const angle = (offset * (2 * Math.PI)) / total;
+
+        const x = Math.sin(angle) * radius;
+        const z = Math.cos(angle) * radius;
+
+        const scale = (z + radius) / (2 * radius) + 0.35;
+        const opacity = (z + radius) / (2 * radius);
+
+        return (
+          <div
+            key={i}
+            className="
+              absolute
+              transition-transform
+              duration-[1600ms]
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+            "
+            style={{
+              transform: `
+                translateX(${x}px)
+                translateZ(${z}px)
+                scale(${scale})
+                rotateY(${x > 0 ? -8 : 8}deg)
+              `,
+              opacity,
+              zIndex: Math.round(scale * 100),
+            }}
+          >
+            <div className="
+              bg-[#f2eee9]
+              rounded-3xl
+              shadow-2xl
+              w-[360px]
+              h-[420px]
+              border-4 border-[#ab958a]
+              overflow-hidden
+            ">
+              <img
+                src={item.imageUrl}
+                className="w-full h-[260px] object-cover rounded-t-3xl"
+                alt=""
+              />
+              <div className="h-[160px] p-5 text-[#642a38] text-center flex flex-col justify-center">
+                <h4 className="font-bold text-lg leading-tight">
+                  {item.title}
+                </h4>
+                <p className="text-sm opacity-70">{item.date}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+
+      {/* ARROWS (ALWAYS ON TOP OF CAROUSEL) */}
+      <div className="absolute inset-0 pointer-events-none z-[999]">
+        <button
+          onClick={rotateLeft}
+          className="
+            pointer-events-auto
+            absolute left-6 top-1/2 -translate-y-1/2
+            bg-[#62554d] text-[#ece8df]
+            p-3 rounded-full shadow-lg
+            hover:bg-[#ece8df] hover:text-[#642a38]
+            transition
+          "
+        >
+          <MoveLeft size={26} />
+        </button>
+
+        <button
+          onClick={rotateRight}
+          className="
+            pointer-events-auto
+            absolute right-6 top-1/2 -translate-y-1/2
+            bg-[#62554d] text-[#ece8df]
+            p-3 rounded-full shadow-lg
+            hover:bg-[#ece8df] hover:text-[#642a38]
+            transition
+          "
+        >
+          <MoveRight size={26} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- MAIN COMPONENT ---------------- */
 
 export default function GalleryRedesign() {
   const { grouped, sortedYears } = groupByYearAndEvent(galleryEvents);
-
-  const [selectedIndexes, setSelectedIndexes] = useState<Record<string, number>>(
-    () => {
-      const obj: Record<string, number> = {};
-      sortedYears.forEach(year =>
-        Object.keys(grouped[year]).forEach(event =>
-          (obj[`${year}-${event}`] = 0)
-        )
-      );
-      return obj;
-    }
-  );
-
-  const keyOf = (y: string, e: string) => `${y}-${e}`;
-
-  /* ---------------- MOBILE SWIPE (UNCHANGED) ---------------- */
-
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchStart(e.targetTouches[0].clientX);
-    setTouchEnd(null);
-  };
-
-  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = (key: string, max: number) => {
-    if (!touchStart || !touchEnd) return;
-    const diff = touchStart - touchEnd;
-    if (diff > 50)
-      setSelectedIndexes(p => ({ ...p, [key]: (p[key] + 1) % max }));
-    if (diff < -50)
-      setSelectedIndexes(p => ({ ...p, [key]: (p[key] - 1 + max) % max }));
-  };
 
   return (
     <div className="min-h-screen bg-[#ece8df] py-20 px-4">
@@ -90,131 +190,65 @@ export default function GalleryRedesign() {
           </p>
         </div>
 
-        {/* YEAR CARDS */}
         {sortedYears.map(year => (
           <div
             key={year}
             className="
-              mb-32 bg-[#642a38]
-              rounded-3xl p-10 md:p-16
+              mb-32
+              bg-[#ab958a]
+              rounded-3xl
+              p-10 md:p-16
               shadow-xl
             "
           >
-            <h2 className="text-3xl md:text-5xl text-[#ece8df] text-center mb-20 font-serif">
+            <h2 className="text-3xl md:text-5xl text-[#642a38] text-center mb-20 font-serif">
               {year}
             </h2>
 
             {Object.keys(grouped[year]).map(eventName => {
               const events = grouped[year][eventName];
-              const indexKey = keyOf(year, eventName);
-              const currentIndex = selectedIndexes[indexKey];
-
-              const prev =
-                events[(currentIndex - 1 + events.length) % events.length];
-              const curr = events[currentIndex];
-              const next =
-                events[(currentIndex + 1) % events.length];
 
               return (
                 <div key={eventName} className="mb-28">
 
-                  <h3 className="text-xl md:text-2xl font-semibold text-[#ece8df] text-center mb-12 font-serif">
+                  <h3 className="text-xl md:text-2xl font-semibold text-[#642a38] text-center mb-12 font-serif">
                     {eventName}
                   </h3>
 
-                  {/* ---------------- MOBILE (UNCHANGED) ---------------- */}
-                  <div
-                    className="md:hidden"
-                    onTouchStart={onTouchStart}
-                    onTouchMove={onTouchMove}
-                    onTouchEnd={() => onTouchEnd(indexKey, events.length)}
-                  >
-                    <div className="max-w-sm mx-auto bg-[#ece8df] border-2 border-[#642a38] rounded-xl overflow-hidden shadow-lg">
-                      <img
-                        src={curr.imageUrl}
-                        className="h-64 w-full object-cover"
-                        alt=""
-                      />
-                      <div className="p-4 text-[#642a38]">
-                        <h4 className="font-bold">{curr.title}</h4>
-                        <p className="text-sm opacity-70">{curr.date}</p>
-                      </div>
-                    </div>
+                  {/* MOBILE (UNCHANGED) */}
+                  <div className="md:hidden">
+                    <Swiper
+                      modules={[Pagination, Autoplay]}
+                      spaceBetween={24}
+                      slidesPerView={1.1}
+                      centeredSlides
+                      pagination={{ clickable: true }}
+                      autoplay={{ delay: 3500, disableOnInteraction: false }}
+                      className="pb-10"
+                    >
+                      {events.map((item, i) => (
+                        <SwiperSlide key={i}>
+                          <div className="bg-[#f2eee9] rounded-3xl shadow-2xl border-4 border-[#ab958a] overflow-hidden">
+                            <img
+                              src={item.imageUrl}
+                              className="w-full h-[280px] object-cover"
+                              alt=""
+                            />
+                            <div className="p-4 text-[#642a38] text-center">
+                              <h4 className="font-bold">{item.title}</h4>
+                              <p className="text-sm opacity-70">{item.date}</p>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </div>
 
-                  {/* ---------------- DESKTOP (BIGGER IMAGES + INSIDE ARROWS) ---------------- */}
-                  <div className="hidden md:flex items-center justify-center relative h-[460px]">
-
-                    {/* LEFT */}
-                    <div className="scale-90 opacity-60 -rotate-6 bg-[#ab958a] rounded-3xl shadow-xl w-[300px] h-[360px] mr-[-130px]">
-                      <img
-                        src={prev.imageUrl}
-                        className="w-full h-[260px] object-cover rounded-t-3xl"
-                      />
-                    </div>
-
-                    {/* CENTER */}
-                    <div className="bg-[#ece8df] rounded-3xl shadow-2xl w-[380px] h-[460px] z-20 border-4 border-[#ab958a]">
-                      <img
-                        src={curr.imageUrl}
-                        className="w-full h-[340px] object-cover rounded-t-3xl"
-                      />
-                      <div className="p-5 text-[#642a38] text-center">
-                        <h4 className="font-bold text-xl">{curr.title}</h4>
-                        <p className="text-sm opacity-70">{curr.date}</p>
-                      </div>
-                    </div>
-
-                    {/* RIGHT */}
-                    <div className="scale-90 opacity-60 rotate-6 bg-[#ab958a] rounded-3xl shadow-xl w-[300px] h-[360px] ml-[-130px]">
-                      <img
-                        src={next.imageUrl}
-                        className="w-full h-[260px] object-cover rounded-t-3xl"
-                      />
-                    </div>
-
-                    {/* ARROWS INSIDE CARD */}
-                    <button
-                      onClick={() =>
-                        setSelectedIndexes(p => ({
-                          ...p,
-                          [indexKey]:
-                            (p[indexKey] - 1 + events.length) % events.length
-                        }))
-                      }
-                      className="
-                        absolute left-6 top-1/2 -translate-y-1/2
-                        bg-[#ab958a] text-[#ece8df]
-                        p-3 rounded-full
-                        shadow-lg hover:bg-[#ece8df]
-                        hover:text-[#642a38]
-                        transition z-30
-                      "
-                    >
-                      <MoveLeft size={30} />
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setSelectedIndexes(p => ({
-                          ...p,
-                          [indexKey]:
-                            (p[indexKey] + 1) % events.length
-                        }))
-                      }
-                      className="
-                        absolute right-6 top-1/2 -translate-y-1/2
-                        bg-[#ab958a] text-[#ece8df]
-                        p-3 rounded-full
-                        shadow-lg hover:bg-[#ece8df]
-                        hover:text-[#642a38]
-                        transition z-30
-                      "
-                    >
-                      <MoveRight size={30} />
-                    </button>
-
+                  {/* DESKTOP */}
+                  <div className="hidden md:block relative h-[500px] z-10">
+                    <AutoRotatingCarousel events={events} />
                   </div>
+
                 </div>
               );
             })}

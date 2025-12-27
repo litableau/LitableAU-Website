@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Menu, X, Pen } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +9,7 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgb(23,58,43)] backdrop-blur-md border-b border-[rgb(23,58,43)] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Desktop Navbar */}
+        {/* -------------------- DESKTOP NAVBAR -------------------- */}
         <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center h-16">
 
           {/* Left links */}
@@ -28,16 +28,17 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Center Pen Icon */}
+          {/* Center Logo */}
           <div className="flex justify-center">
-               <a href="/">
-                  <img
-                        src="/images/Liticon.png"
-                        alt="Lit Icon"
-                        className="h-12 w-12 object-contain transition-transform transition-opacity duration-200 hover:scale-110 hover:opacity-80"
-                  />
-                </a>
+            <a href="/">
+              <img
+                src="/images/Liticon.png"
+                alt="Lit Icon"
+                className="h-12 w-12 object-contain transition-transform transition-opacity duration-200 hover:scale-110 hover:opacity-80"
+              />
+            </a>
           </div>
+
           {/* Right links */}
           <div className="flex items-center justify-end space-x-20">
             <a
@@ -55,7 +56,7 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation (only visible when open) */}
+        {/* -------------------- MOBILE NAVIGATION DROPDOWN -------------------- */}
         {isOpen && (
           <div className="md:hidden mt-2">
             <div className="mobile-dropdown px-2 pt-2 pb-3 space-y-1 bg-[rgb(23,58,43)] rounded-lg border border-[#f5f5dc]/20">
@@ -91,7 +92,27 @@ export function Navbar() {
           </div>
         )}
 
-        {/* Mobile Menu Button */}
+        {/* -------------------- MOBILE LOGO WITH HOME TEXT + GLOW + TAP -------------------- */}
+        <div className="md:hidden flex flex-col items-center justify-center mt-3">
+          <a href="/" className="flex flex-col items-center">
+            <img
+              src="/images/Liticon.png"
+              alt="Lit Icon"
+              className="
+                h-12 w-12 object-contain
+                transition-transform duration-200
+                active:scale-90                 /* tap animation */
+                ring-1 ring-[#f5f5dc]/30        /* faint glow */
+                rounded-full p-2                /* soften glow */
+              "
+            />
+            <span className="text-[10px] text-[#f5f5dc] mt-1 tracking-wide uppercase opacity-80">
+              Home
+            </span>
+          </a>
+        </div>
+
+        {/* -------------------- MOBILE MENU BUTTON -------------------- */}
         <div className="md:hidden absolute top-4 right-4">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -100,6 +121,7 @@ export function Navbar() {
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
+
       </div>
     </nav>
   );

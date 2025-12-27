@@ -11,59 +11,129 @@ const MissionCard = ({
 }) => (
   <div className="w-full flex justify-center">
     <div
-      className={`relative transition-all duration-500 shadow-lg font-argesta
+      className={`relative transition-all duration-500 shadow-lg font-argesta cursor-pointer
         ${
           active
-            ? "w-11/12 sm:w-9/12 lg:w-7/12 h-[40vh] sm:h-[50vh] landscape:h-[60vh] bg-[#012D20] rounded-3xl p-6 flex flex-col"
-            : "w-10/12 sm:w-8/12 h-20 sm:h-24 landscape:h-28 bg-[#EDE0D4] rounded-full flex items-center justify-between px-6 hover:bg-[#6B705C] hover:text-[#EDE0D4]"
+            ? `
+              w-11/12 sm:w-9/12 lg:w-7/12
+              h-[40vh] sm:h-[50vh] landscape:h-[60vh]
+              bg-[#642a38]          /* Merlot */
+              rounded-3xl
+              p-6
+              flex flex-col
+            `
+            : `
+              w-10/12 sm:w-8/12
+              h-20 sm:h-24 landscape:h-28
+              bg-[#e1d5c9]          /* Echo */
+              rounded-full
+              flex items-center justify-between
+              px-6
+              hover:bg-[#ab958a]   /* Rustic */
+            `
         }`}
     >
-      {/* Collapsed View */}
+      {/* ---------------- COLLAPSED VIEW ---------------- */}
       {!active && (
         <>
           <span
-            className="text-lg sm:text-xl font-semibold tracking-wide cursor-pointer text-[#012D20] hover:text-[#EDE0D4] font-argesta"
+            className="
+              text-lg sm:text-xl
+              font-semibold
+              tracking-wide
+              text-[#642a38]
+              transition-colors
+            "
             onClick={() => setActiveCard("mission")}
           >
             Mission & Vision
           </span>
+
           <button
             onClick={() => setActiveCard("mission")}
-            className="p-2 sm:p-3 rounded-full bg-[#012D20] cursor-pointer hover:bg-[#EDE0D4] transition"
+            className="
+              p-2 sm:p-3 rounded-full
+              bg-[#642a38]
+              hover:bg-[#5a2431]
+              transition
+            "
           >
-            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#7A806C]" />
+            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#ece8df]" />
           </button>
         </>
       )}
 
-      {/* Expanded View */}
+      {/* ---------------- EXPANDED VIEW ---------------- */}
       {active && (
-        <> 
+        <>
+          {/* Header */}
           <div className="flex justify-between items-center">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#FBE8D8] tracking-wide font-argesta">
+            <h2
+              className="
+                text-xl sm:text-2xl
+                font-bold
+                tracking-wide
+                text-[#ece8df]
+              "
+            >
               Mission & Vision
             </h2>
+
             <button
               onClick={() => setActiveCard(null)}
-              className="p-2 sm:p-3 rounded-full bg-[#E5C7B1] hover:bg-[#FBE8D8] transition"
+              className="
+                p-2 sm:p-3 rounded-full
+                bg-[#ab958a]
+                hover:bg-[#ece8df]
+                transition
+              "
             >
-              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#012D20]" />
+              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#642a38]" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#EDE0D4] scrollbar-track-[#6B705C] mt-4 pr-4">
-            <h3 className="text-base sm:text-lg font-semibold text-[#E5C7B1] mb-2 text-center font-argesta">
+          {/* Scrollable Content */}
+          <div
+            className="
+              flex-1
+              overflow-y-auto
+              mt-4 pr-4
+              scrollbar-thin
+              scrollbar-thumb-[#ab958a]
+              scrollbar-track-[#5a2431]
+            "
+          >
+            <h3
+              className="
+                text-base sm:text-lg
+                font-semibold
+                text-[#ab958a]
+                mb-2
+                text-center
+              "
+            >
               Mission and Vision
             </h3>
-            <p className="leading-relaxed text-[#F5F5DC] mb-6 text-sm sm:text-base font-argesta">
-              The Literary Club of Anna University aims to create a space where expression and innovation
-              bloom– where the fine arts of every kind have a seat at the table. To not only explore but
-              expand our palette, to form real connections over everything language and arts, to finally simply
-              be a museum of creation and inspiration.
-              We conduct events, we let the youth write their mind– everybody, whether to be a witness or
-              participate or quite simply, to learn– you’ll find your voice with us. The words, the voice will
-              always be yours. We’re to give it a platform. We have our members across all campuses,
-              working together to bring to life all the unsaid, unwritten talent hidden in plain sight.
+
+            <p
+              className="
+                leading-relaxed
+                text-[#ece8df]
+                text-sm sm:text-base
+              "
+            >
+              The Literary Club of Anna University aims to create a space where
+              expression and innovation bloom — where the fine arts of every kind
+              have a seat at the table. To not only explore but expand our palette,
+              to form real connections over everything language and arts, to finally
+              simply be a museum of creation and inspiration.
+              <br /><br />
+              We conduct events, we let the youth write their mind — everybody,
+              whether to be a witness or participate or quite simply, to learn —
+              you’ll find your voice with us. The words, the voice will always be
+              yours. We’re here to give it a platform. We have our members across
+              all campuses, working together to bring to life all the unsaid,
+              unwritten talent hidden in plain sight.
             </p>
           </div>
         </>

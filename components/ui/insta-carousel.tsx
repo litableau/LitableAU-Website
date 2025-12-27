@@ -35,15 +35,15 @@ export function InstaCarousel() {
     "https://www.instagram.com/p/DPTNAqTEWyT/?igsh=YnNjYXMwZDkzZnMw",
     "https://www.instagram.com/p/DO3D1qVkUuc/?igsh=eG5vYndxZmh4cGJm",
     "https://www.instagram.com/p/DOWAZo8jN0j/?igsh=bDFsazhmMmFwOGQw",
-    
   ];
 
   return (
-    <section className="py-20 bg-[rgb(23,58,43)] text-[rgb(242,223,209)]">
+    <section className="py-20 bg-[#642a38] text-[#e1d5c9]">
       <div className="max-w-6xl mx-auto px-6">
+
         {/* Heading */}
         <div className="flex items-center justify-center gap-2 mb-10">
-          <Instagram className="w-6 h-6 text-[rgb(242,223,209)]" />
+          <Instagram className="w-6 h-6 text-[#e1d5c9]" />
           <h2 className="text-2xl md:text-3xl font-semibold text-center">
             Latest from Instagram
           </h2>
@@ -66,17 +66,14 @@ export function InstaCarousel() {
         >
           {posts.map((url, i) => (
             <SwiperSlide key={i}>
-              <div className="relative flex flex-col justify-start items-center bg-[rgb(242,223,209)]/20 backdrop-blur-sm rounded-2xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 duration-300 p-4 h-[550px] overflow-hidden group">
-                
+              <div className="relative flex flex-col justify-start items-center bg-[#e1d5c9]/20 backdrop-blur-sm rounded-2xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 duration-300 p-4 h-[550px] overflow-hidden group border border-[#ab958a]/30">
+
                 {/* Instagram Embed */}
                 <blockquote
                   className="instagram-media !m-0"
                   data-instgrm-permalink={url}
                   data-instgrm-version="14"
-                  style={{
-                    width: "100%",
-                    minHeight: "440px",
-                  }}
+                  style={{ width: "100%", minHeight: "440px" }}
                 ></blockquote>
 
                 {/* Hover Overlay */}
@@ -84,13 +81,13 @@ export function InstaCarousel() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 opacity-0 group-hover:opacity-100 transition-all text-white font-semibold text-sm"
+                  className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/25 opacity-0 group-hover:opacity-100 transition-all text-[#ece8df] font-semibold text-sm"
                 >
                   View on Instagram ↗
                 </a>
 
                 {/* Bottom Gradient */}
-                <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/20 to-transparent rounded-b-2xl pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/30 to-transparent rounded-b-2xl pointer-events-none"></div>
 
               </div>
             </SwiperSlide>

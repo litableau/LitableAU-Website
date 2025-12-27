@@ -11,46 +11,75 @@ const JoinCard = ({
 }) => (
   <div className="w-full flex justify-center">
     <div
-      className={`relative transition-all duration-500 shadow-lg
+      className={`relative transition-all duration-500 shadow-lg cursor-pointer
         ${
           active
-            ? "w-11/12 sm:w-9/12 lg:w-7/12 h-[40vh] sm:h-[50vh] landscape:h-[60vh] bg-[#012D20] rounded-3xl p-6 flex flex-col"
-            : "w-10/12 sm:w-8/12 h-20 sm:h-24 landscape:h-28 bg-[#EDE0D4] rounded-full flex items-center justify-between px-6 hover:bg-[#7A806C] hover:text-[#EDE0D4]"
+            ? `
+              w-11/12 sm:w-9/12 lg:w-7/12
+              h-[40vh] sm:h-[50vh] landscape:h-[60vh]
+              bg-[#642a38]          /* Merlot */
+              rounded-3xl
+              p-6
+              flex flex-col
+            `
+            : `
+              w-10/12 sm:w-8/12
+              h-20 sm:h-24 landscape:h-28
+              bg-[#e1d5c9]          /* Echo */
+              rounded-full
+              flex items-center justify-between
+              px-6
+              hover:bg-[#ab958a]   /* Rustic */
+            `
         }`}
       onClick={() => !active && setActiveCard("join")}
     >
-      {/* Collapsed View */}
+      {/* ---------------- COLLAPSED VIEW ---------------- */}
       {!active && (
         <>
-          <span className="text-lg sm:text-xl font-semibold tracking-wide cursor-pointer text-[#012D20] hover:text-[#EDE0D4] transition-colors">
+          <span className="text-lg sm:text-xl font-semibold tracking-wide text-[#642a38]">
             Join Us
           </span>
-          <button className="p-2 sm:p-3 rounded-full bg-[#012D20] cursor-pointer hover:bg-[#FBE8D8] transition">
-            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#7A806C]" />
+
+          <button
+            className="
+              p-2 sm:p-3 rounded-full
+              bg-[#642a38]
+              hover:bg-[#5a2431]
+              transition
+            "
+          >
+            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#ece8df]" />
           </button>
         </>
       )}
 
-      {/* Expanded View */}
+      {/* ---------------- EXPANDED VIEW ---------------- */}
       {active && (
         <>
           <div className="flex justify-between items-center">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#EDE0D4] tracking-wide">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-wide text-[#ece8df]">
               Join Us
             </h2>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveCard(null);
               }}
-              className="p-2 sm:p-3 rounded-full bg-[#E5C7B1] hover:bg-[#FBE8D8] transition"
+              className="
+                p-2 sm:p-3 rounded-full
+                bg-[#ab958a]
+                hover:bg-[#ece8df]
+                transition
+              "
             >
-              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#7A705C]" />
+              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#642a38]" />
             </button>
           </div>
 
-          <h3 className="text-base sm:text-lg font-semibold text-[#E5C7B1] mt-2 mb-4 text-center">
-            BE A PART OF THE LEGACY!
+          <h3 className="text-base sm:text-lg font-semibold text-[#ab958a] mt-2 mb-4 text-center tracking-wide">
+            BE A PART OF THE LEGACY
           </h3>
 
           <div className="flex-1 flex flex-col items-center justify-center space-y-6 sm:space-y-8">
@@ -59,8 +88,22 @@ const JoinCard = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-[#E5C7B1] text-[#012D20] text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold shadow-md hover:bg-[#FBE8D8] hover:scale-105 transition duration-300">
-                Click
+              <button
+                className="
+                  bg-[#ece8df]
+                  text-[#642a38]
+                  text-base sm:text-lg
+                  px-6 sm:px-8
+                  py-2 sm:py-3
+                  rounded-full
+                  font-semibold
+                  shadow-md
+                  hover:bg-white
+                  hover:scale-105
+                  transition duration-300
+                "
+              >
+                Join Now
               </button>
             </a>
           </div>

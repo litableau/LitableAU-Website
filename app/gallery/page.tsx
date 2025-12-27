@@ -5,7 +5,7 @@ import { Footer } from "@/components/ui/footer";
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen bg-[rgb(229,199,177)] text-[rgb(23,58,43)]">
+    <main className="min-h-screen bg-[#ece8df] text-[rgb(23,58,43)]">
       <Navbar />
       <div className="pt-16">
         <GalleryRedesign />
@@ -14,5 +14,3 @@ export default function GalleryPage() {
     </main>
   );
 }
-
-

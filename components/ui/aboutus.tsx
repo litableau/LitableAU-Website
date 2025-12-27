@@ -12,29 +12,69 @@ const AboutUs: React.FC = () => {
   return (
     <section id="about1">
       <div
-        className="min-h-screen flex flex-col font-argesta 
-                   bg-[url('/Background.jpg')] bg-top-left sm:bg-center bg-cover bg-no-repeat"
+        className="
+          min-h-screen
+          flex flex-col
+          font-argesta
+          bg-[#e1d5c9]              /* Echo background */
+        "
       >
         {/* Header */}
         <div className="text-center my-6 sm:my-10 px-4">
-          <h1 className="text-3xl sm:text-5xl font-bold text-[#012D20] tracking-widest leading-snug">
+          <h1
+            className="
+              text-3xl sm:text-5xl
+              font-bold
+              tracking-widest
+              leading-snug
+              text-[#642a38]        /* Merlot */
+            "
+          >
             ABOUT US
           </h1>
         </div>
 
         {/* Grid for cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-8 mb-8 sm:mb-12
-                        landscape:grid-cols-2 landscape:gap-6">
-          <SignatureCard active={activeCard === "story"} setActiveCard={setActiveCard} />
-          <MissionCard active={activeCard === "mission"} setActiveCard={setActiveCard} />
-          <WhoCard active={activeCard === "who"} setActiveCard={setActiveCard} />
-          <LegacyCard active={activeCard === "legacy"} setActiveCard={setActiveCard} />
+        <div
+          className="
+            grid grid-cols-1 sm:grid-cols-2
+            gap-4 sm:gap-6
+            px-4 sm:px-8
+            mb-8 sm:mb-12
+            landscape:grid-cols-2
+            landscape:gap-6
+          "
+        >
+          <SignatureCard
+            active={activeCard === "story"}
+            setActiveCard={setActiveCard}
+          />
+          <MissionCard
+            active={activeCard === "mission"}
+            setActiveCard={setActiveCard}
+          />
+          <WhoCard
+            active={activeCard === "who"}
+            setActiveCard={setActiveCard}
+          />
+          <LegacyCard
+            active={activeCard === "legacy"}
+            setActiveCard={setActiveCard}
+          />
 
-          {/* JoinCard centered and responsive */}
+          {/* JoinCard centered */}
           <div className="sm:col-span-2 flex justify-center">
-            <div className="w-full sm:w-[70%] lg:w-[50%] 
-                            portrait:w-[90%] landscape:w-[60%]">
-              <JoinCard active={activeCard === "join"} setActiveCard={setActiveCard} />
+            <div
+              className="
+                w-full sm:w-[70%] lg:w-[50%]
+                portrait:w-[90%]
+                landscape:w-[60%]
+              "
+            >
+              <JoinCard
+                active={activeCard === "join"}
+                setActiveCard={setActiveCard}
+              />
             </div>
           </div>
         </div>

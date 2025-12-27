@@ -7,23 +7,23 @@ import { Footer } from "@/components/ui/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[rgb(229,199,177)] text-[rgb(23,58,43)]">
+    <main className="min-h-screen bg-[#e1d5c9] text-[#642a38]">
       <Navbar />
-      
-      {/* Hero Section with Scroll Animation */}
+
+      {/* Hero Section */}
       <div className="pt-16">
         <LitClubHero />
       </div>
-      
+
       {/* About Section */}
       <AboutSection />
 
-       {/* Instagram Carousel Section */}
+      {/* Instagram Carousel */}
       <InstaCarousel />
-      
+
       {/* Contact Section */}
       <ContactSection />
-      
+
       {/* Footer */}
       <Footer />
     </main>

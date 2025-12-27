@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Crimson+Text:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ================= THEME VARIABLES ================= */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -50,53 +52,63 @@
   }
 }
 
+/* ================= BASE TYPOGRAPHY ================= */
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Crimson Text', serif;
   }
-  
+
   /* Vintage Literature Typography */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
   }
-  
+
   .font-vintage {
     font-family: 'Libre Baskerville', serif;
   }
-  
+
   .font-elegant {
     font-family: 'Playfair Display', serif;
   }
-  
+
   .font-classic {
     font-family: 'Crimson Text', serif;
   }
 }
 
-/* Vintage scrollbar */
+/* ================= THEME SCROLLBAR ================= */
+/* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(229,199,177);
+  background: #e1d5c9; /* Echo */
 }
 
 ::-webkit-scrollbar-thumb {
-  background:rgb(23,58,43);
-  border-radius: 6px;
-  border: 2px solid #F5F5DC;
+  background: #642a38; /* Merlot */
+  border-radius: 9999px;
+  border: 2px solid #ece8df; /* Ivory */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A8B5A0;
+  background: #ab958a; /* Rustic */
 }
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #642a38 #e1d5c9;
+}
+
+/* ================= 3D CAROUSEL EFFECT ================= */
 .carousel-3d .swiper-slide {
   transform-origin: center center -200px;
   transform: rotateY(0deg) translateZ(200px);

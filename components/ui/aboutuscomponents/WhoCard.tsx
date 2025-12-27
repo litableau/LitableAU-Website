@@ -11,62 +11,127 @@ const WhoCard = ({
 }) => (
   <div className="w-full flex justify-center">
     <div
-      className={`relative transition-all duration-500 shadow-lg font-argesta
-      ${
-        active
-          ? "w-11/12 sm:w-9/12 lg:w-7/12 h-[40vh] sm:h-[50vh] landscape:h-[60vh] bg-[#012D20] rounded-3xl p-6 flex flex-col"
-          : "w-10/12 sm:w-8/12 h-20 sm:h-24 landscape:h-28 bg-[#EDE0D4] rounded-full flex items-center justify-between px-6 hover:bg-[#7A806C] hover:text-[#EDE0D4]"
-      }`}
+      className={`relative transition-all duration-500 shadow-lg font-argesta cursor-pointer
+        ${
+          active
+            ? `
+              w-11/12 sm:w-9/12 lg:w-7/12
+              h-[40vh] sm:h-[50vh] landscape:h-[60vh]
+              bg-[#642a38]          /* Merlot */
+              rounded-3xl
+              p-6
+              flex flex-col
+            `
+            : `
+              w-10/12 sm:w-8/12
+              h-20 sm:h-24 landscape:h-28
+              bg-[#e1d5c9]          /* Echo */
+              rounded-full
+              flex items-center justify-between
+              px-6
+              hover:bg-[#ab958a]   /* Rustic */
+            `
+        }`}
     >
-      {/* Collapsed View */}
+      {/* ---------------- COLLAPSED VIEW ---------------- */}
       {!active && (
         <>
           <span
-            className="text-lg sm:text-xl font-semibold tracking-wide cursor-pointer text-[#012D20] hover:text-[#EDE0D4] font-argesta"
+            className="
+              text-lg sm:text-xl
+              font-semibold
+              tracking-wide
+              text-[#642a38]
+              transition-colors
+            "
             onClick={() => setActiveCard("who")}
           >
             Who We Are
           </span>
+
           <button
             onClick={() => setActiveCard("who")}
-            className="p-2 sm:p-3 rounded-full bg-[#012D20] cursor-pointer hover:bg-[#FBE8D8] transition"
+            className="
+              p-2 sm:p-3 rounded-full
+              bg-[#642a38]
+              hover:bg-[#5a2431]
+              transition
+            "
           >
-            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#7A806C]" />
+            <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#ece8df]" />
           </button>
         </>
       )}
 
-      {/* Expanded View */}
+      {/* ---------------- EXPANDED VIEW ---------------- */}
       {active && (
         <>
+          {/* Header */}
           <div className="flex justify-between items-center">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#EDE0D4] tracking-wide font-argesta">
+            <h2
+              className="
+                text-xl sm:text-2xl
+                font-bold
+                tracking-wide
+                text-[#ece8df]
+              "
+            >
               Who We Are
             </h2>
+
             <button
               onClick={() => setActiveCard(null)}
-              className="p-2 sm:p-3 rounded-full bg-[#E5C7B1] hover:bg-[#FBE8D8] transition"
+              className="
+                p-2 sm:p-3 rounded-full
+                bg-[#ab958a]
+                hover:bg-[#ece8df]
+                transition
+              "
             >
-              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#7A806C]" />
+              <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#642a38]" />
             </button>
           </div>
 
-          <h3 className="text-base sm:text-lg font-semibold text-[#E5C7B1] mt-2 mb-4 text-center font-argesta">
+          {/* Subheading */}
+          <h3
+            className="
+              text-base sm:text-lg
+              font-semibold
+              text-[#ab958a]
+              mt-2 mb-4
+              text-center
+            "
+          >
             ABOUT US
           </h3>
 
-          {/* Text Content */}
-          <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#E5C7B1] scrollbar-track-[#7A806C] pr-2">
-            <p className="leading-relaxed text-[#EDE0D4] text-sm sm:text-base font-argesta">
+          {/* Scrollable Content */}
+          <div
+            className="
+              flex-1
+              overflow-y-auto
+              pr-4
+              scrollbar-thin
+              scrollbar-thumb-[#ab958a]
+              scrollbar-track-[#5a2431]
+            "
+          >
+            <p
+              className="
+                leading-relaxed
+                text-[#ece8df]
+                text-sm sm:text-base
+              "
+            >
               The Literary Club of Anna University is one of the most reputed
               clubs of the varsity, with over ten years of service. We are a
-              voice– we’re a community that lifts and grows together, that
-              brings and bonds individuals who have a spark, who move about with
-              a passion for their craft. We give them the space and the tools,
-              to revolutionize, to take leaps and to aim for the moon. You might
-              just still land on the stars. We’re here to create, most of all, a
-              family of learners and enthusiasts– to nurture creativity and
-              accelerate growth.
+              voice — a community that lifts and grows together, bonding
+              individuals who carry a spark and a passion for their craft.
+              <br /><br />
+              We give them the space and the tools to revolutionize, to take
+              leaps, and to aim for the moon — even if they land among the
+              stars. Above all, we strive to create a family of learners and
+              enthusiasts, nurturing creativity and accelerating growth.
             </p>
           </div>
         </>

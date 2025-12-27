@@ -45,15 +45,15 @@ const shimmer = keyframes`
 const sectionPulse = keyframes`
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(201, 184, 168, 0.4);
+    box-shadow: 0 0 0 0 rgba(171, 149, 138, 0.4); /* echo color */
   }
   50% {
     transform: scale(1.02);
-    box-shadow: 0 0 0 20px rgba(201, 184, 168, 0);
+    box-shadow: 0 0 0 20px rgba(171, 149, 138, 0);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(201, 184, 168, 0);
+    box-shadow: 0 0 0 0 rgba(171, 149, 138, 0);
   }
 `;
 
@@ -70,17 +70,17 @@ const tabSlideIn = keyframes`
 
 const glowPulse = keyframes`
   0%, 100% {
-    box-shadow: 0 4px 15px rgba(10, 59, 30, 0.1);
+    box-shadow: 0 4px 15px rgba(100, 32, 56, 0.1); /* merlot color */
   }
   50% {
-    box-shadow: 0 6px 25px rgba(10, 59, 30, 0.3);
+    box-shadow: 0 6px 25px rgba(100, 32, 56, 0.3); /* merlot color */
   }
 `;
 
-// Styled Components
+// Styled Components with updated color scheme
 const TeamPageContainer = styled.div`
   min-height: 100vh;
-  background-color: #f8e8d8;
+  background-color: #ece8df; /* rustic */
   padding: 40px 0;
   font-family: 'Inter', 'Arial', sans-serif;
   
@@ -95,7 +95,7 @@ const TeamPageContainer = styled.div`
 
 const TeamHeader = styled.div`
   text-align: center;
-  background-color: #f8e8d8;
+  background-color: #ece8df; /* rustic */
   padding: 60px 20px 80px;
   position: relative;
   
@@ -119,7 +119,7 @@ const TeamHeader = styled.div`
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background-color: #c9b8a8;
+    background-color: #ab958a; /* echo */
     border-radius: 2px;
     
     @media (max-width: 480px) {
@@ -132,7 +132,7 @@ const TeamHeader = styled.div`
 const MeetOurTeam = styled.h1`
   font-size: 3.5rem;
   font-weight: 800;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   margin: 0 0 20px 0;
   letter-spacing: -1px;
   line-height: 1.1;
@@ -161,7 +161,7 @@ const MeetText = styled.span`
   display: block;
   font-size: 1.2rem;
   font-weight: 500;
-  color: #c9b8a8;
+  color: #ab958a; /* echo */
   margin-bottom: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -185,7 +185,7 @@ const MeetText = styled.span`
 `;
 
 const OurText = styled.span`
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   position: relative;
   
   &::after {
@@ -195,19 +195,19 @@ const OurText = styled.span`
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #c9b8a8;
+    background-color: #ab958a; /* echo */
     border-radius: 2px;
   }
 `;
 
 const TeamText = styled.span`
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   font-weight: 700;
 `;
 
 const TeamDescription = styled.p`
   font-size: 1.2rem;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   max-width: 600px;
   margin: 30px auto 0;
   line-height: 1.6;
@@ -257,8 +257,8 @@ const DepartmentsSection = styled.div`
 `;
 
 const DepartmentButton = styled.button`
-  background-color: ${props => props['data-active'] === 'true' ? '#0a3b1e' : '#c9b8a8'};
-  color: ${props => props['data-active'] === 'true' ? '#f8e8d8' : '#0a3b1e'};
+  background-color: ${props => props['data-active'] === 'true' ? '#642038' : '#ab958a'}; /* merlot : echo */
+  color: ${props => props['data-active'] === 'true' ? '#ece8df' : '#642038'}; /* rustic : merlot */
   border: none;
   padding: 15px 30px;
   margin: 0 10px 15px;
@@ -268,7 +268,7 @@ const DepartmentButton = styled.button`
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: ${props => props['data-active'] === 'true' ? '0 6px 20px rgba(10, 59, 30, 0.3)' : '0 4px 15px rgba(10, 59, 30, 0.1)'};
+  box-shadow: ${props => props['data-active'] === 'true' ? '0 6px 20px rgba(100, 32, 56, 0.3)' : '0 4px 15px rgba(100, 32, 56, 0.1)'};
   position: relative;
   overflow: hidden;
   animation: ${tabSlideIn} 0.6s ease-out ${props => props['data-delay'] || 0}s both;
@@ -281,15 +281,15 @@ const DepartmentButton = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(248, 232, 216, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(236, 232, 223, 0.3), transparent); /* rustic */
     transition: left 0.6s;
   }
   
   &:hover {
-    background-color: #0a3b1e;
-    color: #f8e8d8;
+    background-color: #642038; /* merlot */
+    color: #ece8df; /* rustic */
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(10, 59, 30, 0.4);
+    box-shadow: 0 8px 25px rgba(100, 32, 56, 0.4); /* merlot */
     animation: ${glowPulse} 2s infinite;
     
     &::before {
@@ -302,8 +302,8 @@ const DepartmentButton = styled.button`
   }
   
   &.active {
-    background-color: #0a3b1e;
-    color: #f8e8d8;
+    background-color: #642038; /* merlot */
+    color: #ece8df; /* rustic */
     transform: translateY(-2px);
   }
   
@@ -335,8 +335,8 @@ const DepartmentButton = styled.button`
     }
     
     &:active {
-      background-color: #0a3b1e;
-      color: #f8e8d8;
+      background-color: #642038; /* merlot */
+      color: #ece8df; /* rustic */
       transform: scale(0.98);
     }
   }
@@ -364,7 +364,7 @@ const TeamSection = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   text-align: center;
   margin-bottom: 50px;
   position: relative;
@@ -378,7 +378,7 @@ const SectionTitle = styled.h2`
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background-color: #c9b8a8;
+    background-color: #ab958a; /* echo */
     border-radius: 2px;
   }
 
@@ -390,7 +390,7 @@ const SectionTitle = styled.h2`
     transform: translateX(-50%);
     width: 80px;
     height: 2px;
-    background-color: #c9b8a8;
+    background-color: #ab958a; /* echo */
     border-radius: 1px;
     opacity: 0.6;
   }
@@ -464,13 +464,13 @@ const MembersGrid = styled.div`
 `;
 
 const MemberCard = styled.div`
-  background: #f8e8d8;
+  background: #ece8df; /* rustic */
   border-radius: 20px;
   padding: 30px 20px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
-  box-shadow: 0 8px 25px rgba(10, 59, 30, 0.08);
+  box-shadow: 0 8px 25px rgba(100, 32, 56, 0.08); /* merlot */
   position: relative;
   overflow: hidden;
   animation: ${fadeInUp} 0.8s ease-out ${props => props['data-delay'] || 0}s both;
@@ -486,24 +486,24 @@ const MemberCard = styled.div`
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #c9b8a8, #0a3b1e, #c9b8a8);
+    background: linear-gradient(90deg, #ab958a, #642038, #ab958a); /* echo, merlot, echo */
     border-radius: 20px 20px 0 0;
     transition: all 0.3s ease;
   }
   
   &.leadership-role::before {
-    background: linear-gradient(90deg, #0a3b1e, #c9b8a8, #0a3b1e);
+    background: linear-gradient(90deg, #642038, #ab958a, #642038); /* merlot, echo, merlot */
     height: 6px;
   }
   
   &:hover {
     transform: translateY(-12px) scale(1.02);
-    border-color: #c9b8a8;
-    box-shadow: 0 20px 50px rgba(10, 59, 30, 0.2);
+    border-color: #ab958a; /* echo */
+    box-shadow: 0 20px 50px rgba(100, 32, 56, 0.2); /* merlot */
     
     &::before {
       height: 6px;
-      background: linear-gradient(90deg, #0a3b1e, #c9b8a8, #0a3b1e);
+      background: linear-gradient(90deg, #642038, #ab958a, #642038); /* merlot, echo, merlot */
     }
   }
   
@@ -532,7 +532,7 @@ const MemberCard = styled.div`
     
     &:active {
       transform: scale(0.98);
-      border-color: #c9b8a8;
+      border-color: #ab958a; /* echo */
     }
   }
 `;
@@ -542,13 +542,13 @@ const MemberImageStyled = styled.div`
   height: 120px;
   border-radius: 50%;
   margin: 0 auto 20px;
-  border: 4px solid #c9b8a8;
+  border: 4px solid #ab958a; /* echo */
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
 
   &:hover {
-    border-color: #0a3b1e;
+    border-color: #642038; /* merlot */
     transform: scale(1.05);
   }
 
@@ -562,7 +562,7 @@ const MemberImageStyled = styled.div`
     width: 100px;
     height: 100px;
     margin: 0 auto 15px;
-    border: 3px solid #c9b8a8;
+    border: 3px solid #ab958a; /* echo */
   }
   
   @media (max-width: 480px) {
@@ -581,7 +581,7 @@ const MemberImageStyled = styled.div`
 const MemberName = styled.h3`
   font-size: 1.3rem;
   font-weight: 600;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   margin: 0;
   letter-spacing: 0.5px;
   font-family: 'Poppins', sans-serif;
@@ -618,7 +618,7 @@ const MemberName = styled.h3`
 
 const MemberRole = styled.p`
   font-size: 1rem;
-  color: #c9b8a8;
+  color: #ab958a; /* echo */
   margin: 0;
   font-weight: 500;
   font-style: italic;
@@ -626,7 +626,7 @@ const MemberRole = styled.p`
   font-family: 'Crimson Text', serif;
 
   &.president, &.vice-president, &.director {
-    color: #0a3b1e;
+    color: #642038; /* merlot */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -635,12 +635,12 @@ const MemberRole = styled.p`
   }
 
   &.head {
-    color: #c9b8a8;
+    color: #ab958a; /* echo */
     font-weight: 600;
   }
 
   &.jr-head {
-    color: rgba(201, 184, 168, 0.8);
+    color: rgba(171, 149, 138, 0.8); /* echo with opacity */
     font-weight: 500;
   }
   
@@ -667,7 +667,7 @@ const MemberInfo = styled.div`
 
 const MotivationalQuote = styled.div`
   font-size: 1.1rem;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   font-style: italic;
   max-width: 700px;
   margin: 30px auto 0;
@@ -683,7 +683,7 @@ const MotivationalQuote = styled.div`
     left: 10px;
     top: 0;
     font-size: 3rem;
-    color: #c9b8a8;
+    color: #ab958a; /* echo */
     font-family: 'Playfair Display', serif;
   }
 
@@ -693,7 +693,7 @@ const MotivationalQuote = styled.div`
     right: 10px;
     bottom: -10px;
     font-size: 3rem;
-    color: #c9b8a8;
+    color: #ab958a; /* echo */
     font-family: 'Playfair Display', serif;
   }
   
@@ -762,7 +762,7 @@ const MotivationalQuote = styled.div`
 const DepartmentTitle = styled.h2`
   font-size: 2.2rem;
   font-weight: 700;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   margin-bottom: 10px;
   text-align: center;
   font-family: 'Playfair Display', serif;
@@ -789,7 +789,7 @@ const DepartmentTitle = styled.h2`
 
 const DepartmentSubtitle = styled.p`
   font-size: 1.1rem;
-  color: #c9b8a8;
+  color: #ab958a; /* echo */
   font-style: italic;
   text-align: center;
   margin-bottom: 30px;
@@ -821,7 +821,7 @@ const DepartmentSubtitle = styled.p`
 
 const SectionMotivation = styled.div`
   font-size: 1rem;
-  color: #c9b8a8;
+  color: #ab958a; /* echo */
   font-style: italic;
   text-align: center;
   margin-bottom: 30px;
@@ -857,13 +857,13 @@ const SectionMotivation = styled.div`
 
 const MemberInspiration = styled.div`
   font-size: 0.85rem;
-  color: rgba(10, 59, 30, 0.7);
+  color: rgba(100, 32, 56, 0.7); /* merlot with opacity */
   font-style: italic;
   text-align: center;
   margin-top: 8px;
   line-height: 1.4;
   padding: 8px 0;
-  border-top: 1px solid rgba(201, 184, 168, 0.3);
+  border-top: 1px solid rgba(171, 149, 138, 0.3); /* echo with opacity */
   font-family: 'Crimson Text', serif;
   
   @media (max-width: 768px) {
@@ -887,8 +887,8 @@ const MemberInspiration = styled.div`
 `;
 
 const TeamFooterSection = styled.div`
-  background: linear-gradient(135deg, #0a3b1e 0%, rgba(10, 59, 30, 0.9) 100%);
-  color: #f8e8d8;
+  background: linear-gradient(135deg, #642038 0%, rgba(100, 32, 56, 0.9) 100%); /* merlot */
+  color: #ece8df; /* rustic */
   padding: 60px 20px;
   text-align: center;
   margin-top: 60px;
@@ -901,7 +901,7 @@ const TeamFooterSection = styled.div`
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #c9b8a8, #f8e8d8, #c9b8a8);
+    background: linear-gradient(90deg, #ab958a, #ece8df, #ab958a); /* echo, rustic, echo */
   }
   
   @media (max-width: 1024px) {
@@ -950,7 +950,7 @@ const FooterTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 15px;
-  color: #f8e8d8;
+  color: #ece8df; /* rustic */
   font-family: 'Playfair Display', serif;
 
   @media (max-width: 1024px) {
@@ -977,7 +977,7 @@ const FooterTitle = styled.h2`
 const FooterSubtitle = styled.p`
   font-size: 1.2rem;
   margin-bottom: 30px;
-  color: rgba(248, 232, 216, 0.9);
+  color: rgba(236, 232, 223, 0.9); /* rustic with opacity */
   line-height: 1.6;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
@@ -1006,8 +1006,8 @@ const FooterSubtitle = styled.p`
 `;
 
 const JoinButton = styled.button`
-  background-color: #c9b8a8;
-  color: #0a3b1e;
+  background-color: #ab958a; /* echo */
+  color: #642038; /* merlot */
   border: none;
   padding: 15px 40px;
   border-radius: 30px;
@@ -1024,7 +1024,7 @@ const JoinButton = styled.button`
   min-width: 120px;
 
   &:hover {
-    background-color: #f8e8d8;
+    background-color: #ece8df; /* rustic */
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
@@ -1065,7 +1065,7 @@ const JoinButton = styled.button`
     }
     
     &:active {
-      background-color: #f8e8d8;
+      background-color: #ece8df; /* rustic */
       transform: scale(0.98);
     }
   }
@@ -1077,7 +1077,7 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(10, 59, 30, 0.8);
+  background-color: rgba(100, 32, 56, 0.8); /* merlot */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1104,7 +1104,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: #f8e8d8;
+  background: #ece8df; /* rustic */
   border-radius: 25px;
   padding: 40px;
   max-width: 500px;
@@ -1112,8 +1112,8 @@ const ModalContent = styled.div`
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 20px 60px rgba(10, 59, 30, 0.3);
-  border: 3px solid #c9b8a8;
+  box-shadow: 0 20px 60px rgba(100, 32, 56, 0.3); /* merlot */
+  border: 3px solid #ab958a; /* echo */
   animation: ${slideInLeft} 0.4s ease-out;
 
   @media (max-width: 1024px) {
@@ -1126,7 +1126,7 @@ const ModalContent = styled.div`
     max-width: 95%;
     max-height: 85vh;
     border-radius: 20px;
-    border: 2px solid #c9b8a8;
+    border: 2px solid #ab958a; /* echo */
   }
   
   @media (max-width: 480px) {
@@ -1154,17 +1154,17 @@ const ModalContent = styled.div`
   }
   
   &::-webkit-scrollbar-track {
-    background: rgba(201, 184, 168, 0.1);
+    background: rgba(171, 149, 138, 0.1); /* echo */
     border-radius: 3px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: rgba(201, 184, 168, 0.5);
+    background: rgba(171, 149, 138, 0.5); /* echo */
     border-radius: 3px;
   }
   
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(201, 184, 168, 0.7);
+    background: rgba(171, 149, 138, 0.7); /* echo */
   }
 `;
 
@@ -1175,7 +1175,7 @@ const ModalCloseButton = styled.button`
   background: none;
   border: none;
   font-size: 2rem;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -1187,7 +1187,7 @@ const ModalCloseButton = styled.button`
   z-index: 1001;
 
   &:hover {
-    background-color: rgba(10, 59, 30, 0.1);
+    background-color: rgba(100, 32, 56, 0.1); /* merlot */
     transform: scale(1.1);
   }
   
@@ -1227,7 +1227,7 @@ const ModalCloseButton = styled.button`
     }
     
     &:active {
-      background-color: rgba(10, 59, 30, 0.2);
+      background-color: rgba(100, 32, 56, 0.2); /* merlot */
       transform: scale(0.95);
     }
   }
@@ -1238,7 +1238,7 @@ const ModalMemberImage = styled.div`
   height: 200px;
   border-radius: 50%;
   margin: 0 auto 30px;
-  border: 6px solid #c9b8a8;
+  border: 6px solid #ab958a; /* echo */
   overflow: hidden;
   transition: all 0.3s ease;
 
@@ -1252,35 +1252,35 @@ const ModalMemberImage = styled.div`
     width: 180px;
     height: 180px;
     margin: 0 auto 25px;
-    border: 5px solid #c9b8a8;
+    border: 5px solid #ab958a; /* echo */
   }
 
   @media (max-width: 768px) {
     width: 150px;
     height: 150px;
     margin: 0 auto 20px;
-    border: 4px solid #c9b8a8;
+    border: 4px solid #ab958a; /* echo */
   }
   
   @media (max-width: 480px) {
     width: 120px;
     height: 120px;
     margin: 0 auto 15px;
-    border: 3px solid #c9b8a8;
+    border: 3px solid #ab958a; /* echo */
   }
   
   @media (max-width: 320px) {
     width: 100px;
     height: 100px;
     margin: 0 auto 12px;
-    border: 3px solid #c9b8a8;
+    border: 3px solid #ab958a; /* echo */
   }
 `;
 
 const ModalMemberName = styled.h2`
   font-size: 2.2rem;
   font-weight: 700;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   text-align: center;
   margin-bottom: 10px;
   font-family: 'Playfair Display', serif;
@@ -1309,7 +1309,7 @@ const ModalMemberName = styled.h2`
 
 const ModalMemberRole = styled.p`
   font-size: 1.3rem;
-  color: #c9b8a8;
+  color: #ab958a; /* echo */
   text-align: center;
   margin-bottom: 20px;
   font-weight: 600;
@@ -1341,12 +1341,12 @@ const ModalMemberRole = styled.p`
 
 const ModalMemberDepartment = styled.p`
   font-size: 1.1rem;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   text-align: center;
   margin-bottom: 30px;
   font-weight: 500;
   padding: 10px 20px;
-  background-color: rgba(201, 184, 168, 0.2);
+  background-color: rgba(171, 149, 138, 0.2); /* echo */
   border-radius: 20px;
   font-family: 'Inter', sans-serif;
   
@@ -1380,7 +1380,7 @@ const ModalMemberDepartment = styled.p`
 
 const ModalMemberDescription = styled.div`
   font-size: 1rem;
-  color: #0a3b1e;
+  color: #642038; /* merlot */
   line-height: 1.6;
   text-align: center;
   font-family: 'Crimson Text', serif;
@@ -1411,7 +1411,7 @@ const ModalMemberDescription = styled.div`
 const PlaceholderImage = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #c9b8a8 0%, #0a3b1e 100%);
+  background: linear-gradient(135deg, #ab958a 0%, #642038 100%); /* echo to merlot */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1423,7 +1423,7 @@ const PlaceholderImage = styled.div`
 `;
 
 const PlaceholderText = styled.span`
-  color: #f8e8d8;
+  color: #ece8df; /* rustic */
   font-size: 2rem;
   font-weight: 700;
   font-family: 'Playfair Display', serif;
@@ -1487,7 +1487,6 @@ const TeamPage = () => {
     'Ops and Logistics': [
       { id: 8, name: 'Muhammed Sheik', role: 'Head', image: '/images/MuhammedSheik.jpg' },
       { id: 9, name: 'Tanvi Shree', role: 'Head', image: '/images/TanviShree.jpg' },
-      
       { id: 11, name: 'Pritika R.D', role: 'Jr Head', image: '/images/PritikaRD.jpg' },
     ],
     'Media and Marketing': [
@@ -1507,8 +1506,7 @@ const TeamPage = () => {
       { id: 21, name: 'Dhishitha', role: 'Jr Head', image: '/images/Dhishitha.jpg' },
       { id: 22, name: 'Vaishnave', role: 'Jr Head', image: '/images/Vaishnave.jpg' },
     ],
-    'External Relations': [
-     ],
+    'External Relations': [],
     Photography: [
       { id: 25, name: 'Shree Vekka Narayanee', role: 'Head', image: '/images/ShreeVekkaNarayanee.jpg' },
       { id: 26, name: 'Joshika Madhu', role: 'Head', image: '/images/JoshikaMadhu.jpg' },

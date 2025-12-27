@@ -2,7 +2,6 @@
 
 import React, { useState, TouchEvent } from "react";
 import { MoveLeft, MoveRight } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { galleryEvents } from "@/app/data/gallery-data";
 
 /* ---------------- GROUP BY YEAR → EVENT ---------------- */
@@ -17,10 +16,8 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
 
   events.forEach(event => {
     const year = parseDate(event.date).getFullYear().toString();
-
     if (!grouped[year]) grouped[year] = {};
     if (!grouped[year][event.eventName]) grouped[year][event.eventName] = [];
-
     grouped[year][event.eventName].push(event);
   });
 
@@ -29,8 +26,7 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
   sortedYears.forEach(year => {
     Object.keys(grouped[year]).forEach(eventName => {
       grouped[year][eventName].sort(
-        (a, b) =>
-          parseDate(b.date).getTime() - parseDate(a.date).getTime()
+        (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime()
       );
     });
   });
@@ -41,40 +37,23 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
 /* ---------------- COMPONENT ---------------- */
 
 export default function GalleryRedesign() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
   const { grouped, sortedYears } = groupByYearAndEvent(galleryEvents);
-
-  const defaultYear =
-    searchParams.get("year") ?? sortedYears[0];
-
-  const [selectedYear, setSelectedYear] = useState(defaultYear);
 
   const [selectedIndexes, setSelectedIndexes] = useState<Record<string, number>>(
     () => {
       const obj: Record<string, number> = {};
-      sortedYears.forEach(year => {
+      sortedYears.forEach(year =>
         Object.keys(grouped[year]).forEach(event =>
           (obj[`${year}-${event}`] = 0)
-        );
-      });
+        )
+      );
       return obj;
     }
   );
 
-  const itemsPerView = 3;
-  const middleIndex = 1;
-  const keyOf = (year: string, event: string) => `${year}-${event}`;
+  const keyOf = (y: string, e: string) => `${y}-${e}`;
 
-  /* ---------------- YEAR CHANGE ---------------- */
-
-  const handleYearChange = (year: string) => {
-    setSelectedYear(year);
-    router.push(`/gallery?year=${year}`, { scroll: false });
-  };
-
-  /* ---------------- SWIPE ---------------- */
+  /* ---------------- MOBILE SWIPE (UNCHANGED) ---------------- */
 
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -91,21 +70,18 @@ export default function GalleryRedesign() {
   const onTouchEnd = (key: string, max: number) => {
     if (!touchStart || !touchEnd) return;
     const diff = touchStart - touchEnd;
-
     if (diff > 50)
       setSelectedIndexes(p => ({ ...p, [key]: (p[key] + 1) % max }));
     if (diff < -50)
       setSelectedIndexes(p => ({ ...p, [key]: (p[key] - 1 + max) % max }));
   };
 
-  /* ---------------- RENDER ---------------- */
-
   return (
-    <div className="min-h-screen bg-[#ece8df]">
-      <div className="py-10 md:py-20 max-w-7xl mx-auto px-4">
+    <div className="min-h-screen bg-[#ece8df] py-20 px-4">
+      <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-24">
           <h1 className="text-4xl md:text-7xl font-bold text-[#642a38] font-serif">
             GALLERY
           </h1>
@@ -114,134 +90,136 @@ export default function GalleryRedesign() {
           </p>
         </div>
 
-        {/* YEAR BAR */}
-        <div className="flex justify-center flex-wrap gap-4 mb-20">
-          {sortedYears.map(year => (
-            <button
-              key={year}
-              onClick={() => handleYearChange(year)}
-              className={`px-6 py-2 rounded-full font-serif text-lg transition
-                ${
-                  selectedYear === year
-                    ? "bg-[#642a38] text-[#ece8df] shadow-lg scale-105"
-                    : "bg-[#ece8df] text-[#642a38] border border-[#642a38] hover:bg-[#ab958a]/20"
-                }`}
-            >
+        {/* YEAR CARDS */}
+        {sortedYears.map(year => (
+          <div
+            key={year}
+            className="
+              mb-32 bg-[#642a38]
+              rounded-3xl p-10 md:p-16
+              shadow-xl
+            "
+          >
+            <h2 className="text-3xl md:text-5xl text-[#ece8df] text-center mb-20 font-serif">
               {year}
-            </button>
-          ))}
-        </div>
+            </h2>
 
-        {/* SELECTED YEAR */}
-        {selectedYear && (
-          <div className="mb-28">
-
-            
-
-            {Object.keys(grouped[selectedYear]).map(eventName => {
-              const events = grouped[selectedYear][eventName];
-              const indexKey = keyOf(selectedYear, eventName);
+            {Object.keys(grouped[year]).map(eventName => {
+              const events = grouped[year][eventName];
+              const indexKey = keyOf(year, eventName);
               const currentIndex = selectedIndexes[indexKey];
 
-              return (
-                <div key={eventName} className="mb-20">
+              const prev =
+                events[(currentIndex - 1 + events.length) % events.length];
+              const curr = events[currentIndex];
+              const next =
+                events[(currentIndex + 1) % events.length];
 
-                  <h3 className="text-xl md:text-2xl font-bold text-[#642a38] text-center mb-8 font-serif">
+              return (
+                <div key={eventName} className="mb-28">
+
+                  <h3 className="text-xl md:text-2xl font-semibold text-[#ece8df] text-center mb-12 font-serif">
                     {eventName}
                   </h3>
 
-                  {/* MOBILE */}
+                  {/* ---------------- MOBILE (UNCHANGED) ---------------- */}
                   <div
                     className="md:hidden"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
-                    onTouchEnd={() =>
-                      onTouchEnd(indexKey, events.length)
-                    }
+                    onTouchEnd={() => onTouchEnd(indexKey, events.length)}
                   >
-                    <div className="relative max-w-sm mx-auto border-2 border-[#642a38] rounded-lg overflow-hidden shadow-xl">
-
+                    <div className="max-w-sm mx-auto bg-[#ece8df] border-2 border-[#642a38] rounded-xl overflow-hidden shadow-lg">
                       <img
-                        src={events[currentIndex].imageUrl}
+                        src={curr.imageUrl}
                         className="h-64 w-full object-cover"
                         alt=""
                       />
-
                       <div className="p-4 text-[#642a38]">
-                        <h4 className="font-bold">
-                          {events[currentIndex].title}
-                        </h4>
-                        <p className="text-sm opacity-70">
-                          {events[currentIndex].date}
-                        </p>
+                        <h4 className="font-bold">{curr.title}</h4>
+                        <p className="text-sm opacity-70">{curr.date}</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* DESKTOP */}
-                  <div className="hidden md:grid grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    {Array.from({ length: itemsPerView }).map((_, idx) => {
-                      const i =
-                        (currentIndex - middleIndex + idx + events.length) %
-                        events.length;
-                      const ev = events[i];
+                  {/* ---------------- DESKTOP (BIGGER IMAGES + INSIDE ARROWS) ---------------- */}
+                  <div className="hidden md:flex items-center justify-center relative h-[460px]">
 
-                      return (
-                        <div
-                          key={ev.id}
-                          onClick={() =>
-                            setSelectedIndexes(p => ({
-                              ...p,
-                              [indexKey]: i
-                            }))
-                          }
-                          className="border border-[#642a38] rounded-lg shadow-lg hover:shadow-xl transition cursor-pointer"
-                        >
-                          <img
-                            src={ev.imageUrl}
-                            className="h-64 w-full object-cover"
-                            alt=""
-                          />
-                          <div className="p-4 text-[#642a38]">
-                            <h4 className="font-bold">{ev.title}</h4>
-                            <p className="text-xs opacity-70">{ev.date}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+                    {/* LEFT */}
+                    <div className="scale-90 opacity-60 -rotate-6 bg-[#ab958a] rounded-3xl shadow-xl w-[300px] h-[360px] mr-[-130px]">
+                      <img
+                        src={prev.imageUrl}
+                        className="w-full h-[260px] object-cover rounded-t-3xl"
+                      />
+                    </div>
 
-                  {/* ARROWS */}
-                  <div className="hidden md:flex justify-center gap-6 mt-6 text-[#642a38]">
+                    {/* CENTER */}
+                    <div className="bg-[#ece8df] rounded-3xl shadow-2xl w-[380px] h-[460px] z-20 border-4 border-[#ab958a]">
+                      <img
+                        src={curr.imageUrl}
+                        className="w-full h-[340px] object-cover rounded-t-3xl"
+                      />
+                      <div className="p-5 text-[#642a38] text-center">
+                        <h4 className="font-bold text-xl">{curr.title}</h4>
+                        <p className="text-sm opacity-70">{curr.date}</p>
+                      </div>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="scale-90 opacity-60 rotate-6 bg-[#ab958a] rounded-3xl shadow-xl w-[300px] h-[360px] ml-[-130px]">
+                      <img
+                        src={next.imageUrl}
+                        className="w-full h-[260px] object-cover rounded-t-3xl"
+                      />
+                    </div>
+
+                    {/* ARROWS INSIDE CARD */}
                     <button
                       onClick={() =>
                         setSelectedIndexes(p => ({
                           ...p,
                           [indexKey]:
-                            (p[indexKey] - 1 + events.length) %
-                            events.length
+                            (p[indexKey] - 1 + events.length) % events.length
                         }))
                       }
+                      className="
+                        absolute left-6 top-1/2 -translate-y-1/2
+                        bg-[#ab958a] text-[#ece8df]
+                        p-3 rounded-full
+                        shadow-lg hover:bg-[#ece8df]
+                        hover:text-[#642a38]
+                        transition z-30
+                      "
                     >
-                      <MoveLeft size={36} />
+                      <MoveLeft size={30} />
                     </button>
+
                     <button
                       onClick={() =>
                         setSelectedIndexes(p => ({
                           ...p,
-                          [indexKey]: (p[indexKey] + 1) % events.length
+                          [indexKey]:
+                            (p[indexKey] + 1) % events.length
                         }))
                       }
+                      className="
+                        absolute right-6 top-1/2 -translate-y-1/2
+                        bg-[#ab958a] text-[#ece8df]
+                        p-3 rounded-full
+                        shadow-lg hover:bg-[#ece8df]
+                        hover:text-[#642a38]
+                        transition z-30
+                      "
                     >
-                      <MoveRight size={36} />
+                      <MoveRight size={30} />
                     </button>
-                  </div>
 
+                  </div>
                 </div>
               );
             })}
           </div>
-        )}
+        ))}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import React, { useState, TouchEvent } from "react";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { galleryEvents } from "@/app/data/gallery-data";
 
 /* ---------------- GROUP BY YEAR → EVENT ---------------- */
@@ -23,14 +24,13 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
     grouped[year][event.eventName].push(event);
   });
 
-  // Sort years descending
   const sortedYears = Object.keys(grouped).sort((a, b) => +b - +a);
 
-  // Sort events by date inside each event group
   sortedYears.forEach(year => {
     Object.keys(grouped[year]).forEach(eventName => {
       grouped[year][eventName].sort(
-        (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime()
+        (a, b) =>
+          parseDate(b.date).getTime() - parseDate(a.date).getTime()
       );
     });
   });
@@ -41,7 +41,15 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
 /* ---------------- COMPONENT ---------------- */
 
 export default function GalleryRedesign() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const { grouped, sortedYears } = groupByYearAndEvent(galleryEvents);
+
+  const defaultYear =
+    searchParams.get("year") ?? sortedYears[0];
+
+  const [selectedYear, setSelectedYear] = useState(defaultYear);
 
   const [selectedIndexes, setSelectedIndexes] = useState<Record<string, number>>(
     () => {
@@ -59,7 +67,14 @@ export default function GalleryRedesign() {
   const middleIndex = 1;
   const keyOf = (year: string, event: string) => `${year}-${event}`;
 
-  /* ---------------- SWIPE HANDLERS ---------------- */
+  /* ---------------- YEAR CHANGE ---------------- */
+
+  const handleYearChange = (year: string) => {
+    setSelectedYear(year);
+    router.push(`/gallery?year=${year}`, { scroll: false });
+  };
+
+  /* ---------------- SWIPE ---------------- */
 
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -89,9 +104,9 @@ export default function GalleryRedesign() {
     <div className="min-h-screen bg-[#ece8df]">
       <div className="py-10 md:py-20 max-w-7xl mx-auto px-4">
 
-        {/* PAGE HEADER */}
-        <div className="text-center mb-20">
-          <h1 className="text-4xl md:text-7xl font-bold text-[#642a38] font-serif tracking-wide">
+        {/* HEADER */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-7xl font-bold text-[#642a38] font-serif">
             GALLERY
           </h1>
           <p className="italic text-[#642a38] mt-2">
@@ -99,63 +114,52 @@ export default function GalleryRedesign() {
           </p>
         </div>
 
-        {/* YEAR LOOP */}
-        {sortedYears.map(year => (
-          <div key={year} className="mb-28">
-
-            {/* YEAR HEADING */}
-            <h2 className="text-3xl md:text-4xl font-bold text-[#642a38] text-center mb-14 font-serif">
+        {/* YEAR BAR */}
+        <div className="flex justify-center flex-wrap gap-4 mb-20">
+          {sortedYears.map(year => (
+            <button
+              key={year}
+              onClick={() => handleYearChange(year)}
+              className={`px-6 py-2 rounded-full font-serif text-lg transition
+                ${
+                  selectedYear === year
+                    ? "bg-[#642a38] text-[#ece8df] shadow-lg scale-105"
+                    : "bg-[#ece8df] text-[#642a38] border border-[#642a38] hover:bg-[#ab958a]/20"
+                }`}
+            >
               {year}
-            </h2>
+            </button>
+          ))}
+        </div>
 
-            {/* EVENT LOOP */}
-            {Object.keys(grouped[year]).map(eventName => {
-              const events = grouped[year][eventName];
-              const indexKey = keyOf(year, eventName);
+        {/* SELECTED YEAR */}
+        {selectedYear && (
+          <div className="mb-28">
+
+            
+
+            {Object.keys(grouped[selectedYear]).map(eventName => {
+              const events = grouped[selectedYear][eventName];
+              const indexKey = keyOf(selectedYear, eventName);
               const currentIndex = selectedIndexes[indexKey];
 
               return (
                 <div key={eventName} className="mb-20">
 
-                  {/* EVENT TITLE */}
                   <h3 className="text-xl md:text-2xl font-bold text-[#642a38] text-center mb-8 font-serif">
                     {eventName}
                   </h3>
 
-                  {/* -------- MOBILE VIEW -------- */}
+                  {/* MOBILE */}
                   <div
                     className="md:hidden"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
-                    onTouchEnd={() => onTouchEnd(indexKey, events.length)}
+                    onTouchEnd={() =>
+                      onTouchEnd(indexKey, events.length)
+                    }
                   >
-                    <div className="relative max-w-sm mx-auto bg-[#ece8df] border-2 border-[#642a38] rounded-lg overflow-hidden shadow-xl">
-
-                      <button
-                        onClick={() =>
-                          setSelectedIndexes(p => ({
-                            ...p,
-                            [indexKey]:
-                              (p[indexKey] - 1 + events.length) %
-                              events.length
-                          }))
-                        }
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#642a38]/90 text-[#ece8df] p-2 rounded-full z-10"
-                      >
-                        <MoveLeft />
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          setSelectedIndexes(p => ({
-                            ...p,
-                            [indexKey]: (p[indexKey] + 1) % events.length
-                          }))
-                        }
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#642a38]/90 text-[#ece8df] p-2 rounded-full z-10"
-                      >
-                        <MoveRight />
-                      </button>
+                    <div className="relative max-w-sm mx-auto border-2 border-[#642a38] rounded-lg overflow-hidden shadow-xl">
 
                       <img
                         src={events[currentIndex].imageUrl}
@@ -172,29 +176,9 @@ export default function GalleryRedesign() {
                         </p>
                       </div>
                     </div>
-
-                    {/* DOTS */}
-                    <div className="flex justify-center gap-2 mt-4">
-                      {events.map((_, i) => (
-                        <button
-                          key={i}
-                          onClick={() =>
-                            setSelectedIndexes(p => ({
-                              ...p,
-                              [indexKey]: i
-                            }))
-                          }
-                          className={`w-3 h-3 rounded-full ${
-                            currentIndex === i
-                              ? "bg-[#642a38] scale-125"
-                              : "bg-[#ab958a]"
-                          }`}
-                        />
-                      ))}
-                    </div>
                   </div>
 
-                  {/* -------- DESKTOP VIEW -------- */}
+                  {/* DESKTOP */}
                   <div className="hidden md:grid grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {Array.from({ length: itemsPerView }).map((_, idx) => {
                       const i =
@@ -211,7 +195,7 @@ export default function GalleryRedesign() {
                               [indexKey]: i
                             }))
                           }
-                          className="bg-[#ece8df] border border-[#642a38] rounded-lg shadow-lg hover:shadow-xl transition cursor-pointer"
+                          className="border border-[#642a38] rounded-lg shadow-lg hover:shadow-xl transition cursor-pointer"
                         >
                           <img
                             src={ev.imageUrl}
@@ -227,7 +211,7 @@ export default function GalleryRedesign() {
                     })}
                   </div>
 
-                  {/* DESKTOP ARROWS */}
+                  {/* ARROWS */}
                   <div className="hidden md:flex justify-center gap-6 mt-6 text-[#642a38]">
                     <button
                       onClick={() =>
@@ -257,7 +241,7 @@ export default function GalleryRedesign() {
               );
             })}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

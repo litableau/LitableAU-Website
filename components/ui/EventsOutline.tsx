@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useMemo,useRef,useEffect } from 'react';
 import { Search } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import '../../app/EventsOutline.css';
 
 export interface Event {
@@ -40,6 +43,7 @@ interface EventsOutlineProps {
 }
 
 const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) => {
+  const router = useRouter();
   // null means "no category selected" → show all
   const [selectedCategory, setSelectedCategory] = useState<'past' | 'ongoing' | 'upcoming' | null>(null);
   // State to track selected event for detailed view
@@ -304,12 +308,15 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                   </div>
                 </div>
 
-                {selectedEvent.type === 'ongoing' && selectedEvent.isLink && selectedEvent.googleFormUrl && (
+                {(selectedEvent.type === 'ongoing' || selectedEvent.type === 'upcoming') && (
                   <button
                     className="event-detail-join-btn"
-                    onClick={() => window.open(selectedEvent.googleFormUrl, '_blank')}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(`/events/register/${selectedEvent.id}`);
+                    }}
                   >
-                    JOIN NOW
+                    REGISTER NOW
                   </button>
                 )}
               </div>

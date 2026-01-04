@@ -98,6 +98,8 @@ function doPost(e) {
 
 ### Step 3: Configure Environment Variables
 
+#### For Local Development:
+
 1. Create a `.env.local` file in your project root (if it doesn't exist)
 2. Add the following:
 
@@ -108,6 +110,18 @@ GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 Replace `YOUR_SCRIPT_ID` with the actual URL from Step 2.
 
 3. Restart your Next.js development server
+
+#### ⚠️ For Deployment (GitHub, Vercel, Netlify, etc.):
+
+**IMPORTANT**: Environment variables in `.env.local` only work locally. For deployment, you must configure environment variables in your deployment platform.
+
+**See `DEPLOYMENT_ENV_SETUP.md` for detailed instructions on setting up environment variables for your specific deployment platform.**
+
+Quick steps:
+1. Go to your deployment platform's settings
+2. Find "Environment Variables" or "Config Vars"
+3. Add `GOOGLE_APPS_SCRIPT_URL` with your script URL
+4. Redeploy your application
 
 ## Option 2: Using Google Sheets API v4 (Advanced)
 

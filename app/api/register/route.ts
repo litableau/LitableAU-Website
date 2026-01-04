@@ -126,9 +126,20 @@ export async function POST(request: NextRequest) {
     }
 
     // No configuration found
-    console.error('Google Sheets configuration missing. Please set GOOGLE_APPS_SCRIPT_URL or GOOGLE_SHEETS_ID and GOOGLE_SHEETS_API_KEY environment variables.');
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    const errorMessage = isDevelopment 
+      ? 'Google Sheets configuration missing. Please set GOOGLE_APPS_SCRIPT_URL or GOOGLE_SHEETS_ID and GOOGLE_SHEETS_API_KEY environment variables in your .env.local file.'
+      : 'Server configuration error. Environment variables are not set in the deployment environment. Please configure GOOGLE_APPS_SCRIPT_URL in your deployment platform settings.';
+    
+    console.error('Google Sheets configuration missing:', {
+      hasAppsScriptUrl: !!GOOGLE_APPS_SCRIPT_URL,
+      hasSheetsId: !!GOOGLE_SHEETS_ID,
+      hasApiKey: !!GOOGLE_SHEETS_API_KEY,
+      nodeEnv: process.env.NODE_ENV
+    });
+    
     return NextResponse.json(
-      { error: 'Server configuration error. Please contact the administrator.' },
+      { error: errorMessage },
       { status: 500 }
     );
 

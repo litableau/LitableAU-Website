@@ -21,7 +21,7 @@ export const sampleEvents: Event[] = [
     tags: ['Ice breaker', 'Engagement', 'Social'],
     isLiked: false,
     isRegistered: false,
-    type: 'ongoing',
+    type: 'past',
     isLink: false
   },
 {
@@ -45,7 +45,7 @@ export const sampleEvents: Event[] = [
     tags: ['Ice Breaker', 'Fun', 'Social'],
     isLiked: false,
     isRegistered: true,
-    type: 'ongoing',
+    type: 'past',
     contactInfo: 'Praveena : +91 75388 97559',
     isLink: true,
     googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe8ZlEBntS2YdS17OUREPFoveVY8xc9OjWud2Bzidceurf9BA/viewform?fbclid=PAQ0xDSwNNjr5leHRuA2FlbQIxMQABpy_fImJvsJ_vEMkm0r4x1agQsqXxJ-0Gh0cR9P5dvGSyUQtyfrf3GI0GsYVN_aem_a8FTwyA5qMAMdpoaFUkE_g'
@@ -71,7 +71,7 @@ export const sampleEvents: Event[] = [
     tags: ['IceBreaker', 'Fun', 'Discussion'],
     isLiked: true,
     isRegistered: true,
-    type: 'ongoing',
+    type: 'past',
     contactInfo: 'Harini : +91 63820 60103',
     isLink: true,
     googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfobGsuu7E6HRMd3yXvs459KxQpepqRTkM0zEmj0eMh32t1Dg/viewform?fbclid=PAQ0xDSwNNjn1leHRuA2FlbQIxMQABp5d1aYU22uKYpDBtNM2hmBlB19i5fXzz3D7BM8MyalCkfJhYoR0FFF-WSd7D_aem_PQMYYUW85IkrUUrFTPeV5A'
@@ -435,7 +435,7 @@ export const sampleEvents: Event[] = [
     tags: ['Gossip', 'Magazine', 'Creativity'],
     isLiked: false,
     isRegistered: false,
-    type: 'ongoing',
+    type: 'past',
     contactInfo: 'Ashmika : +91 81221 21344',
     isLink: true,
     googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdbO1SniTTtvE1bp33T-s0rfzCvQJAcen92gHk67hklTpo2OQ/viewform?usp=header&fbclid=PAQ0xDSwNPGspleHRuA2FlbQIxMQABp_enNSnanVolxdK4FW1-vDTgu13-DoAjs9aU7fE91Dgnn34exXWLy5fbp4zN_aem_wT55spB_1-eoXabSFNu1ZA'
@@ -461,7 +461,7 @@ export const sampleEvents: Event[] = [
     tags: ['Escape', 'Room', 'Adventure'],
     isLiked: false,
     isRegistered: false,
-    type: 'ongoing',
+    type: 'past',
     contactInfo: 'Harini : +91 63820 60103',
     isLink: true,
     googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfpBB3mJjlKGMKC9mKOCm4nnPbLB46RaQutgIYVDoaotFbUyQ/viewform?usp=header&fbclid=PAQ0xDSwNPGt1leHRuA2FlbQIxMQABp0jZmI-cuDAhTxaVSQsfwAWmtX7w-zlT_i8t-H7NQuZAk6yhpkA0_WokZsM4_aem_ezc2Tsh6rAv_-Vn_c2O3wQ'
@@ -487,7 +487,7 @@ export const sampleEvents: Event[] = [
     tags: ['Board', 'Games', 'Social'],
     isLiked: false,
     isRegistered: false,
-    type: 'ongoing',
+    type: 'past',
     contactInfo: 'Niharika : +91 96776 56309 | Shaan : +91 97908 10625',
     isLink: false,
   },

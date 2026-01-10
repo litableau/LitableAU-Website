@@ -3,6 +3,60 @@ import { v4 as uuidv4 } from 'uuid';
 export const galleryEvents = [
     {
         id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img1.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img2.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img3.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img4.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img5.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img6.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img7.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img8.jpeg',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2025',
+        title: 'ICE BREAKER',
+        date: '07/10/2025',
+        imageUrl: '/2025/ice-breaker/img9.jpeg',
+    },{
+        id: uuidv4(),
         eventName: 'Murder Mystery',
         title: 'MURDER MYSTERY',
         date: '21/08/2025',
@@ -182,31 +236,31 @@ export const galleryEvents = [
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '26/08/2024',
+        date: '07/10/2025',
         imageUrl: '/2024/ice-breaker/ib5.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '26/08/2024',
+        date: '07/10/2025',
         imageUrl: '/2024/ice-breaker/ib6.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '26/08/2024',
+        date: '07/10/2025',
         imageUrl: '/2024/ice-breaker/ib7.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '26/08/2024',
+        date: '07/10/2025',
         imageUrl: '/2024/ice-breaker/ib8.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '26/08/2024',
+        date: '07/10/2025',
         imageUrl: '/2024/ice-breaker/ib9.jpg',
     }
 ];

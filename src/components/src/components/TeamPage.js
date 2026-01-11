@@ -1450,7 +1450,7 @@ const TeamPage = () => {
   const [activeTab, setActiveTab] = useState('Leadership');
   const [selectedMember, setSelectedMember] = useState(null);
   const sectionRefs = useRef({});
-  const departments = ['Leadership', 'Events', 'Ops and Logistics', 'Media and Marketing', 'Contents', 'Design', 'External Relations', 'Photography', 'Tech'];
+  const departments = ['Leadership', 'Events', 'Ops and Logistics', 'Media and Marketing', 'Contents', 'Design', 'External Relations', 'Photography', 'Tech','Digital Engagement'];
 
   const scrollToSection = (department) => {
     setActiveTab(department);
@@ -1513,6 +1513,10 @@ const TeamPage = () => {
     ],
     Tech: [
       { id: 27, name: 'Sonali Shruthi', role: 'Head', image: '/images/SonaliShruthi.jpg' },
+    ],
+    'Digital Engagement': [
+      { id: 28, name: 'Renuka', role: 'Web Coordinator', image: '/images/Renuka.jpg' },
+      { id: 29, name: 'Kishore', role: 'Web Coordinator', image: '/images/Kishore.jpg' },
     ],
   };
 

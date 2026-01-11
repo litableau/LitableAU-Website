@@ -4,6 +4,7 @@ import React, { useState, useMemo,useRef,useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../../app/EventsOutline.css';
+import Link from "next/link";
 
 export interface Event {
   id: string;
@@ -28,6 +29,7 @@ export interface Event {
   type: 'past' | 'ongoing' | 'upcoming';
   contactInfo?: string;
   isLink?: boolean;
+  link?:string;
   googleFormUrl?: string;
 }
 
@@ -308,7 +310,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                   </div>
                 </div>
 
-                {(selectedEvent.type === 'ongoing' || selectedEvent.type === 'upcoming') && (
+                {!selectedEvent.link && (selectedEvent.type === 'ongoing' || selectedEvent.type === 'upcoming') && (
                   <button
                     className="event-detail-join-btn"
                     onClick={(e) => {
@@ -319,6 +321,17 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
                     REGISTER NOW
                   </button>
                 )}
+                {selectedEvent.link && (
+                  <Link href={selectedEvent.link}>
+                  <button
+                  className="event-detail-join-btn"
+                  onClick={(e) => e.stopPropagation()}
+                  >
+                  VIEW PAGE
+                  </button>
+                  </Link>
+                )}
+
               </div>
             </div>
           </div>

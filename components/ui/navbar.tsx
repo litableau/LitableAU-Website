@@ -73,14 +73,16 @@ export function Navbar() {
         {isOpen && (
           <div className="md:hidden mt-2">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-[#642a38] rounded-lg border border-[#e1d5c9]/30">
-              {["about us", "gallery", "events", "meet us"].map((link) => (
+              {["aboutus", "gallery", "events", "meetus"].map((link) => (
                 <a
                   key={link}
                   href={`/${link}`}
                   onClick={() => setIsOpen(false)}
                   className="block px-3 py-2 text-[#ece8df] hover:text-[#ab958a] transition-colors duration-200 font-classic uppercase"
                 >
-                  {link.replace(/^\w/, (c) => c.toUpperCase())}
+                  {link === "aboutus" ? "About us" :
+                  link === "meetus" ? "Meet us" :
+                  link.replace(/^\w/, (c) => c.toUpperCase())}
                 </a>
               ))}
             </div>

@@ -10,23 +10,6 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-/* ---------------- EVENT ORDER LOGIC ---------------- */
-
-const EVENT_ORDER = [
-  "Ice Breaker",
-  "Members Meet",
-  "Open Call",
-  "Murder Mystery",
-  "Litablaze",
-];
-
-const getEventOrderIndex = (eventName: string) => {
-  const found = EVENT_ORDER.find(order =>
-    eventName.toLowerCase().includes(order.toLowerCase())
-  );
-  return found ? EVENT_ORDER.indexOf(found) : EVENT_ORDER.length;
-};
-
 /* ---------------- GROUP BY YEAR → EVENT ---------------- */
 
 const groupByYearAndEvent = (events: typeof galleryEvents) => {
@@ -45,18 +28,9 @@ const groupByYearAndEvent = (events: typeof galleryEvents) => {
     grouped[year][event.eventName].push(event);
   });
 
-  /* SORT YEARS (LATEST FIRST) */
   const sortedYears = Object.keys(grouped).sort((a, b) => +b - +a);
 
-  /* SORT EVENTS BY REQUIRED ORDER */
   sortedYears.forEach(year => {
-    const sortedEventEntries = Object.entries(grouped[year]).sort(
-      ([a], [b]) => getEventOrderIndex(a) - getEventOrderIndex(b)
-    );
-
-    grouped[year] = Object.fromEntries(sortedEventEntries);
-
-    /* SORT IMAGES INSIDE EACH EVENT BY DATE */
     Object.keys(grouped[year]).forEach(eventName => {
       grouped[year][eventName].sort(
         (a, b) =>
@@ -107,6 +81,7 @@ function AutoRotatingCarousel({ events }: { events: any[] }) {
       onMouseUp={() => setHolding(false)}
       onMouseLeave={() => setHolding(false)}
     >
+      {/* CARDS */}
       {events.map((item, i) => {
         const offset = ((i - activeIndex + total) % total);
         const angle = (offset * (2 * Math.PI)) / total;
@@ -162,6 +137,7 @@ function AutoRotatingCarousel({ events }: { events: any[] }) {
         );
       })}
 
+      {/* ARROWS (ALWAYS ON TOP OF CAROUSEL) */}
       <div className="absolute inset-0 pointer-events-none z-[999]">
         <button
           onClick={rotateLeft}
@@ -204,6 +180,7 @@ export default function GalleryRedesign() {
     <div className="min-h-screen bg-[#ece8df] py-20 px-4">
       <div className="max-w-7xl mx-auto">
 
+        {/* HEADER */}
         <div className="text-center mb-24">
           <h1 className="text-4xl md:text-7xl font-bold text-[#642a38] font-serif">
             GALLERY
@@ -238,6 +215,7 @@ export default function GalleryRedesign() {
                     {eventName}
                   </h3>
 
+                  {/* MOBILE (UNCHANGED) */}
                   <div className="md:hidden">
                     <Swiper
                       modules={[Pagination, Autoplay]}
@@ -266,6 +244,7 @@ export default function GalleryRedesign() {
                     </Swiper>
                   </div>
 
+                  {/* DESKTOP */}
                   <div className="hidden md:block relative h-[500px] z-10">
                     <AutoRotatingCarousel events={events} />
                   </div>

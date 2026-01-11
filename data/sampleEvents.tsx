@@ -222,6 +222,6 @@ export const sampleEvents: Event[] = [
     isRegistered: false,
     type: 'upcoming',
     isLink: true,
-    link: 'https://litablaze-vert.vercel.app/',
+    link: 'https://litablaze.vercel.app/',
   }
 ];

@@ -23,7 +23,7 @@ export const RedirectPopup: React.FC<RedirectPopupProps> = ({
       className="
         fixed inset-0 z-50 flex items-center justify-center
         bg-black/70 backdrop-blur-sm
-        px-3 sm:px-0
+        px-1 sm:px-0
         animate-fadeIn
       "
     >
@@ -38,16 +38,20 @@ export const RedirectPopup: React.FC<RedirectPopupProps> = ({
         role="dialog"
         aria-modal="true"
         className="
-          relative w-full sm:w-[92%] max-w-md
-          max-h-[90vh] overflow-y-auto
-          rounded-2xl bg-[#0f0f0f] text-[#ece8df]
+          relative w-full
+          sm:w-[92%] max-w-md
+          max-h-[95vh] sm:max-h-[90vh]
+          overflow-y-auto
+          rounded-2xl sm:rounded-2xl
+          bg-[#0f0f0f] text-[#ece8df]
           ring-1 ring-red-700/40
           shadow-[0_0_60px_rgba(220,38,38,0.6)]
           animate-popupIn animate-upsideGlow
+          -translate-y-4 sm:translate-y-0
         "
       >
         {/* Image */}
-        <div className="relative h-32 sm:h-40 w-full overflow-hidden">
+        <div className="relative h-44 sm:h-40 w-full overflow-hidden">
           <img
             src="/litablaze.png"
             alt="LitaBlaze Event"
@@ -60,12 +64,12 @@ export const RedirectPopup: React.FC<RedirectPopupProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 sm:p-6">
+        <div className="p-6 sm:p-6">
           <p className="mb-2 text-center text-xs uppercase tracking-widest text-red-400 animate-flickerText">
             Official Event Portal
           </p>
 
-          <h2 className="mb-3 text-center text-lg sm:text-xl font-semibold text-neutral-300 animate-flickerText">
+          <h2 className="mb-3 text-center text-xl sm:text-xl font-semibold text-neutral-300 animate-flickerText">
             Enter LitaBlaze
           </h2>
 
@@ -77,7 +81,7 @@ export const RedirectPopup: React.FC<RedirectPopupProps> = ({
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={onClose}
               className="

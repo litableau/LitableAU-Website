@@ -211,7 +211,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/board_games.jpg',
+    imageUrl: '/events/LITABLAZE26.png',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',

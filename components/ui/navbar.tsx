@@ -73,7 +73,7 @@ export function Navbar() {
         {isOpen && (
           <div className="md:hidden mt-2">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-[#642a38] rounded-lg border border-[#e1d5c9]/30">
-              {["aboutus", "gallery", "events", "meetus"].map((link) => (
+              {["about us", "gallery", "events", "meet us"].map((link) => (
                 <a
                   key={link}
                   href={`/${link}`}

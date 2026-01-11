@@ -1506,7 +1506,11 @@ const TeamPage = () => {
       { id: 21, name: 'Dhishitha', role: 'Jr Head', image: '/images/Dhishitha.jpg' },
       { id: 22, name: 'Vaishnave', role: 'Jr Head', image: '/images/Vaishnave.jpg' },
     ],
-    'External Relations': [],
+    'External Relations': [
+      { id: 23, name: 'Srimathi Rajkumar', role: 'Head', image: '/images/SrimathiRajkumar.jpg' },
+      { id: 24, name: 'Ragavendran', role: 'Head', image: '/images/Ragavendran.jpg' },
+      { id: 30, name: 'Mohana Krishna', role: 'Jr Head', image: '/images/MohanaKrishna.jpg' },
+    ],
     Photography: [
       { id: 25, name: 'Shree Vekka Narayanee', role: 'Head', image: '/images/ShreeVekkaNarayanee.jpg' },
       { id: 26, name: 'Joshika Madhu', role: 'Head', image: '/images/JoshikaMadhu.jpg' },

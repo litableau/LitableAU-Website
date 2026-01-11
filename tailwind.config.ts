@@ -18,6 +18,7 @@ const config: Config = {
       },
     },
     extend: {
+      /* 🎨 COLORS */
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,12 +54,17 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+
+      /* 🔲 BORDER RADIUS */
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
+      /* 🎬 KEYFRAMES */
       keyframes: {
+        /* Existing */
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -67,14 +73,64 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+
+        /* 🔥 Stranger Things Animations */
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+
+        popupIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px) scale(0.92)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) scale(1)",
+          },
+        },
+
+        upsideGlow: {
+          "0%, 100%": {
+            boxShadow: "0 0 40px rgba(220,38,38,0.4)",
+          },
+          "50%": {
+            boxShadow: "0 0 90px rgba(220,38,38,0.9)",
+          },
+        },
+
+        flickerText: {
+          "0%, 100%": { opacity: "1" },
+          "45%": { opacity: "0.85" },
+          "48%": { opacity: "0.6" },
+          "50%": { opacity: "0.9" },
+          "52%": { opacity: "0.7" },
+        },
+
+        fogPulse: {
+          "0%, 100%": { opacity: "0.2" },
+          "50%": { opacity: "0.45" },
+        },
       },
+
+      /* 🎞️ ANIMATIONS */
       animation: {
+        /* Existing */
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+
+        /* Stranger Things */
+        fadeIn: "fadeIn 0.4s ease-out forwards",
+        popupIn:
+          "popupIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        upsideGlow: "upsideGlow 3.5s ease-in-out infinite",
+        flickerText: "flickerText 2.5s infinite",
+        fogPulse: "fogPulse 6s ease-in-out infinite",
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
 
 export default config;

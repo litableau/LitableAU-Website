@@ -236,31 +236,31 @@ export const galleryEvents = [
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '07/10/2025',
+        date: '23/08/2024',
         imageUrl: '/2024/ice-breaker/ib5.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '07/10/2025',
+        date: '23/08/2024',
         imageUrl: '/2024/ice-breaker/ib6.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '07/10/2025',
+        date: '23/08/2024',
         imageUrl: '/2024/ice-breaker/ib7.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '07/10/2025',
+        date: '23/08/2024',
         imageUrl: '/2024/ice-breaker/ib8.jpg',
     },{
         id: uuidv4(),
         eventName: 'Ice Breaker - 2024',
         title: 'ICE BREAKER',
-        date: '07/10/2025',
+        date: '23/08/2024',
         imageUrl: '/2024/ice-breaker/ib9.jpg',
     }
 ];

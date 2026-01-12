@@ -205,9 +205,28 @@ export default function GalleryRedesign() {
               {year}
             </h2>
 
-            {Object.keys(grouped[year]).map(eventName => {
-              const events = grouped[year][eventName];
-
+            {Object.keys(grouped[year])
+              .sort((a, b) => {
+                const parseDate = (str: string) => {
+                  const [dd, mm, yyyy] = str.split("/");
+                  return new Date(+yyyy, +mm - 1, +dd);
+                };
+              
+                const aEvents = grouped[year][a];
+                const bEvents = grouped[year][b];
+              
+                const aDate = parseDate(
+                  aEvents[aEvents.length - 1].date
+                );
+                const bDate = parseDate(
+                  bEvents[bEvents.length - 1].date
+                );
+              
+                // CHRONOLOGICAL: oldest → newest
+                return bDate.getTime() - aDate.getTime();
+              })
+              .map(eventName => {
+                const events = grouped[year][eventName];
               return (
                 <div key={eventName} className="mb-28">
 

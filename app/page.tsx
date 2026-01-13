@@ -9,19 +9,14 @@ import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
 import { RedirectPopup } from "@/components/RedirectPopUp";
 
-const REDIRECT_URL = "https://litablaze.vercel.app/";
+const REDIRECT_URL = "https://litablaze-litclubau.vercel.app/";
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
 
   // 🔹 Show popup ONCE per session (tab)
   useEffect(() => {
-    const hasSeenPopup = sessionStorage.getItem("litablaze-popup-seen");
-
-    if (!hasSeenPopup) {
       setShowPopup(true);
-      sessionStorage.setItem("litablaze-popup-seen", "true");
-    }
   }, []);
 
   return (

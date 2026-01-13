@@ -12,7 +12,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/ib-lit.jpg',
+    imageUrl: '/events-webp/ib-lit.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -36,7 +36,7 @@ export const sampleEvents: Event[] = [
       name: 'Quiz',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/quiz-lit.jpg',
+    imageUrl: '/events-webp/quiz-lit.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -62,7 +62,7 @@ export const sampleEvents: Event[] = [
       name: 'Literature',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/ipl-lit.jpg',
+    imageUrl: '/events-webp/ipl-lit.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -88,7 +88,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/murder.jpg',
+    imageUrl: '/events-webp/murder.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -113,7 +113,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/gossip_magazine.jpg',
+    imageUrl: '/events-webp/gossip_magazine.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -139,7 +139,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/escape_room.jpg',
+    imageUrl: '/events-webp/escape_room.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -165,7 +165,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/board_games.jpg',
+    imageUrl: '/events-webp/board_games.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -189,7 +189,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/genz_test.jpg',
+    imageUrl: '/events-webp/genz_test.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -211,7 +211,7 @@ export const sampleEvents: Event[] = [
       name: 'Social',
       color: 'rgb(23,58,43)'
     },
-    imageUrl: '/events/LITABLAZE26.png',
+    imageUrl: '/events-webp/LITABLAZE26.webp',
     price: 0,
     isFree: true,
     organizer: 'LITABLEAU Events',
@@ -222,6 +222,6 @@ export const sampleEvents: Event[] = [
     isRegistered: false,
     type: 'upcoming',
     isLink: true,
-    link: 'https://litablaze.vercel.app/',
+    link: 'https://litablaze-litclubau.vercel.app/',
   }
 ];

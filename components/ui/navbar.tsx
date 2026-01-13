@@ -95,7 +95,7 @@ export function Navbar() {
               ))}
               {/* ---- LITABLAZE (external link) ---- */}
               <a
-                href="https://litablaze.vercel.app/"
+                href="https://litablaze-litclubau.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}

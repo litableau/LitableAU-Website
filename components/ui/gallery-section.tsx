@@ -9,6 +9,8 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from "next/image";
+
 
 /* ---------------- GROUP BY YEAR → EVENT ---------------- */
 
@@ -121,11 +123,17 @@ function AutoRotatingCarousel({ events }: { events: any[] }) {
               border-4 border-[#ab958a]
               overflow-hidden
             ">
-              <img
-                src={item.imageUrl}
-                className="w-full h-[260px] object-cover rounded-t-3xl"
-                alt=""
-              />
+              <div className="relative w-full h-[260px]">
+  <Image
+    src={item.imageUrl}
+    alt={item.title}
+    fill
+    sizes="360px"
+    className="object-cover rounded-t-3xl"
+    priority={i === activeIndex}   // only active card loads eagerly
+  />
+</div>
+
               <div className="h-[160px] p-5 text-[#642a38] text-center flex flex-col justify-center">
                 <h4 className="font-bold text-lg leading-tight">
                   {item.title}
@@ -248,11 +256,16 @@ export default function GalleryRedesign() {
                       {events.map((item, i) => (
                         <SwiperSlide key={i}>
                           <div className="bg-[#f2eee9] rounded-3xl shadow-2xl border-4 border-[#ab958a] overflow-hidden">
-                            <img
-                              src={item.imageUrl}
-                              className="w-full h-[280px] object-cover"
-                              alt=""
-                            />
+                           <div className="relative w-full h-[280px]">
+  <Image
+    src={item.imageUrl}
+    alt={item.title}
+    fill
+    sizes="(max-width: 768px) 90vw, 360px"
+    className="object-cover"
+  />
+</div>
+
                             <div className="p-4 text-[#642a38] text-center">
                               <h4 className="font-bold">{item.title}</h4>
                               <p className="text-sm opacity-70">{item.date}</p>

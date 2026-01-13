@@ -5,6 +5,8 @@ import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../../app/EventsOutline.css';
 import Link from "next/link";
+import Image from "next/image";
+
 
 export interface Event {
   id: string;
@@ -138,6 +140,7 @@ const EventsOutline: React.FC<EventsOutlineProps> = ({ events, onEventClick }) =
             </button>
           </div>
           <div className="hero-images">
+            
             <div className="hero-image hero-image-1"><img src="events/LITABLAZE26.png" alt="Vintage magnifying glass" /></div>
             <div className="hero-image hero-image-2"><img src="events/hero1.jpg" alt="Old books" /></div>
             <div className="hero-image hero-image-3"><img src="events/hero3.jpg" alt="Daisy flowers" /></div>

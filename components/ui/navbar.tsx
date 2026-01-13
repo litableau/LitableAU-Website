@@ -67,7 +67,7 @@ export function Navbar() {
               MEET US
             </a>
             <a
-              href="https://litablaze.vercel.app/"
+              href="https://litablaze-litclubau.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#ece8df] uppercase font-classic text-lg hover:text-[#ab958a] transition-colors duration-200"

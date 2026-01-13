@@ -53,7 +53,7 @@ export const RedirectPopup: React.FC<RedirectPopupProps> = ({
         {/* Image */}
         <div className="relative h-44 sm:h-40 w-full overflow-hidden">
           <img
-            src="/litablaze.png"
+            src="/litablaze.webp"
             alt="LitaBlaze Event"
             className="
               h-full w-full object-cover

@@ -262,5 +262,18 @@ export const galleryEvents = [
         title: 'ICE BREAKER',
         date: '23/08/2024',
         imageUrl: '/2024/ice-breaker-webp/ib9.webp',
+    },
+    {
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '23/08/2024',
+        imageUrl: '/2024/ice-breaker-webp/ib10.webp',
+    },{
+        id: uuidv4(),
+        eventName: 'Ice Breaker - 2024',
+        title: 'ICE BREAKER',
+        date: '23/08/2024',
+        imageUrl: '/2024/ice-breaker-webp/ib11.webp',
     }
 ];

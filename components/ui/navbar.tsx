@@ -66,14 +66,6 @@ export function Navbar() {
             >
               MEET US
             </a>
-            <a
-              href="https://litablaze-litclubau.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#ece8df] uppercase font-classic text-lg hover:text-[#ab958a] transition-colors duration-200"
-            >
-              LITABLAZE
-            </a>
           </div>
         </div>
 
@@ -93,16 +85,7 @@ export function Navbar() {
                   link.replace(/^\w/, (c) => c.toUpperCase())}
                 </a>
               ))}
-              {/* ---- LITABLAZE (external link) ---- */}
-              <a
-                href="https://litablaze-litclubau.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 mt-3 text-[#ece8df] hover:text-[#ab958a] transition-colors duration-200 font-classic uppercase"
-              >
-                LITABLAZE
-              </a>
+              
             </div>
           </div>
         )}

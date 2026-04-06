@@ -9,8 +9,6 @@ import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
 import { RedirectPopup } from "@/components/RedirectPopUp";
 
-const REDIRECT_URL = "https://litablaze-litclubau.vercel.app/";
-
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
 
@@ -40,12 +38,6 @@ export default function Home() {
       {/* Footer */}
       <Footer />
 
-      {/* Popup */}
-      <RedirectPopup
-        isOpen={showPopup}
-        onClose={() => setShowPopup(false)}
-        redirectUrl={REDIRECT_URL}
-      />
     </main>
   );
 }

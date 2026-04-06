@@ -7,7 +7,6 @@ import { AboutSection } from "@/components/ui/about-section";
 import { InstaCarousel } from "@/components/ui/insta-carousel";
 import { ContactSection } from "@/components/ui/contact-section";
 import { Footer } from "@/components/ui/footer";
-import { RedirectPopup } from "@/components/RedirectPopUp";
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);

@@ -220,8 +220,7 @@ export const sampleEvents: Event[] = [
     tags: ['Board', 'Games', 'Social'],
     isLiked: false,
     isRegistered: false,
-    type: 'upcoming',
-    isLink: true,
-    link: 'https://litablaze-litclubau.vercel.app/',
+    type: 'past',
+    isLink: false,
   }
 ];
